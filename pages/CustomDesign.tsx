@@ -57,12 +57,56 @@ const CustomDesign: React.FC = () => {
     }
   };
 
-  const handleOrder = () => {
-    if (!imagePreview && !description) {
+  const [isUploading, setIsUploading] = useState(false);
+
+  const uploadToCloudinary = async (file: File): Promise<string | null> => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'Qparche');
+
+    try {
+      const response = await fetch('https://api.cloudinary.com/v1_1/df9hx41ru/image/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('Upload failed');
+      }
+
+      const data = await response.json();
+      return data.secure_url;
+    } catch (error) {
+      console.error('Error uploading to Cloudinary:', error);
+      return null;
+    }
+  };
+
+  const handleOrder = async () => {
+    if (!selectedFile && !description) {
       alert("Por favor sube una imagen o describe tu idea.");
       return;
     }
 
+    if (!selectedFile) {
+      // If no file, just send description
+      sendWhatsAppMessage(null);
+      return;
+    }
+
+    setIsUploading(true);
+    const uploadedUrl = await uploadToCloudinary(selectedFile);
+    setIsUploading(false);
+
+    if (!uploadedUrl) {
+      alert("Hubo un error subiendo la imagen. Por favor intenta de nuevo.");
+      return;
+    }
+
+    sendWhatsAppMessage(uploadedUrl);
+  };
+
+  const sendWhatsAppMessage = (imageUrl: string | null) => {
     const message = `Hola Q Parche, quiero cotizar un diseño personalizado:
 
 Estilo: ${category.toUpperCase()}
@@ -70,9 +114,8 @@ Talla: ${size}
 Color: ${color}
 Ubicacion: ${placement}
 Detalles: ${description || 'N/A'}
-Edicion IA: ${editedImage ? 'Si' : 'No'}
 
-Nota: Adjuntare la imagen a definicion.`;
+Imagen: ${imageUrl || 'N/A'}`;
 
     const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
@@ -121,8 +164,8 @@ Nota: Adjuntare la imagen a definicion.`;
               )}
             </div>
 
-            {/* AI Controls */}
-            {imagePreview && (
+            {/* AI Controls - DISABLED FOR LAUNCH */}
+            {false && imagePreview && (
               <div className="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-xl">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="bg-purple-100 p-2 rounded-lg">
@@ -161,6 +204,17 @@ Nota: Adjuntare la imagen a definicion.`;
                 </div>
               </div>
             )}
+
+            {/* No Design Helper */}
+            <div className="bg-blue-50 p-6 rounded-[2rem] border border-blue-100 text-center">
+              <p className="text-slate-700 font-bold text-lg mb-2">¿No tienes diseño?</p>
+              <p className="text-slate-600">
+                Escríbenos por WhatsApp y te ayudamos a armarlo.
+                <a href={`https://wa.me/${waNumber}`} target="_blank" rel="noreferrer" className="block mt-2 text-q-carnaval font-black underline decoration-2 underline-offset-2 hover:text-orange-600">
+                  Ir al WhatsApp
+                </a>
+              </p>
+            </div>
           </div>
 
           {/* Right Column: Configuration */}
@@ -247,15 +301,26 @@ Nota: Adjuntare la imagen a definicion.`;
 
               <button
                 onClick={handleOrder}
-                className="w-full bg-q-carnaval hover:bg-orange-600 text-white font-bold h-14 rounded-xl flex items-center justify-center gap-3 transition-all shadow-xl shadow-orange-100 hover:shadow-2xl hover:shadow-orange-200 text-lg transform hover:-translate-y-1"
+                disabled={isUploading}
+                className={`w-full bg-q-carnaval hover:bg-orange-600 text-white font-bold h-14 rounded-xl flex items-center justify-center gap-3 transition-all shadow-xl shadow-orange-100 hover:shadow-2xl hover:shadow-orange-200 text-lg transform ${isUploading ? 'opacity-75 cursor-wait' : 'hover:-translate-y-1'}`}
               >
-                <Send className="w-6 h-6" />
-                Continuar en WhatsApp
+                {isUploading ? (
+                  <>
+                    <RefreshCcw className="w-6 h-6 animate-spin" />
+                    Subiendo imagen...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-6 h-6" />
+                    Continuar en WhatsApp
+                  </>
+                )}
               </button>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   );
 };
