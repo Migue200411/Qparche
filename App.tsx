@@ -16,6 +16,7 @@ const App: React.FC = () => {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
+
             <Route path="/carnaval" element={<Catalog category="carnaval" />} />
             <Route path="/deportiva" element={<Catalog category="deportiva" />} />
             <Route path="/crear" element={<CustomDesign />} />
