@@ -205,14 +205,16 @@ Precio: $${product.price.toLocaleString()}`;
               compact
             />
           </div>
-          <div>
-            <label className="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Color</label>
-            <ColorSelector
-              selectedColor={selectedColor}
-              onColorChange={setSelectedColor}
-              compact
-            />
-          </div>
+          {category !== 'deportiva' && (
+            <div>
+              <label className="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Color</label>
+              <ColorSelector
+                selectedColor={selectedColor}
+                onColorChange={setSelectedColor}
+                compact
+              />
+            </div>
+          )}
 
           <button
             onClick={handleOrder}
