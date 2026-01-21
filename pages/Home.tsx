@@ -35,6 +35,12 @@ const Home: React.FC = () => {
           {/* CTA Buttons - Clear Hierarchy */}
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md sm:max-w-none">
             <Link
+              to="/deportiva#f1"
+              className="px-8 py-4 rounded-xl text-lg font-bold text-white bg-red-600 hover:bg-red-700 shadow-lg shadow-red-100 transition-transform hover:-translate-y-1"
+            >
+              F1 🏎️
+            </Link>
+            <Link
               to="/carnaval"
               className="px-8 py-4 rounded-xl text-lg font-bold text-white bg-q-carnaval hover:bg-orange-600 shadow-lg shadow-orange-100 transition-transform hover:-translate-y-1"
             >
@@ -62,7 +68,27 @@ const Home: React.FC = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-b from-transparent via-white/40 to-transparent pointer-events-none"></div>
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Card F1 */}
+            <Link to="/deportiva#f1" className="group relative overflow-hidden rounded-[2rem] h-[380px] shadow-xl shadow-slate-200 cursor-pointer bg-white transition-transform hover:-translate-y-1">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 transition-opacity"></div>
+              <img
+                src="/images/Ferrari.jpeg"
+                alt="F1"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 flex flex-col justify-end p-10 z-20">
+                <div className="flex items-center gap-4 mb-2">
+                  <div className="bg-white/20 backdrop-blur-md p-3 rounded-xl">
+                    <span className="text-2xl">🏎️</span>
+                  </div>
+                  <span className="text-red-200 font-bold tracking-wider text-sm uppercase">Colección</span>
+                </div>
+                <h3 className="text-4xl font-display font-black text-white mb-2 leading-none">F1</h3>
+                <p className="text-slate-200 text-lg font-medium">Estilo Fórmula 1, velocidad y diseño.</p>
+              </div>
+            </Link>
+
             {/* Card Carnaval - Reduced Height */}
             <Link to="/carnaval" className="group relative overflow-hidden rounded-[2rem] h-[380px] shadow-xl shadow-slate-200 cursor-pointer bg-white transition-transform hover:-translate-y-1">
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 transition-opacity"></div>

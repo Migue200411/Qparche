@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { ShirtSize, ShirtColor, Category } from '../types';
 import { Upload, Sparkles, Send, AlertTriangle, RefreshCcw } from 'lucide-react';
+import SizeSelector from '../components/SizeSelector';
+import ColorSelector from '../components/ColorSelector';
 // import { editImageWithGemini } from '../services/geminiService';
 
 const CustomDesign: React.FC = () => {
@@ -241,27 +243,20 @@ Imagen: ${imageUrl || 'N/A'}`;
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-6 mb-8">
-                <div>
-                  <label className="block text-sm font-bold text-slate-500 mb-2 uppercase tracking-wide">Talla</label>
-                  <select
-                    value={size}
-                    onChange={(e) => setSize(e.target.value as ShirtSize)}
-                    className="w-full bg-slate-50 border-slate-200 rounded-xl p-4 text-base focus:ring-2 focus:ring-q-carnaval focus:border-transparent outline-none transition-all font-bold text-slate-700"
-                  >
-                    {Object.values(ShirtSize).map(s => <option key={s} value={s}>{s}</option>)}
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-bold text-slate-500 mb-2 uppercase tracking-wide">Color</label>
-                  <select
-                    value={color}
-                    onChange={(e) => setColor(e.target.value as ShirtColor)}
-                    className="w-full bg-slate-50 border-slate-200 rounded-xl p-4 text-base focus:ring-2 focus:ring-q-carnaval focus:border-transparent outline-none transition-all font-bold text-slate-700"
-                  >
-                    {Object.values(ShirtColor).map(c => <option key={c} value={c}>{c}</option>)}
-                  </select>
-                </div>
+              <div className="mb-8">
+                <label className="block text-sm font-bold text-slate-500 mb-3 uppercase tracking-wide">Talla</label>
+                <SizeSelector
+                  selectedSize={size}
+                  onSizeChange={setSize}
+                />
+              </div>
+
+              <div className="mb-8">
+                <label className="block text-sm font-bold text-slate-500 mb-3 uppercase tracking-wide">Color</label>
+                <ColorSelector
+                  selectedColor={color}
+                  onColorChange={setColor}
+                />
               </div>
 
               <div className="mb-8">

@@ -25,6 +25,7 @@ const Navbar: React.FC = () => {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               <Link to="/carnaval" className="text-q-dark hover:text-q-carnaval font-bold text-base transition-colors">Carnaval</Link>
+              <Link to="/deportiva#f1" className="text-q-dark hover:text-red-600 font-bold text-base transition-colors">F1</Link>
               <Link to="/deportiva" className="text-q-dark hover:text-q-sport font-bold text-base transition-colors">Deportiva</Link>
               <Link to="/crear" className="text-q-dark hover:text-q-mint font-bold text-base transition-colors">Sube tu diseño</Link>
               <Link to="/info" className="text-gray-500 hover:text-q-dark font-semibold text-base transition-colors">Envíos y Info</Link>

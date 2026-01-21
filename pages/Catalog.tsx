@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Product, ShirtSize, ShirtColor, Category } from '../types';
 import { ShoppingCart, Filter, Send } from 'lucide-react';
+import SizeSelector from '../components/SizeSelector';
+import ColorSelector from '../components/ColorSelector';
 
 interface CatalogProps {
   category: Category;
@@ -22,10 +24,33 @@ const mockProducts: Product[] = [
   { id: 'd3', category: 'deportiva', name: 'Bastard Munchen', price: 35000, image: '/images/sport_bastard_munchen.png', description: 'Rojo y negro, estilo europeo moderno.' },
   { id: 'd4', category: 'deportiva', name: 'Blue Lock #11', price: 35000, image: '/images/sport_bluelock_11.jpg', description: 'Azul profundo, el ego del delantero.' },
   { id: 'd5', category: 'deportiva', name: 'Junior Tu Papá', price: 35000, image: '/images/carnaval_junior.jpg', description: 'De aquí hasta el miércoles de ceniza. Pasión rojiblanca.' },
+
+  // F1 Collection
+  { id: 'f1', category: 'deportiva', name: 'F1 Haas', price: 45000, image: '/images/Haas.jpeg', description: 'Camiseta estilo Haas F1 Team.' },
+  { id: 'f2', category: 'deportiva', name: 'F1 Alpine', price: 45000, image: '/images/Alpine.jpeg', description: 'Camiseta estilo Alpine F1 Team.' },
+  { id: 'f3', category: 'deportiva', name: 'F1 Aston Martin', price: 45000, image: '/images/Aston Martin.jpeg', description: 'Camiseta estilo Aston Martin F1.' },
+  { id: 'f4', category: 'deportiva', name: 'F1 Ferrari', price: 45000, image: '/images/Ferrari.jpeg', description: 'Camiseta estilo Scuderia Ferrari.' },
+  { id: 'f5', category: 'deportiva', name: 'F1 McLaren', price: 45000, image: '/images/Mclaren.jpeg', description: 'Camiseta estilo McLaren Racing.' },
+  { id: 'f6', category: 'deportiva', name: 'F1 Mercedes', price: 45000, image: '/images/Mercedes.jpeg', description: 'Camiseta estilo Mercedes-AMG Petronas.' },
+  { id: 'f7', category: 'deportiva', name: 'F1 Red Bull', price: 45000, image: '/images/Red Bull.jpeg', description: 'Camiseta estilo Red Bull Racing.' },
+  { id: 'f8', category: 'deportiva', name: 'F1 Stake', price: 45000, image: '/images/Stake.jpeg', description: 'Camiseta estilo Stake F1 Team.' },
+  { id: 'f9', category: 'deportiva', name: 'F1 Williams', price: 45000, image: '/images/Williams.jpeg', description: 'Camiseta estilo Williams Racing.' },
 ];
 
 const Catalog: React.FC<CatalogProps> = ({ category }) => {
   const products = mockProducts.filter(p => p.category === category);
+  const f1Products = mockProducts.filter(p => p.id.startsWith('f'));
+  const regularProducts = mockProducts.filter(p => p.category === category && !p.id.startsWith('f'));
+  const f1SectionRef = useRef<HTMLDivElement>(null);
+
+  // Scroll to F1 section if hash is present
+  useEffect(() => {
+    if (category === 'deportiva' && window.location.hash === '#f1') {
+      setTimeout(() => {
+        f1SectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    }
+  }, [category]);
 
   // Clean headers (No pink, No busy gradients)
   const headerBg = category === 'carnaval'
@@ -82,9 +107,37 @@ const Catalog: React.FC<CatalogProps> = ({ category }) => {
           </div>
         )}
 
-        {/* Filters & Grid */}
+        {/* F1 Collection Section - Only for Deportiva */}
+        {category === 'deportiva' && (
+          <div ref={f1SectionRef} id="f1" className="mb-16 scroll-mt-20">
+            <div className="bg-gradient-to-r from-red-50 via-white to-red-50 rounded-3xl p-8 shadow-lg shadow-slate-200 border border-red-100 relative overflow-hidden mb-8">
+              <div className="absolute top-0 left-0 w-64 h-64 bg-red-50/50 rounded-full blur-[80px] -translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
+              <div className="relative z-10 text-center">
+                <div className="inline-flex items-center gap-3 mb-4">
+                  <div className="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center">
+                    <span className="text-2xl">🏎️</span>
+                  </div>
+                  <h2 className="text-4xl font-display font-black text-slate-900">
+                    Colección <span className="text-red-600">F1</span>
+                  </h2>
+                </div>
+                <p className="text-slate-600 text-lg font-medium max-w-2xl mx-auto">
+                  Camisetas inspiradas en los equipos de Fórmula 1. Velocidad y estilo en cada diseño.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {f1Products.map((product) => (
+                <ProductCard key={product.id} product={product} category={category} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Regular Products Section */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-10 bg-white/50 backdrop-blur-sm p-4 rounded-2xl border border-slate-100/50">
-          <h2 className={`text-2xl font-bold text-slate-800 tracking-tight`}>Diseños Disponibles</h2>
+          <h2 className={`text-2xl font-bold text-slate-800 tracking-tight`}>{category === 'deportiva' ? 'Otros Diseños' : 'Diseños Disponibles'}</h2>
           <div className="flex gap-2 mt-4 md:mt-0 overflow-x-auto pb-2">
             {['Todas', 'S', 'M', 'L', 'XL'].map(f => (
               <button key={f} className="px-5 py-2 bg-white border border-slate-200 rounded-full text-sm font-bold hover:border-q-carnaval text-slate-600 transition-colors shadow-sm">
@@ -98,7 +151,7 @@ const Catalog: React.FC<CatalogProps> = ({ category }) => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {products.map((product) => (
+          {regularProducts.map((product) => (
             <ProductCard key={product.id} product={product} category={category} />
           ))}
         </div>
@@ -144,21 +197,21 @@ Precio: $${product.price.toLocaleString()}`;
         <p className="text-slate-500 text-xs mb-4 line-clamp-2">{product.description}</p>
 
         <div className="mt-auto space-y-3">
-          <div className="flex gap-2">
-            <select
-              value={selectedSize}
-              onChange={(e) => setSelectedSize(e.target.value as ShirtSize)}
-              className="w-1/2 bg-slate-50 border border-slate-200 rounded-lg text-xs py-2 px-2 focus:outline-none focus:border-q-carnaval font-semibold text-slate-600"
-            >
-              {Object.values(ShirtSize).map(s => <option key={s} value={s}>{s}</option>)}
-            </select>
-            <select
-              value={selectedColor}
-              onChange={(e) => setSelectedColor(e.target.value as ShirtColor)}
-              className="w-1/2 bg-slate-50 border border-slate-200 rounded-lg text-xs py-2 px-2 focus:outline-none focus:border-q-carnaval font-semibold text-slate-600"
-            >
-              {Object.values(ShirtColor).map(c => <option key={c} value={c}>{c}</option>)}
-            </select>
+          <div>
+            <label className="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Talla</label>
+            <SizeSelector
+              selectedSize={selectedSize}
+              onSizeChange={setSelectedSize}
+              compact
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wide">Color</label>
+            <ColorSelector
+              selectedColor={selectedColor}
+              onColorChange={setSelectedColor}
+              compact
+            />
           </div>
 
           <button
