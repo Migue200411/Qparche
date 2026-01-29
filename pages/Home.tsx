@@ -166,7 +166,7 @@ const Home: React.FC = () => {
                 <Truck className="w-10 h-10" />
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-2">3. Recibe en casa</h3>
-              <p className="text-slate-500 px-4">En unos días tienes la camiseta lista pa' la calle.</p>
+              <p className="text-slate-500 px-4">Envío incluido en Barranquilla y Soledad. En unos días la tienes lista.</p>
             </div>
           </div>
         </div>

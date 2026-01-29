@@ -26,6 +26,7 @@ const Footer: React.FC = () => {
               <MessageCircle className="w-5 h-5" />
               Chat con Asesor
             </a>
+            <p className="text-slate-400 text-sm mt-4 font-medium">Envío incluido en Barranquilla y Soledad 🛵</p>
           </div>
         </div>
 
