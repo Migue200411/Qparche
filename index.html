@@ -45,7 +45,11 @@
         extend: {
           colors: {
             'q-carnaval': '#f97316', // Primary Orange
-            'q-sport': '#3b82f6',    // Secondary Blue
+            'q-sport': '#ea580c',    // Deportiva Orange (was blue)
+            'q-f1': '#dc2626',       // F1 Red
+            'q-f1-dark': '#991b1b',  // F1 Dark Red
+            'q-amor': '#e11d48',     // Amor & Amistad Rose
+            'q-amor-soft': '#fda4af',// Amor soft pink
             'q-yellow': '#fde047',   // Accent Yellow
             'q-mint': '#6ee7b7',     // Accent Mint
             'q-dark': '#0f172a',     // Darker Slate (Night Blue)
@@ -54,6 +58,20 @@
           fontFamily: {
             display: ['Fredoka', 'sans-serif'],
             body: ['Nunito', 'sans-serif'],
+          },
+          keyframes: {
+            'float': {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            'pulse-soft': {
+              '0%, 100%': { opacity: '0.6' },
+              '50%': { opacity: '1' },
+            }
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-soft': 'pulse-soft 3s ease-in-out infinite',
           }
         }
       }
@@ -64,13 +82,12 @@
 
 <body
   class="bg-slate-50 text-slate-900 antialiased selection:bg-q-carnaval selection:text-white relative bg-texture overflow-x-hidden">
-  <!-- Global Ambient Effects - Keeping edges warm -->
+  <!-- Global Ambient Effects - Vibrant warm edges -->
   <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-50 pointer-events-none">
-    <div class="paint-splash bg-orange-300 w-[700px] h-[700px] -top-[300px] -left-[300px] mix-blend-multiply"></div>
-    <div class="paint-splash bg-yellow-200 w-[600px] h-[600px] top-[20%] -right-[300px] mix-blend-multiply opacity-10">
-    </div>
-    <div class="paint-splash bg-blue-200 w-[500px] h-[500px] bottom-0 -left-[200px] mix-blend-multiply opacity-10">
-    </div>
+    <div class="paint-splash bg-orange-400 w-[700px] h-[700px] -top-[300px] -left-[300px] mix-blend-multiply" style="opacity:0.09"></div>
+    <div class="paint-splash bg-rose-300 w-[600px] h-[600px] top-[20%] -right-[300px] mix-blend-multiply" style="opacity:0.08"></div>
+    <div class="paint-splash bg-amber-200 w-[500px] h-[500px] bottom-0 -left-[200px] mix-blend-multiply" style="opacity:0.08"></div>
+    <div class="paint-splash bg-red-300 w-[400px] h-[400px] top-[60%] right-[10%] mix-blend-multiply" style="opacity:0.06"></div>
   </div>
 
   <div id="root"></div>

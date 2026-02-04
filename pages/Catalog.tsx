@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { ShoppingCart, Filter, Flame } from 'lucide-react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ShoppingCart, Filter } from 'lucide-react';
 import { Product, ShirtSize, ShirtColor, Category } from '../types';
 import SizeSelector from '../components/SizeSelector';
 import ColorSelector from '../components/ColorSelector';
@@ -10,9 +10,21 @@ interface CatalogProps {
   subset?: 'f1' | 'all';
 }
 
-const mockProducts: Product[] = [
+// F1 Team color definitions
+const teamColors: Record<string, { name: string; primary: string; secondary: string; bgFrom: string; bgTo: string; glowColor: string }> = {
+  f1: { name: 'Haas', primary: '#B6BABD', secondary: '#dc2626', bgFrom: '#111827', bgTo: '#1f2937', glowColor: 'rgba(182,186,189,0.15)' },
+  f2: { name: 'Alpine', primary: '#0090FF', secondary: '#FF69B4', bgFrom: '#0c1e3a', bgTo: '#1e3a5f', glowColor: 'rgba(0,144,255,0.15)' },
+  f3: { name: 'Aston Martin', primary: '#006F62', secondary: '#c8ff00', bgFrom: '#021a16', bgTo: '#0a3d34', glowColor: 'rgba(0,111,98,0.15)' },
+  f4: { name: 'Ferrari', primary: '#dc2626', secondary: '#000000', bgFrom: '#1c0505', bgTo: '#450a0a', glowColor: 'rgba(220,38,38,0.15)' },
+  f5: { name: 'McLaren', primary: '#FF8000', secondary: '#000000', bgFrom: '#1a0f00', bgTo: '#431407', glowColor: 'rgba(255,128,0,0.15)' },
+  f6: { name: 'Mercedes', primary: '#00D2BE', secondary: '#6B7280', bgFrom: '#021a17', bgTo: '#0f2d28', glowColor: 'rgba(0,210,190,0.15)' },
+  f7: { name: 'Red Bull', primary: '#1E3A8A', secondary: '#dc2626', bgFrom: '#0a1628', bgTo: '#1e3a5f', glowColor: 'rgba(30,58,138,0.15)' },
+  f8: { name: 'Stake', primary: '#52E252', secondary: '#000000', bgFrom: '#021a05', bgTo: '#0a3d12', glowColor: 'rgba(82,226,82,0.15)' },
+  f9: { name: 'Williams', primary: '#005AFF', secondary: '#00A0DE', bgFrom: '#000d26', bgTo: '#0a2d5f', glowColor: 'rgba(0,90,255,0.15)' },
+};
 
-  // Deportes
+const mockProducts: Product[] = [
+  // Deportes (NO F1)
   { id: 'd1', category: 'deportiva', name: 'Voley White #4', price: 40000, image: '/images/sport_haikyuu_white.jpg', description: 'Estilo anime deportivo, número 4.' },
   { id: 'd2', category: 'deportiva', name: 'Voley Black #10', price: 40000, image: '/images/sport_haikyuu_black.jpg', description: 'El del pequeño gigante, número 10.' },
   { id: 'd3', category: 'deportiva', name: 'Bastard Munchen', price: 40000, image: '/images/sport_bastard_munchen.png', description: 'Rojo y negro, estilo europeo moderno.' },
@@ -32,57 +44,139 @@ const mockProducts: Product[] = [
 ];
 
 const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
-  // Strict Filtering Logic
+  const isF1 = subset === 'f1';
+  const [selectedTeam, setSelectedTeam] = useState<string | null>(null);
+
+  // Strict Filtering: F1 only shows F1, Deportiva never shows F1
   const displayProducts = mockProducts.filter(p => {
     if (p.category !== category) return false;
-    if (subset === 'f1') {
-      return p.id.startsWith('f'); // ONLY F1
+    if (isF1) {
+      if (!p.id.startsWith('f')) return false;
+      if (selectedTeam && p.id !== selectedTeam) return false;
+      return true;
     } else {
-      return !p.id.startsWith('f'); // ONLY Standard Sports (No F1)
+      return !p.id.startsWith('f');
     }
   });
 
-  // Clean headers (Vibrant but Professional)
-  // Orange accent for Sports, Red for F1
-  const isF1 = subset === 'f1';
-  const headerBg = isF1
-    ? 'bg-gradient-to-r from-red-50 via-white to-red-50 border-b border-red-100'
-    : 'bg-gradient-to-r from-blue-50 via-orange-50/30 to-blue-50 border-b border-slate-100';
+  // Dynamic colors based on selected team
+  const activeTeam = selectedTeam ? teamColors[selectedTeam] : null;
+  const accentColor = activeTeam?.primary || '#dc2626';
 
   return (
     <div className="min-h-screen bg-slate-50 relative overflow-hidden">
-      {/* Background Splashes */}
-      <div className={`absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none ${isF1 ? 'bg-red-100/40' : 'bg-blue-100/40'}`}></div>
-      <div className={`absolute top-20 left-0 w-[400px] h-[400px] rounded-full blur-[80px] -translate-x-1/2 pointer-events-none ${isF1 ? 'bg-orange-100/30' : 'bg-orange-100/20'}`}></div>
+      {/* Background Splashes - dynamic for F1 */}
+      {isF1 ? (
+        <>
+          <div
+            className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none transition-all duration-700"
+            style={{ backgroundColor: activeTeam?.glowColor || 'rgba(220,38,38,0.12)' }}
+          ></div>
+          <div
+            className="absolute top-20 left-0 w-[400px] h-[400px] rounded-full blur-[80px] -translate-x-1/2 pointer-events-none transition-all duration-700"
+            style={{ backgroundColor: activeTeam?.glowColor || 'rgba(220,38,38,0.08)' }}
+          ></div>
+        </>
+      ) : (
+        <>
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none bg-orange-200/50"></div>
+          <div className="absolute top-20 left-0 w-[400px] h-[400px] rounded-full blur-[80px] -translate-x-1/2 pointer-events-none bg-amber-200/40"></div>
+          <div className="absolute bottom-0 right-[20%] w-[300px] h-[300px] rounded-full blur-[80px] pointer-events-none bg-yellow-100/30"></div>
+        </>
+      )}
 
       {/* Header Banner */}
-      <div className={`${headerBg} py-20 px-4 relative z-10`}>
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-display font-black text-slate-900 mb-4 uppercase tracking-wider drop-shadow-sm">
-            {isF1 ? (
-              <span>Colección <span className="text-red-600 drop-shadow-md">Fórmula 1</span> 🏎️</span>
-            ) : (
-              <span>Zona <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-orange-500 drop-shadow-sm">Deportiva</span> ⚽️</span>
+      {isF1 ? (
+        <div
+          className="py-24 px-4 relative z-10 transition-all duration-700"
+          style={{ background: `linear-gradient(135deg, ${activeTeam?.bgFrom || '#0f172a'}, ${activeTeam?.bgTo || '#450a0a'})` }}
+        >
+          <div className="max-w-7xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl font-display font-black mb-4 uppercase tracking-wider text-white">
+              Colección <span className="transition-colors duration-500" style={{ color: accentColor }}>Fórmula 1</span>
+            </h1>
+            <p className="text-slate-300 text-lg font-medium max-w-2xl mx-auto leading-relaxed mb-2">
+              {selectedTeam
+                ? `Camiseta estilo ${activeTeam?.name}. Elige tu talla y pide por WhatsApp.`
+                : 'Velocidad, adrenalina y los colores de tu escudería favorita.'
+              }
+            </p>
+            {!selectedTeam && (
+              <div className="mt-4 flex justify-center gap-3 flex-wrap">
+                <span className="inline-block px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-slate-300 text-sm font-bold">9 Escuderías</span>
+                <span className="inline-block px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-slate-300 text-sm font-bold">$50.000 c/u</span>
+              </div>
             )}
-          </h1>
-          <p className="text-slate-700 text-lg font-medium max-w-2xl mx-auto leading-relaxed">
-            {isF1
-              ? 'Velocidad, adrenalina y los colores de tu escudería favorita.'
-              : 'Uniformes pa’ tu equipo, pa’ jugar el domingo o pa’ alentar al Tiburón.'
-            }
-          </p>
+
+            {/* Team Selector */}
+            <div className="mt-8 max-w-4xl mx-auto">
+              <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mb-4">Elige tu escudería</p>
+              <div className="flex flex-wrap justify-center gap-2">
+                <button
+                  onClick={() => setSelectedTeam(null)}
+                  className={`px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 border ${
+                    !selectedTeam
+                      ? 'bg-white text-slate-900 border-white shadow-lg'
+                      : 'bg-white/10 text-white/70 border-white/20 hover:bg-white/20 hover:text-white'
+                  }`}
+                >
+                  Todas
+                </button>
+                {Object.entries(teamColors).map(([id, team]) => (
+                  <button
+                    key={id}
+                    onClick={() => setSelectedTeam(id)}
+                    className={`px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 border flex items-center gap-2 ${
+                      selectedTeam === id
+                        ? 'text-white shadow-lg scale-105'
+                        : 'bg-white/5 text-white/70 border-white/15 hover:bg-white/15 hover:text-white hover:scale-105'
+                    }`}
+                    style={selectedTeam === id ? {
+                      backgroundColor: team.primary,
+                      borderColor: team.primary,
+                      boxShadow: `0 4px 20px ${team.primary}40`,
+                    } : undefined}
+                  >
+                    <span
+                      className="w-3 h-3 rounded-full shrink-0"
+                      style={{ backgroundColor: team.primary }}
+                    ></span>
+                    {team.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="bg-gradient-to-br from-orange-600 via-amber-500 to-orange-500 py-24 px-4 relative z-10 overflow-hidden">
+          {/* Decorative blobs */}
+          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-yellow-300/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>
+          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-orange-800/20 rounded-full blur-[60px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
+          <div className="max-w-7xl mx-auto text-center relative z-10">
+            <h1 className="text-4xl md:text-6xl font-display font-black mb-4 uppercase tracking-wider text-white drop-shadow-md">
+              Zona <span className="text-yellow-200">Deportiva</span>
+            </h1>
+            <p className="text-orange-100 text-lg font-medium max-w-2xl mx-auto leading-relaxed">
+              Uniformes pa' tu equipo, pa' jugar el domingo o pa' alentar al Tiburón.
+            </p>
+            <div className="mt-6 flex justify-center gap-3 flex-wrap">
+              <span className="inline-block px-4 py-1.5 bg-white/20 border border-white/30 rounded-full text-white text-sm font-bold backdrop-blur-sm">Anime & Fútbol</span>
+              <span className="inline-block px-4 py-1.5 bg-white/20 border border-white/30 rounded-full text-white text-sm font-bold backdrop-blur-sm">Desde $40.000</span>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* FILTERS & CONTROLS (Only for General Sports) */}
         {!isF1 && (
-          <div className="flex flex-col md:flex-row justify-between items-center mb-10 bg-white/50 backdrop-blur-sm p-4 rounded-2xl border border-slate-100/50">
+          <div className="flex flex-col md:flex-row justify-between items-center mb-10 bg-white/70 backdrop-blur-sm p-5 rounded-2xl border border-orange-200/60 shadow-md shadow-orange-100/30">
             <h2 className="text-2xl font-bold text-slate-800 tracking-tight">Diseños Disponibles</h2>
             <div className="flex gap-2 mt-4 md:mt-0 overflow-x-auto pb-2">
               {['Todas', 'S', 'M', 'L', 'XL'].map(f => (
-                <button key={f} className="px-5 py-2 bg-white border border-slate-200 rounded-full text-sm font-bold hover:border-orange-500 hover:text-orange-500 transition-colors shadow-sm">
+                <button key={f} className="px-5 py-2 bg-white border border-slate-200 rounded-full text-sm font-bold hover:border-orange-500 hover:text-orange-600 transition-colors shadow-sm">
                   {f}
                 </button>
               ))}
@@ -93,9 +187,9 @@ const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
         {/* PRODUCT GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
 
-          {/* "Create Design" Card - Only shows on General Sports Page */}
+          {/* "Create Design" Card - Only on General Sports Page */}
           {!isF1 && (
-            <Link to="/crear" className="group bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-6 flex flex-col justify-between shadow-xl shadow-slate-200 hover:-translate-y-1 transition-transform border border-slate-700 min-h-[420px]">
+            <Link to="/crear" className="group bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-6 flex flex-col justify-between shadow-xl shadow-slate-200 hover:-translate-y-1 hover:shadow-2xl transition-all border border-slate-700 min-h-[420px]">
               <div>
                 <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-4 text-white">
                   <Filter className="w-6 h-6" />
@@ -105,7 +199,7 @@ const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
               </div>
               <div>
                 <div className="text-white font-black text-2xl mb-4">$50.000</div>
-                <div className="w-full py-3 bg-white text-slate-900 rounded-xl font-bold text-center group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                <div className="w-full py-3 bg-white text-slate-900 rounded-xl font-bold text-center group-hover:bg-gradient-to-r group-hover:from-orange-500 group-hover:to-amber-500 group-hover:text-white transition-all shadow-sm">
                   Crear Ahora
                 </div>
               </div>
@@ -114,7 +208,13 @@ const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
 
           {/* Mapped Products */}
           {displayProducts.map((product) => (
-            <ProductCard key={product.id} product={product} category={category} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              category={category}
+              isF1={isF1}
+              teamColor={isF1 ? (selectedTeam ? teamColors[selectedTeam]?.primary : teamColors[product.id]?.primary) : undefined}
+            />
           ))}
 
           {displayProducts.length === 0 && (
@@ -128,16 +228,17 @@ const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
   );
 };
 
-const ProductCard: React.FC<{ product: Product, category: Category }> = ({ product, category }) => {
+const ProductCard: React.FC<{ product: Product; category: Category; isF1: boolean; teamColor?: string }> = ({ product, category, isF1, teamColor }) => {
   const [selectedSize, setSelectedSize] = useState<ShirtSize>(ShirtSize.M);
   const [selectedColor, setSelectedColor] = useState<ShirtColor>(ShirtColor.BLANCO);
   const waNumber = "573004945790";
 
   const handleOrder = () => {
+    const collectionName = isF1 ? 'Fórmula 1' : category.charAt(0).toUpperCase() + category.slice(1);
     const message = `Hola Q Parche, quiero hacer un pedido:
-    
+
 Producto: ${product.name}
-Coleccion: ${category.charAt(0).toUpperCase() + category.slice(1)}
+Coleccion: ${collectionName}
 Talla: ${selectedSize}
 Color: ${selectedColor}
 Precio: $${product.price.toLocaleString()}`;
@@ -146,18 +247,54 @@ Precio: $${product.price.toLocaleString()}`;
     window.open(url, '_blank');
   };
 
+  // Dynamic button color for F1, orange for deportiva
+  const buttonStyle = isF1 && teamColor
+    ? { backgroundColor: teamColor }
+    : undefined;
+
+  const buttonClasses = isF1
+    ? teamColor
+      ? 'hover:brightness-110 hover:shadow-lg'
+      : 'bg-red-600 hover:bg-red-700 shadow-red-100 hover:shadow-lg hover:shadow-red-200'
+    : 'bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 shadow-orange-200 hover:shadow-lg hover:shadow-orange-300';
+
+  const priceTagStyle = isF1 && teamColor
+    ? { backgroundColor: teamColor }
+    : undefined;
+
+  const priceTagClasses = isF1
+    ? teamColor
+      ? 'text-white'
+      : 'bg-red-600 text-white'
+    : 'bg-white/95 backdrop-blur text-slate-900 border border-slate-100';
+
+  const borderClasses = isF1
+    ? 'border-slate-200/50 hover:shadow-lg'
+    : 'border-orange-200/40 hover:shadow-orange-200/50';
+
   return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col h-full group hover:-translate-y-1">
+    <div className={`bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border flex flex-col h-full group hover:-translate-y-1.5 ${borderClasses}`}>
       <div className="aspect-[4/5] w-full overflow-hidden bg-slate-100 relative">
         <img
           src={product.image}
           alt={product.name}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        {/* Simple Price Tag */}
-        <div className="absolute top-3 right-3 bg-white/95 backdrop-blur text-slate-900 font-bold px-3 py-1.5 rounded-lg text-sm shadow-sm border border-slate-100">
+        {/* Price Tag */}
+        <div
+          className={`absolute top-3 right-3 font-bold px-3 py-1.5 rounded-lg text-sm shadow-sm transition-colors duration-300 ${priceTagClasses}`}
+          style={priceTagStyle}
+        >
           ${product.price.toLocaleString()}
         </div>
+
+        {/* Team color accent bar for F1 */}
+        {isF1 && teamColor && (
+          <div
+            className="absolute bottom-0 left-0 right-0 h-1 transition-all duration-500"
+            style={{ backgroundColor: teamColor }}
+          ></div>
+        )}
       </div>
 
       <div className="p-5 flex-1 flex flex-col">
@@ -196,7 +333,8 @@ Precio: $${product.price.toLocaleString()}`;
 
           <button
             onClick={handleOrder}
-            className="w-full bg-q-sport hover:bg-blue-600 text-white font-bold h-10 rounded-lg flex items-center justify-center gap-2 transition-colors shadow-sm text-sm"
+            className={`w-full text-white font-bold h-10 rounded-lg flex items-center justify-center gap-2 transition-all text-sm hover:-translate-y-0.5 ${buttonClasses}`}
+            style={buttonStyle}
           >
             <ShoppingCart className="w-4 h-4" />
             Pedir camiseta
@@ -206,7 +344,5 @@ Precio: $${product.price.toLocaleString()}`;
     </div>
   );
 };
-
-
 
 export default Catalog;

@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center gap-2 group">
-              <div className="bg-blue-50 p-2 rounded-full rotate-3 group-hover:-rotate-3 transition-transform border border-blue-100">
+              <div className="bg-orange-50 p-2 rounded-full rotate-3 group-hover:-rotate-3 transition-transform border border-orange-100">
                 <Shirt className="h-6 w-6 text-q-sport" />
               </div>
               <span className="text-3xl font-display font-bold text-q-dark tracking-tight">
