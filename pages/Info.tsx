@@ -4,29 +4,29 @@ import { Clock, MapPin, CreditCard, ShieldCheck, Sparkles } from 'lucide-react';
 const Info: React.FC = () => {
   return (
     <div className="relative overflow-hidden min-h-screen">
-       {/* Ambient Backgrounds */}
-       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-yellow-50/40 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-50/30 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+      {/* Ambient Backgrounds */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-yellow-50/40 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-50/30 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 
       <div className="max-w-5xl mx-auto py-20 px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-20">
           <h1 className="text-5xl md:text-7xl font-display font-black text-q-dark mb-6 tracking-tight">Información Clara</h1>
           <p className="text-slate-500 text-xl font-medium">Sin letras chiquitas, así trabajamos en Q'Parche.</p>
         </div>
-        
+
         {/* Sublimation Highlight - Corrected Terminology */}
         <div className="mb-16 bg-white rounded-[3rem] p-10 border border-orange-100 shadow-xl shadow-orange-50/50 flex flex-col md:flex-row items-center gap-8 text-center md:text-left relative overflow-hidden">
           {/* Subtle gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-orange-50/50 via-transparent to-transparent pointer-events-none"></div>
-          
+
           <div className="bg-orange-50 p-5 rounded-full shadow-md relative z-10">
-              <Sparkles className="w-12 h-12 text-q-carnaval" />
+            <Sparkles className="w-12 h-12 text-orange-500" />
           </div>
           <div className="relative z-10">
-              <h3 className="text-2xl font-bold text-q-dark mb-2">Impresión por Sublimación</h3>
-              <p className="text-slate-600 text-lg leading-relaxed">
-                  Impresión por sublimación: colores vivos, no se despega ni se cuartea, el diseño queda integrado en la tela. Ideal para camisetas claras y diseños con mucho color.
-              </p>
+            <h3 className="text-2xl font-bold text-q-dark mb-2">Impresión por Sublimación</h3>
+            <p className="text-slate-600 text-lg leading-relaxed">
+              Impresión por sublimación: colores vivos, no se despega ni se cuartea, el diseño queda integrado en la tela. Ideal para camisetas claras y diseños con mucho color.
+            </p>
           </div>
         </div>
 
@@ -54,7 +54,7 @@ const Info: React.FC = () => {
 
           {/* Times */}
           <div className="bg-white p-12 rounded-[2.5rem] border border-slate-100 shadow-xl hover:-translate-y-2 transition-transform duration-300">
-            <div className="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center mb-8 shadow-sm -rotate-2 text-q-carnaval">
+            <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mb-8 shadow-sm -rotate-2 text-q-sport">
               <Clock className="w-8 h-8" />
             </div>
             <h2 className="text-3xl font-display font-bold text-q-dark mb-6">Tiempos</h2>
@@ -63,12 +63,12 @@ const Info: React.FC = () => {
             </p>
             <ul className="space-y-4 text-slate-600 text-lg">
               <li className="flex items-center gap-4">
-                  <span className="w-3 h-3 bg-q-carnaval rounded-full shadow-sm"></span>
-                  <span><strong>Diseños Catálogo:</strong> 2-3 días hábiles.</span>
+                <span className="w-3 h-3 bg-q-sport rounded-full shadow-sm"></span>
+                <span><strong>Diseños Catálogo:</strong> 2-3 días hábiles.</span>
               </li>
               <li className="flex items-center gap-4">
-                  <span className="w-3 h-3 bg-q-carnaval rounded-full shadow-sm"></span>
-                  <span><strong>Personalizados:</strong> 3-5 días hábiles.</span>
+                <span className="w-3 h-3 bg-q-sport rounded-full shadow-sm"></span>
+                <span><strong>Personalizados:</strong> 3-5 días hábiles.</span>
               </li>
             </ul>
           </div>
@@ -85,7 +85,7 @@ const Info: React.FC = () => {
               <span className="bg-slate-100 px-4 py-2 rounded-xl text-sm font-bold text-slate-600">Bancolombia</span>
             </div>
             <p className="text-lg text-slate-600 leading-relaxed font-medium">
-              <strong>Catálogo:</strong> Pago 100% anticipado.<br/>
+              <strong>Catálogo:</strong> Pago 100% anticipado.<br />
               <strong>Personalizados:</strong> 50% anticipo para iniciar, 50% al terminar (antes de enviar foto o entregar).
             </p>
           </div>

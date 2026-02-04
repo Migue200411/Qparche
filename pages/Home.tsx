@@ -1,175 +1,128 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, Trophy, CheckCircle, Palette, Truck, Sun } from 'lucide-react';
+import { Sparkles, Trophy, CheckCircle, Palette, Truck, Sun, MessageCircle, Shirt, Heart, Zap, Flame, Star, Tag } from 'lucide-react';
 
 const Home: React.FC = () => {
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Hero Section - Clean & Readable but Alive */}
-      <div className="relative bg-white pt-24 pb-24 border-b border-slate-100 overflow-hidden">
-        {/* Subtle Corner Splashes */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-yellow-50/50 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-50/50 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
+    <div className="flex flex-col min-h-screen bg-slate-50">
+      {/* Hero Section - Neutral & Clean */}
+      <div className="relative bg-white pt-24 pb-20 border-b border-slate-100 overflow-hidden">
+        {/* Subtle Blobs - No Pink */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-50/40 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-50/40 rounded-full blur-[120px] translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center relative z-10">
 
-          {/* Badge - Clean */}
-          <span className="inline-flex items-center gap-2 py-2 px-6 rounded-full bg-orange-50/80 backdrop-blur-sm text-q-carnaval font-black text-sm mb-8 tracking-widest uppercase border border-orange-100/50">
-            <Sun className="w-4 h-4 text-q-carnaval" />
-            Barranquilla Style
-          </span>
-
-          {/* Main Title - High Contrast */}
-          <h1 className="text-6xl md:text-8xl font-display font-black tracking-tight mb-6 text-slate-900 leading-[0.95]">
-            Q'<span className="text-q-carnaval">Parche</span><br />
-            <span className="text-4xl md:text-5xl font-bold text-slate-500 block mt-4">
-              camisetas pa' tu parche
-            </span>
+          {/* Main Title */}
+          <h1 className="text-5xl md:text-7xl font-display font-black tracking-tight mb-6 text-slate-900 leading-[1.05]">
+            Camisetas <span className="text-q-sport">Personalizadas</span><br />
+            para todos.
           </h1>
 
-          {/* Subtitle - Readable */}
+          {/* Subtitle */}
           <p className="mt-4 max-w-2xl text-xl text-slate-600 font-medium leading-relaxed">
-            Carnaval, rumba y deportiva. Sin enredos, pídela y te la llevamos.
+            F1, deportes, amor & amistad y diseños de la comunidad.
           </p>
 
-          {/* CTA Buttons - Clear Hierarchy */}
+          {/* CTA Buttons */}
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md sm:max-w-none">
-            <Link
-              to="/deportiva#f1"
-              className="px-8 py-4 rounded-xl text-lg font-bold text-white bg-red-600 hover:bg-red-700 shadow-lg shadow-red-100 transition-transform hover:-translate-y-1"
+            <a
+              href="https://wa.me/3004945790?text=Hola%20Q'Parche,%20quiero%20hacer%20un%20pedido"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 rounded-xl text-lg font-bold text-white bg-green-600 hover:bg-green-700 shadow-xl shadow-green-100 transition-all hover:-translate-y-1 flex items-center justify-center gap-2"
             >
-              F1 🏎️
-            </Link>
-            <Link
-              to="/carnaval"
-              className="px-8 py-4 rounded-xl text-lg font-bold text-white bg-q-carnaval hover:bg-orange-600 shadow-lg shadow-orange-100 transition-transform hover:-translate-y-1"
-            >
-              Ver Carnaval 🎉
-            </Link>
+              <MessageCircle className="w-5 h-5" />
+              Pedir por WhatsApp
+            </a>
             <Link
               to="/deportiva"
-              className="px-8 py-4 rounded-xl text-lg font-bold text-white bg-q-sport hover:bg-blue-600 shadow-lg shadow-blue-100 transition-transform hover:-translate-y-1"
+              className="px-8 py-4 rounded-xl text-lg font-bold text-slate-700 bg-white border border-slate-200 hover:border-q-sport hover:text-q-sport transition-all flex items-center justify-center"
             >
-              Ver Deportiva ⚽️
-            </Link>
-            <Link
-              to="/crear"
-              className="px-8 py-4 rounded-xl text-lg font-bold text-slate-700 bg-white border border-slate-200 hover:border-q-carnaval hover:text-q-carnaval transition-all"
-            >
-              Subir diseño 🎨
+              Ver diseños
             </Link>
           </div>
         </div>
       </div>
 
-      {/* Collections Block - Reduced Size & Better Overlay */}
-      <div className="py-20 bg-slate-50 relative overflow-hidden">
-        {/* Subtle background variation */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-b from-transparent via-white/40 to-transparent pointer-events-none"></div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 py-20">
 
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Card F1 */}
-            <Link to="/deportiva#f1" className="group relative overflow-hidden rounded-[2rem] h-[380px] shadow-xl shadow-slate-200 cursor-pointer bg-white transition-transform hover:-translate-y-1">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 transition-opacity"></div>
-              <img
-                src="/images/Ferrari.jpeg"
-                alt="F1"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 flex flex-col justify-end p-10 z-20">
-                <div className="flex items-center gap-4 mb-2">
-                  <div className="bg-white/20 backdrop-blur-md p-3 rounded-xl">
-                    <span className="text-2xl">🏎️</span>
-                  </div>
-                  <span className="text-red-200 font-bold tracking-wider text-sm uppercase">Colección</span>
-                </div>
-                <h3 className="text-4xl font-display font-black text-white mb-2 leading-none">F1</h3>
-                <p className="text-slate-200 text-lg font-medium">Estilo Fórmula 1, velocidad y diseño.</p>
-              </div>
-            </Link>
+        {/* Navigation Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-            {/* Card Carnaval - Reduced Height */}
-            <Link to="/carnaval" className="group relative overflow-hidden rounded-[2rem] h-[380px] shadow-xl shadow-slate-200 cursor-pointer bg-white transition-transform hover:-translate-y-1">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 transition-opacity"></div>
-              <img
-                src="/images/carnaval_baila_asi.jpg"
-                alt="Carnaval"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 saturate-100"
-              />
-              <div className="absolute inset-0 flex flex-col justify-end p-10 z-20">
-                <div className="flex items-center gap-4 mb-2">
-                  <div className="bg-white/20 backdrop-blur-md p-3 rounded-xl">
-                    <Sparkles className="text-white w-6 h-6" />
-                  </div>
-                  <span className="text-orange-200 font-bold tracking-wider text-sm uppercase">Colección</span>
-                </div>
-                <h3 className="text-4xl font-display font-black text-white mb-2 leading-none">Carnaval</h3>
-                <p className="text-slate-200 text-lg font-medium">Frases, marimondas y pura alegría.</p>
-              </div>
-            </Link>
+          {/* Amor & Amistad Card */}
+          <Link to="/amor-amistad" className="group relative h-96 rounded-[3rem] overflow-hidden shadow-xl shadow-slate-200 hover:-translate-y-2 transition-all duration-300">
+            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 to-purple-600"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
 
-            {/* Card Deportiva - Reduced Height */}
-            <Link to="/deportiva" className="group relative overflow-hidden rounded-[2rem] h-[380px] shadow-xl shadow-slate-200 cursor-pointer bg-white transition-transform hover:-translate-y-1">
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10 transition-opacity"></div>
-              <img
-                src="/images/sport_haikyuu_black.jpg"
-                alt="Deportiva"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 flex flex-col justify-end p-10 z-20">
-                <div className="flex items-center gap-4 mb-2">
-                  <div className="bg-white/20 backdrop-blur-md p-3 rounded-xl">
-                    <Trophy className="text-white w-6 h-6" />
-                  </div>
-                  <span className="text-blue-200 font-bold tracking-wider text-sm uppercase">Zona</span>
-                </div>
-                <h3 className="text-4xl font-display font-black text-white mb-2 leading-none">Deportiva</h3>
-                <p className="text-slate-200 text-lg font-medium">Equipos, parches de fútbol y uniformes.</p>
+            <div className="relative z-10 h-full flex flex-col justify-between p-10">
+              <div className="w-16 h-16 bg-white/20 backdrop-blur rounded-2xl flex items-center justify-center text-white">
+                <Heart className="w-8 h-8 fill-current" />
               </div>
-            </Link>
-          </div>
+              <div className="relative z-20">
+                <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur rounded-lg text-white font-bold text-xs mb-3 border border-white/20">
+                  Nueva Colección
+                </span>
+                <h2 className="text-4xl md:text-5xl font-display font-black text-white mb-2">Amor & Amistad</h2>
+                <p className="text-indigo-100 text-lg font-medium">Diseños únicos para compartir.</p>
+              </div>
+            </div>
+            {/* Decoration Image - Rotated */}
+            <img src="/images/uploaded_media_0_1770222971295.png" className="absolute bottom-0 right-0 w-64 h-64 object-contain translate-x-1/4 translate-y-1/4 opacity-90 group-hover:scale-110 transition-transform duration-500 rotate-12" alt="Decor" />
+          </Link>
+
+          {/* F1 Card */}
+          <Link to="/f1" className="group relative h-96 rounded-[3rem] overflow-hidden shadow-xl shadow-slate-200 hover:-translate-y-2 transition-all duration-300">
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-900 to-slate-800"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-red-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+
+            <div className="relative z-10 h-full flex flex-col justify-between p-10">
+              <div className="w-16 h-16 bg-white/10 backdrop-blur rounded-2xl flex items-center justify-center text-white">
+                <Trophy className="w-8 h-8" />
+              </div>
+              <div className="relative z-20">
+                <h2 className="text-4xl md:text-5xl font-display font-black text-white mb-2">Fórmula 1</h2>
+                <p className="text-slate-400 text-lg font-medium">Ferrari, McLaren, Red Bull y más.</p>
+              </div>
+            </div>
+            <img src="/images/f1_ferrari_new.png" className="absolute top-1/2 right-0 w-72 h-72 object-contain -translate-y-1/2 translate-x-12 rotate-[-12deg] group-hover:rotate-[-6deg] transition-transform duration-500 drop-shadow-2xl" alt="Decor" />
+          </Link>
+
+          {/* Deportiva Card */}
+          <Link to="/deportiva" className="group relative h-80 rounded-[3rem] overflow-hidden shadow-xl shadow-slate-200 hover:-translate-y-2 transition-all duration-300 bg-white border border-slate-100">
+            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-50/50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+            <div className="relative z-10 h-full flex flex-col justify-between p-10">
+              <div>
+                <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-q-sport mb-6">
+                  <Zap className="w-6 h-6" />
+                </div>
+                <h2 className="text-4xl font-display font-black text-slate-900 mb-2">Deportiva</h2>
+                <p className="text-slate-500 text-lg font-medium">Fútbol, Voley y todo lo que te mueve.</p>
+              </div>
+              <div className="self-start px-6 py-3 bg-slate-100 text-slate-700 font-bold rounded-xl group-hover:bg-q-sport group-hover:text-white transition-colors">
+                Ver Catálogo
+              </div>
+            </div>
+          </Link>
+
+          {/* Custom Design Card */}
+          <Link to="/crear" className="group relative h-80 rounded-[3rem] overflow-hidden shadow-xl shadow-slate-200 hover:-translate-y-2 transition-all duration-300 bg-slate-900 border border-slate-800">
+            <div className="relative z-10 h-full flex flex-col justify-between p-10">
+              <div>
+                <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-white mb-6">
+                  <Palette className="w-6 h-6" />
+                </div>
+                <h2 className="text-4xl font-display font-black text-white mb-2">Crea tu Diseño</h2>
+                <p className="text-slate-400 text-lg font-medium">¿Tienes una idea? Nosotros la hacemos realidad.</p>
+              </div>
+              <div className="self-start px-6 py-3 bg-white text-slate-900 font-bold rounded-xl group-hover:bg-white/90 transition-colors">
+                Subir Idea
+              </div>
+            </div>
+          </Link>
+
         </div>
-      </div>
 
-      {/* Steps Section - Warm Background */}
-      <div className="bg-white py-24 border-t border-slate-100 relative overflow-hidden">
-        {/* Subtle corner touches */}
-        <div className="absolute top-0 left-0 w-80 h-80 bg-orange-50/40 rounded-full blur-[80px] -translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-blue-50/40 rounded-full blur-[80px] translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-display font-black text-slate-900">¿Cómo armar tu parche?</h2>
-            <p className="mt-4 text-slate-500 text-xl font-medium">Facilito, en tres pasos.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-            <div className="flex flex-col items-center text-center group">
-              <div className="w-24 h-24 bg-orange-50 rounded-2xl flex items-center justify-center mb-6 text-q-carnaval group-hover:scale-110 transition-transform shadow-sm">
-                <Palette className="w-10 h-10" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">1. Elige o Sube</h3>
-              <p className="text-slate-500 px-4">Escoge del catálogo o sube tu propio diseño.</p>
-            </div>
-
-            <div className="flex flex-col items-center text-center group">
-              <div className="w-24 h-24 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 text-q-sport group-hover:scale-110 transition-transform shadow-sm">
-                <CheckCircle className="w-10 h-10" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">2. Confirma y Paga</h3>
-              <p className="text-slate-500 px-4">Todo por WhatsApp. Anticipo del 50% para arrancar.</p>
-            </div>
-
-            <div className="flex flex-col items-center text-center group">
-              <div className="w-24 h-24 bg-green-50 rounded-2xl flex items-center justify-center mb-6 text-q-mint group-hover:scale-110 transition-transform shadow-sm">
-                <Truck className="w-10 h-10" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">3. Recibe en casa</h3>
-              <p className="text-slate-500 px-4">Envío incluido en Barranquilla y Soledad. En unos días la tienes lista.</p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

@@ -36,7 +36,7 @@ const ColorSelector: React.FC<ColorSelectorProps> = ({ selectedColor, onColorCha
               ${compact ? 'w-7 h-7' : 'w-9 h-9'}
               rounded-full transition-all duration-200 relative flex-shrink-0
               ${isSelected
-                                ? 'ring-3 ring-q-carnaval shadow-md'
+                                ? 'ring-3 ring-q-sport shadow-md'
                                 : 'ring-2 ring-slate-200 hover:ring-slate-300'
                             }
             `}

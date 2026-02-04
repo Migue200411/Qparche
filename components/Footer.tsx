@@ -2,19 +2,19 @@ import React from 'react';
 import { MessageCircle, Heart } from 'lucide-react';
 
 const Footer: React.FC = () => {
-  const waNumber = "573004945790";
+  const waNumber = "3004945790";
 
   return (
     <footer className="bg-q-dark text-white border-t border-slate-800 mt-auto relative overflow-hidden">
       {/* Subtle accent glow in footer */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-q-carnaval/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
         {/* Support Section - The ONLY call to action */}
         <div className="mb-12 text-center border-b border-slate-800 pb-12">
           <div className="inline-block bg-slate-800/50 rounded-2xl p-8 border border-slate-700">
             <h3 className="text-2xl font-bold text-white mb-2">📲 Atención directa por WhatsApp</h3>
-            <p className="text-q-carnaval font-black text-3xl mb-1 tracking-wider">300 494 5790</p>
+            <p className="text-q-sport font-black text-3xl mb-1 tracking-wider">300 494 5790</p>
             <p className="text-green-400 font-bold text-sm uppercase tracking-widest mb-6">Respuesta rápida</p>
 
             <a
@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
           <div className="text-center md:text-right">
             <p className="text-white font-bold text-lg flex items-center justify-center md:justify-end gap-2">
               Hecho en Barranquilla pa’ parches reales.
-              <Heart className="w-5 h-5 text-q-carnaval fill-q-carnaval" />
+              <Heart className="w-5 h-5 text-red-500 fill-red-500" />
             </p>
           </div>
         </div>

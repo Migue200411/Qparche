@@ -16,7 +16,7 @@ export enum ShirtColor {
   NARANJA = 'Naranja'
 }
 
-export type Category = 'carnaval' | 'deportiva' | 'custom';
+export type Category = 'deportiva' | 'custom' | 'amor_amistad';
 
 export interface Product {
   id: string;
