@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Filter } from 'lucide-react';
+import { ShoppingCart, Filter, Expand } from 'lucide-react';
 import { Product, ShirtSize, ShirtColor, Category } from '../types';
 import SizeSelector from '../components/SizeSelector';
 import ColorSelector from '../components/ColorSelector';
+import ImageViewer from '../components/ImageViewer';
 
 interface CatalogProps {
   category: Category;
@@ -231,6 +232,7 @@ const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
 const ProductCard: React.FC<{ product: Product; category: Category; isF1: boolean; teamColor?: string }> = ({ product, category, isF1, teamColor }) => {
   const [selectedSize, setSelectedSize] = useState<ShirtSize>(ShirtSize.M);
   const [selectedColor, setSelectedColor] = useState<ShirtColor>(ShirtColor.BLANCO);
+  const [viewerOpen, setViewerOpen] = useState(false);
   const waNumber = "573004945790";
 
   const handleOrder = () => {
@@ -274,12 +276,18 @@ Precio: $${product.price.toLocaleString()}`;
 
   return (
     <div className={`bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border flex flex-col h-full group hover:-translate-y-1.5 ${borderClasses}`}>
-      <div className="aspect-[4/5] w-full overflow-hidden bg-slate-100 relative">
+      <div className="aspect-[4/5] w-full overflow-hidden bg-slate-100 relative cursor-pointer" onClick={() => setViewerOpen(true)}>
         <img
           src={product.image}
           alt={product.name}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
+        {/* Expand icon on hover */}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+          <div className="w-10 h-10 bg-white/80 backdrop-blur rounded-full flex items-center justify-center text-slate-700 opacity-0 group-hover:opacity-100 transition-opacity shadow-lg">
+            <Expand className="w-5 h-5" />
+          </div>
+        </div>
         {/* Price Tag */}
         <div
           className={`absolute top-3 right-3 font-bold px-3 py-1.5 rounded-lg text-sm shadow-sm transition-colors duration-300 ${priceTagClasses}`}
@@ -296,6 +304,14 @@ Precio: $${product.price.toLocaleString()}`;
           ></div>
         )}
       </div>
+
+      {/* Image Viewer Modal */}
+      <ImageViewer
+        src={product.image}
+        alt={product.name}
+        isOpen={viewerOpen}
+        onClose={() => setViewerOpen(false)}
+      />
 
       <div className="p-5 flex-1 flex flex-col">
         <h3 className="text-lg font-bold text-slate-900 mb-1 leading-tight">{product.name}</h3>

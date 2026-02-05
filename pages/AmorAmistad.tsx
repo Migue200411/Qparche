@@ -1,5 +1,6 @@
-import React from 'react';
-import { Gift, MessageCircle, Heart, Sparkles, Users } from 'lucide-react';
+import React, { useState } from 'react';
+import { Gift, MessageCircle, Heart, Sparkles, Users, Expand } from 'lucide-react';
+import ImageViewer from '../components/ImageViewer';
 
 const products = [
     {
@@ -46,15 +47,86 @@ const products = [
     }
 ];
 
+const images = [
+    "/images/uploaded_media_0_1770222971295.png",
+    "/images/uploaded_media_1_1770222971295.png",
+    "/images/uploaded_media_2_1770222971295.png",
+    "/images/uploaded_media_3_1770222971295.png",
+    "/images/uploaded_media_4_1770222971295.png",
+    "/images/amor_destino_norte.png"
+];
+
+const AmorProductCard: React.FC<{ product: typeof products[0]; index: number }> = ({ product, index }) => {
+    const [viewerOpen, setViewerOpen] = useState(false);
+
+    return (
+        <div className="bg-white/80 backdrop-blur-sm rounded-[2rem] p-4 shadow-xl shadow-rose-100/40 border border-rose-100/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-rose-200/50 transition-all duration-300 group relative">
+            {/* Pair + Edition badges */}
+            <div className="absolute top-5 left-5 z-20 flex gap-2">
+                <div className="bg-gradient-to-r from-rose-500 to-pink-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-md shadow-rose-200/50 flex items-center gap-1">
+                    <Users className="w-3 h-3" /> PAR
+                </div>
+                <div className="bg-white/90 backdrop-blur text-purple-600 text-[10px] font-black px-3 py-1.5 rounded-full shadow-sm border border-purple-100 flex items-center gap-1">
+                    <Sparkles className="w-3 h-3" /> Edición Especial
+                </div>
+            </div>
+
+            {/* Heart badge on hover */}
+            <div className="absolute top-5 right-5 z-20 bg-white/90 backdrop-blur text-rose-500 p-2.5 rounded-full shadow-md border border-rose-100 opacity-0 group-hover:opacity-100 transition-all transform group-hover:scale-110 group-hover:rotate-12">
+                <Heart className="w-5 h-5 fill-current" />
+            </div>
+
+            <div
+                className="aspect-square bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 rounded-[1.5rem] mb-4 overflow-hidden relative border border-rose-100/50 cursor-pointer"
+                onClick={() => setViewerOpen(true)}
+            >
+                <img
+                    src={images[index]}
+                    alt={product.name}
+                    className="w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500 drop-shadow-lg"
+                    onError={(e) => e.currentTarget.src = 'https://placehold.co/600x600/ffe4e6/be123c?text=Diseño+Pendiente'}
+                />
+                {/* Soft inner glow */}
+                <div className="absolute inset-0 bg-gradient-to-t from-rose-100/20 to-transparent pointer-events-none"></div>
+                {/* Expand icon on hover */}
+                <div className="absolute bottom-3 right-3 z-10 bg-white/90 backdrop-blur p-2 rounded-full shadow-md border border-rose-100 opacity-0 group-hover:opacity-100 transition-all">
+                    <Expand className="w-4 h-4 text-rose-500" />
+                </div>
+            </div>
+
+            <div className="px-3 pb-3 text-center">
+                <h3 className="text-2xl font-black text-slate-900 mb-1">{product.name}</h3>
+                <p className="text-slate-500 font-medium mb-2 text-sm">{product.description}</p>
+                <p className="text-rose-400 font-bold text-xs mb-3">Incluye 2 camisetas personalizadas</p>
+
+                {/* Price highlight */}
+                <div className="bg-gradient-to-r from-rose-50 to-pink-50 rounded-xl py-2 px-4 mb-4 border border-rose-100/50">
+                    <span className="text-rose-600 font-black text-lg">${product.price.toLocaleString()}</span>
+                    <span className="text-slate-400 text-xs font-bold ml-1.5">el par</span>
+                </div>
+
+                <a
+                    href={`https://wa.me/3004945790?text=${encodeURIComponent(`Hola Q'Parche, quiero pedir el diseño "${product.name}" de Amor y Amistad (Promoción $${product.price.toLocaleString()} el par).`)}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="w-full bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-rose-200/50 hover:shadow-xl hover:shadow-rose-300/50 hover:-translate-y-0.5"
+                >
+                    <MessageCircle className="w-5 h-5" />
+                    Pedir par
+                </a>
+            </div>
+
+            <ImageViewer
+                src={images[index]}
+                alt={product.name}
+                isOpen={viewerOpen}
+                onClose={() => setViewerOpen(false)}
+            />
+        </div>
+    );
+};
+
 const AmorAmistad: React.FC = () => {
-    const images = [
-        "/images/uploaded_media_0_1770222971295.png",
-        "/images/uploaded_media_1_1770222971295.png",
-        "/images/uploaded_media_2_1770222971295.png",
-        "/images/uploaded_media_3_1770222971295.png",
-        "/images/uploaded_media_4_1770222971295.png",
-        "/images/amor_destino_norte.png"
-    ];
 
     return (
         <div className="min-h-screen relative overflow-hidden bg-gradient-to-b from-rose-50 via-pink-50/30 to-purple-50/20">
@@ -155,55 +227,7 @@ const AmorAmistad: React.FC = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {products.map((product, index) => (
-                        <div key={product.id} className="bg-white/80 backdrop-blur-sm rounded-[2rem] p-4 shadow-xl shadow-rose-100/40 border border-rose-100/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-rose-200/50 transition-all duration-300 group relative">
-                            {/* Pair + Edition badges */}
-                            <div className="absolute top-5 left-5 z-20 flex gap-2">
-                                <div className="bg-gradient-to-r from-rose-500 to-pink-500 text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-md shadow-rose-200/50 flex items-center gap-1">
-                                    <Users className="w-3 h-3" /> PAR
-                                </div>
-                                <div className="bg-white/90 backdrop-blur text-purple-600 text-[10px] font-black px-3 py-1.5 rounded-full shadow-sm border border-purple-100 flex items-center gap-1">
-                                    <Sparkles className="w-3 h-3" /> Edición Especial
-                                </div>
-                            </div>
-
-                            {/* Heart badge on hover */}
-                            <div className="absolute top-5 right-5 z-20 bg-white/90 backdrop-blur text-rose-500 p-2.5 rounded-full shadow-md border border-rose-100 opacity-0 group-hover:opacity-100 transition-all transform group-hover:scale-110 group-hover:rotate-12">
-                                <Heart className="w-5 h-5 fill-current" />
-                            </div>
-
-                            <div className="aspect-square bg-gradient-to-br from-rose-50 via-pink-50 to-purple-50 rounded-[1.5rem] mb-4 overflow-hidden relative border border-rose-100/50">
-                                <img
-                                    src={images[index]}
-                                    alt={product.name}
-                                    className="w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500 drop-shadow-lg"
-                                    onError={(e) => e.currentTarget.src = 'https://placehold.co/600x600/ffe4e6/be123c?text=Diseño+Pendiente'}
-                                />
-                                {/* Soft inner glow */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-rose-100/20 to-transparent pointer-events-none"></div>
-                            </div>
-
-                            <div className="px-3 pb-3 text-center">
-                                <h3 className="text-2xl font-black text-slate-900 mb-1">{product.name}</h3>
-                                <p className="text-slate-500 font-medium mb-2 text-sm">{product.description}</p>
-                                <p className="text-rose-400 font-bold text-xs mb-3">Incluye 2 camisetas personalizadas</p>
-
-                                {/* Price highlight */}
-                                <div className="bg-gradient-to-r from-rose-50 to-pink-50 rounded-xl py-2 px-4 mb-4 border border-rose-100/50">
-                                    <span className="text-rose-600 font-black text-lg">${product.price.toLocaleString()}</span>
-                                    <span className="text-slate-400 text-xs font-bold ml-1.5">el par</span>
-                                </div>
-
-                                <a
-                                    href={`https://wa.me/3004945790?text=${encodeURIComponent(`Hola Q'Parche, quiero pedir el diseño "${product.name}" de Amor y Amistad (Promoción $${product.price.toLocaleString()} el par).`)}`}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="w-full bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-rose-200/50 hover:shadow-xl hover:shadow-rose-300/50 hover:-translate-y-0.5"
-                                >
-                                    <MessageCircle className="w-5 h-5" />
-                                    Pedir par
-                                </a>
-                            </div>
-                        </div>
+                        <AmorProductCard key={product.id} product={product} index={index} />
                     ))}
                 </div>
             </div>
