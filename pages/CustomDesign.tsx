@@ -3,7 +3,7 @@ import { ShirtSize, ShirtColor } from '../types';
 import { Send, AlertTriangle, Camera, RefreshCcw } from 'lucide-react';
 import SizeSelector from '../components/SizeSelector';
 import ColorSelector from '../components/ColorSelector';
-import IdeaGenerator from '../components/IdeaGenerator';
+// import IdeaGenerator from '../components/IdeaGenerator';
 
 const CustomDesign: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -148,8 +148,8 @@ ${imageUrl ? `\nImagen: ${imageUrl}` : '(Sin imagen adjunta)'}`;
               </p>
             </div>
 
-            {/* IA Idea Generator */}
-            <IdeaGenerator onSelectIdea={handleSelectIdea} />
+            {/* IA Idea Generator - Oculto por ahora */}
+            {/* <IdeaGenerator onSelectIdea={handleSelectIdea} /> */}
           </div>
 
           {/* Right Column: Options */}
