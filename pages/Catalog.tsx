@@ -33,16 +33,16 @@ const mockProducts: Product[] = [
   { id: 'd5', category: 'deportiva', name: 'Junior Tu Papá', price: 40000, image: '/images/carnaval_junior.jpg', description: 'Pasión rojiblanca. Personalízala con tu nombre.' },
 
   // F1 Collection
-  { id: 'f1', category: 'deportiva', name: 'F1 Haas', price: 50000, image: '/images/f1_haas_new.png', description: 'Camiseta estilo Haas F1 Team.' },
-  { id: 'f2', category: 'deportiva', name: 'F1 Alpine', price: 50000, image: '/images/Alpine.jpeg', description: 'Camiseta estilo Alpine F1 Team.' },
-  { id: 'f3', category: 'deportiva', name: 'F1 Aston Martin', price: 50000, image: '/images/Aston Martin.jpeg', description: 'Camiseta estilo Aston Martin F1.' },
-  { id: 'f4', category: 'deportiva', name: 'F1 Ferrari', price: 50000, image: '/images/f1_ferrari_new.png', description: 'Camiseta estilo Scuderia Ferrari.' },
-  { id: 'f5', category: 'deportiva', name: 'F1 McLaren', price: 50000, image: '/images/f1_mclaren_new.png', description: 'Camiseta estilo McLaren Racing.' },
-  { id: 'f6', category: 'deportiva', name: 'F1 Mercedes', price: 50000, image: '/images/Mercedes.jpeg', description: 'Camiseta estilo Mercedes-AMG Petronas.' },
-  { id: 'f7', category: 'deportiva', name: 'F1 Red Bull', price: 50000, image: '/images/Red Bull.jpeg', description: 'Camiseta estilo Red Bull Racing.' },
-  { id: 'f8', category: 'deportiva', name: 'F1 Stake', price: 50000, image: '/images/Stake.jpeg', description: 'Camiseta estilo Stake F1 Team.' },
-  { id: 'f9', category: 'deportiva', name: 'F1 Williams', price: 50000, image: '/images/Williams.jpeg', description: 'Camiseta estilo Williams Racing.' },
-  { id: 'f10', category: 'deportiva', name: 'F1 Audi', price: 50000, image: '/images/Audi.jpeg', description: 'Camiseta estilo Audi F1 Team.' },
+  { id: 'f1', category: 'deportiva', name: 'F1 Haas', price: 55000, image: '/images/f1_haas_new.png', description: 'Camiseta estilo Haas F1 Team.' },
+  { id: 'f2', category: 'deportiva', name: 'F1 Alpine', price: 55000, image: '/images/Alpine.jpeg', description: 'Camiseta estilo Alpine F1 Team.' },
+  { id: 'f3', category: 'deportiva', name: 'F1 Aston Martin', price: 55000, image: '/images/Aston Martin.jpeg', description: 'Camiseta estilo Aston Martin F1.' },
+  { id: 'f4', category: 'deportiva', name: 'F1 Ferrari', price: 55000, image: '/images/f1_ferrari_new.png', description: 'Camiseta estilo Scuderia Ferrari.' },
+  { id: 'f5', category: 'deportiva', name: 'F1 McLaren', price: 55000, image: '/images/f1_mclaren_new.png', description: 'Camiseta estilo McLaren Racing.' },
+  { id: 'f6', category: 'deportiva', name: 'F1 Mercedes', price: 55000, image: '/images/Mercedes.jpeg', description: 'Camiseta estilo Mercedes-AMG Petronas.' },
+  { id: 'f7', category: 'deportiva', name: 'F1 Red Bull', price: 55000, image: '/images/Red Bull.jpeg', description: 'Camiseta estilo Red Bull Racing.' },
+  { id: 'f8', category: 'deportiva', name: 'F1 Stake', price: 55000, image: '/images/Stake.jpeg', description: 'Camiseta estilo Stake F1 Team.' },
+  { id: 'f9', category: 'deportiva', name: 'F1 Williams', price: 55000, image: '/images/Williams.jpeg', description: 'Camiseta estilo Williams Racing.' },
+  { id: 'f10', category: 'deportiva', name: 'F1 Audi', price: 55000, image: '/images/Audi.jpeg', description: 'Camiseta estilo Audi F1 Team.' },
 ];
 
 const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
@@ -114,7 +114,7 @@ const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
             {!selectedTeam && (
               <div className="mt-4 flex justify-center gap-3 flex-wrap">
                 <span className="inline-block px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-slate-300 text-sm font-bold">10 Escuderías</span>
-                <span className="inline-block px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-slate-300 text-sm font-bold">$50.000 c/u</span>
+                <span className="inline-block px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-slate-300 text-sm font-bold">$55.000 c/u</span>
                 <span className="inline-block px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-slate-300 text-sm font-bold">Personaliza nombre y número</span>
               </div>
             )}

@@ -83,10 +83,14 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ src, alt, isOpen, onClose }) 
 
   const handleTouchMove = useCallback((e: React.TouchEvent) => {
     if (!isDragging || e.touches.length !== 1) return;
-    e.preventDefault();
+    // Prevent scroll on iOS Safari when dragging zoomed image
+    if (scale > 1) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     const touch = e.touches[0];
     setPosition({ x: touch.clientX - dragStart.x, y: touch.clientY - dragStart.y });
-  }, [isDragging, dragStart]);
+  }, [isDragging, dragStart, scale]);
 
   const handleTouchEnd = useCallback(() => {
     setIsDragging(false);
@@ -125,7 +129,10 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ src, alt, isOpen, onClose }) 
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center">
+    <div
+      className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center"
+      style={{ touchAction: 'none' }} // Prevent iOS Safari gestures
+    >
       {/* Controls */}
       <div className="absolute top-4 right-4 z-[110] flex gap-2">
         <button
