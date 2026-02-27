@@ -52,7 +52,6 @@ const mockProducts: Product[] = [
   { id: 'd2', category: 'deportiva', name: 'Voley Black #10', price: 40000, image: '/images/sport_haikyuu_black.jpg', description: 'El del pequeño gigante, número 10.' },
   { id: 'd3', category: 'deportiva', name: 'Bastard Munchen', price: 40000, image: '/images/sport_bastard_munchen.png', description: 'Rojo y negro, estilo europeo moderno.' },
   { id: 'd4', category: 'deportiva', name: 'Blue Lock #11', price: 40000, image: '/images/sport_bluelock_11.jpg', description: 'Azul profundo, el ego del delantero.' },
-  { id: 'd5', category: 'deportiva', name: 'Junior Tu Papá', price: 40000, image: '/images/carnaval_junior.jpg', description: 'Pasión rojiblanca. Personalízala con tu nombre.' },
 
   // F1 Collection — gallery slots ready: replace /images/f1/[team]-frontal.jpg and -trasera.jpg when you have the photos
   { id: 'f1', category: 'deportiva', name: 'F1 Haas', price: 55000, image: '/images/f1_haas_new.png', gallery: f1Gallery('haas', '/images/f1_haas_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
