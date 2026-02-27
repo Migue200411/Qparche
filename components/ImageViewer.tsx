@@ -1,33 +1,40 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { X, ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
+import { X, ZoomIn, ZoomOut, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ImageViewerProps {
   src: string;
   alt: string;
   isOpen: boolean;
   onClose: () => void;
+  onPrev?: () => void;
+  onNext?: () => void;
+  imageLabel?: string;   // e.g. "Vista frontal"
+  imageIndex?: number;   // e.g. 0
+  imageCount?: number;   // e.g. 3
 }
 
-const ImageViewer: React.FC<ImageViewerProps> = ({ src, alt, isOpen, onClose }) => {
+const ImageViewer: React.FC<ImageViewerProps> = ({ src, alt, isOpen, onClose, onPrev, onNext, imageLabel, imageIndex, imageCount }) => {
   const [scale, setScale] = useState(1);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Reset state when opening/closing
+  // Reset zoom when opening or when navigating to a different image
   useEffect(() => {
     if (isOpen) {
       setScale(1);
       setPosition({ x: 0, y: 0 });
     }
-  }, [isOpen]);
+  }, [isOpen, src]);
 
-  // Close on Escape
+  // Keyboard: Escape, ArrowLeft, ArrowRight
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft' && onPrev) { e.preventDefault(); onPrev(); }
+      if (e.key === 'ArrowRight' && onNext) { e.preventDefault(); onNext(); }
     };
     if (isOpen) {
       document.addEventListener('keydown', handleKeyDown);
@@ -37,7 +44,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ src, alt, isOpen, onClose }) 
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, onPrev, onNext]);
 
   const handleZoomIn = useCallback(() => {
     setScale(prev => Math.min(prev + 0.5, 5));
@@ -168,12 +175,40 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ src, alt, isOpen, onClose }) 
         </div>
       )}
 
-      {/* Hint */}
-      {scale <= 1 && (
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-[110] bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-white/60 text-xs font-medium">
-          Doble clic para zoom &middot; Scroll para acercar
-        </div>
+      {/* Navigation arrows */}
+      {onPrev && scale <= 1 && (
+        <button
+          onClick={onPrev}
+          className="absolute left-3 top-1/2 -translate-y-1/2 z-[110] w-11 h-11 bg-white/15 hover:bg-white/30 active:bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-colors"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
       )}
+      {onNext && scale <= 1 && (
+        <button
+          onClick={onNext}
+          className="absolute right-3 top-1/2 -translate-y-1/2 z-[110] w-11 h-11 bg-white/15 hover:bg-white/30 active:bg-white/40 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-colors"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
+      )}
+
+      {/* Bottom info: label + counter + hint */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-[110] flex flex-col items-center gap-1.5">
+        {imageLabel && scale <= 1 && (
+          <div className="bg-white/15 backdrop-blur-sm rounded-full px-4 py-1.5 text-white text-xs font-bold">
+            {imageLabel}
+            {imageIndex != null && imageCount != null && (
+              <span className="text-white/50 ml-2">{imageIndex + 1} / {imageCount}</span>
+            )}
+          </div>
+        )}
+        {scale <= 1 && (
+          <div className="bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5 text-white/50 text-[10px] font-medium">
+            {(onPrev || onNext) ? 'Flechas para navegar · ' : ''}Doble clic para zoom
+          </div>
+        )}
+      </div>
 
       {/* Image container */}
       <div

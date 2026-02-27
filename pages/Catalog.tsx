@@ -264,13 +264,22 @@ const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
 const ProductCard: React.FC<{ product: Product; category: Category; isF1: boolean; teamColor?: string }> = ({ product, category, isF1, teamColor }) => {
   const [selectedSize, setSelectedSize] = useState<ShirtSize>(ShirtSize.M);
   const [viewerOpen, setViewerOpen] = useState(false);
-  const [viewerSrc, setViewerSrc] = useState(product.image);
+  const [viewerIdx, setViewerIdx] = useState(0);
   const waNumber = "573004945790";
+  const gallery = product.gallery;
 
   const openViewer = (src: string) => {
-    setViewerSrc(src);
+    if (gallery) {
+      const idx = gallery.findIndex(g => g.src === src);
+      setViewerIdx(idx >= 0 ? idx : 0);
+    }
     setViewerOpen(true);
   };
+
+  const viewerSrc = gallery ? gallery[viewerIdx]?.src ?? product.image : product.image;
+  const viewerLabel = gallery ? gallery[viewerIdx]?.label : undefined;
+  const viewerPrev = gallery && viewerIdx > 0 ? () => setViewerIdx(viewerIdx - 1) : undefined;
+  const viewerNext = gallery && viewerIdx < (gallery.length - 1) ? () => setViewerIdx(viewerIdx + 1) : undefined;
 
   const handleOrder = () => {
     const collectionName = isF1 ? 'Fórmula 1' : category.charAt(0).toUpperCase() + category.slice(1);
@@ -359,6 +368,11 @@ Pago: 50% anticipo · 50% contra entrega`
         alt={product.name}
         isOpen={viewerOpen}
         onClose={() => setViewerOpen(false)}
+        onPrev={viewerPrev}
+        onNext={viewerNext}
+        imageLabel={viewerLabel}
+        imageIndex={gallery ? viewerIdx : undefined}
+        imageCount={gallery ? gallery.length : undefined}
       />
 
       {/* Card Body */}
