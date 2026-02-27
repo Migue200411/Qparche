@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Trophy, Palette, MessageCircle, Heart, Zap, Pen, GraduationCap, Package } from 'lucide-react';
+import { Trophy, Palette, MessageCircle, Heart, Zap, Pen, Package, ShieldCheck, Truck, Users } from 'lucide-react';
 
 const Home: React.FC = () => {
   return (
@@ -16,54 +16,89 @@ const Home: React.FC = () => {
 
           {/* Main Title */}
           <h1 className="text-5xl md:text-7xl font-display font-black tracking-tight mb-6 text-slate-900 leading-[1.05]">
-            Camisetas <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-rose-500">Personalizadas</span><br />
-            para todos.
+            Tu camiseta,<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-rose-500">hecha desde cero.</span>
           </h1>
 
           {/* Subtitle */}
           <p className="mt-4 max-w-2xl text-xl text-slate-600 font-medium leading-relaxed">
-            F1, deportes, amor & amistad y diseños de la comunidad.
+            Sublimación premium en Barranquilla. Pagas el 50% para reservar y el resto cuando la recibes.
           </p>
 
           {/* CTA Buttons */}
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center w-full max-w-md sm:max-w-none">
+            <Link
+              to="/f1"
+              className="px-8 py-4 rounded-xl text-lg font-bold text-white bg-gradient-to-r from-orange-500 to-rose-500 shadow-xl shadow-orange-200/60 transition-all hover:-translate-y-1 hover:shadow-2xl flex items-center justify-center gap-2"
+            >
+              <Trophy className="w-5 h-5" />
+              Ver Colección F1
+            </Link>
             <a
               href="https://wa.me/3004945790?text=Hola%20Q'Parche,%20quiero%20hacer%20un%20pedido"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-4 rounded-xl text-lg font-bold text-white bg-green-600 hover:bg-green-700 shadow-xl shadow-green-200/50 transition-all hover:-translate-y-1 hover:shadow-2xl flex items-center justify-center gap-2"
+              className="px-8 py-4 rounded-xl text-lg font-bold text-slate-700 bg-white border-2 border-slate-200 hover:border-green-400 hover:text-green-700 hover:shadow-lg hover:shadow-green-100 transition-all flex items-center justify-center gap-2"
             >
               <MessageCircle className="w-5 h-5" />
-              Pedir por WhatsApp
+              Hablar por WhatsApp
             </a>
-            <Link
-              to="/deportiva"
-              className="px-8 py-4 rounded-xl text-lg font-bold text-slate-700 bg-white border-2 border-slate-200 hover:border-orange-400 hover:text-orange-600 hover:shadow-lg hover:shadow-orange-100 transition-all flex items-center justify-center"
-            >
-              Ver diseños
-            </Link>
           </div>
 
-          {/* Micro-benefits */}
+          {/* Trust bullets */}
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl w-full">
             <div className="flex items-center gap-3 bg-white/70 backdrop-blur-sm rounded-xl px-5 py-3.5 border border-orange-100/50 shadow-sm">
               <div className="w-9 h-9 bg-orange-100 rounded-lg flex items-center justify-center text-orange-500 shrink-0">
                 <Pen className="w-4 h-4" />
               </div>
-              <p className="text-slate-700 font-bold text-sm text-left">Personaliza nombre y número</p>
+              <p className="text-slate-700 font-bold text-sm text-left">Sublimación full color — no se pela ni se borra</p>
             </div>
             <div className="flex items-center gap-3 bg-white/70 backdrop-blur-sm rounded-xl px-5 py-3.5 border border-green-100/50 shadow-sm">
               <div className="w-9 h-9 bg-green-100 rounded-lg flex items-center justify-center text-green-600 shrink-0">
-                <GraduationCap className="w-4 h-4" />
+                <ShieldCheck className="w-4 h-4" />
               </div>
-              <p className="text-slate-700 font-bold text-sm text-left">Entrega en tu universidad sin costo</p>
+              <p className="text-slate-700 font-bold text-sm text-left">50% anticipo · 50% contra entrega</p>
             </div>
             <div className="flex items-center gap-3 bg-white/70 backdrop-blur-sm rounded-xl px-5 py-3.5 border border-rose-100/50 shadow-sm">
               <div className="w-9 h-9 bg-rose-100 rounded-lg flex items-center justify-center text-rose-500 shrink-0">
-                <Package className="w-4 h-4" />
+                <Truck className="w-4 h-4" />
               </div>
-              <p className="text-slate-700 font-bold text-sm text-left">Pedidos bajo encargo</p>
+              <p className="text-slate-700 font-bold text-sm text-left">Entrega en Barranquilla sin costo adicional</p>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Trust Strip */}
+      <div className="bg-white border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="flex flex-col items-center text-center gap-2">
+            <div className="w-11 h-11 bg-orange-50 rounded-xl flex items-center justify-center text-orange-500">
+              <Package className="w-5 h-5" />
+            </div>
+            <p className="font-bold text-slate-800 text-sm leading-tight">Solo bajo pedido</p>
+            <p className="text-slate-400 text-xs leading-snug">Cada camiseta se hace para ti, no hay inventario genérico.</p>
+          </div>
+          <div className="flex flex-col items-center text-center gap-2">
+            <div className="w-11 h-11 bg-green-50 rounded-xl flex items-center justify-center text-green-600">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <p className="font-bold text-slate-800 text-sm leading-tight">Pago en dos partes</p>
+            <p className="text-slate-400 text-xs leading-snug">50% para reservar. El resto lo pagas cuando recibes.</p>
+          </div>
+          <div className="flex flex-col items-center text-center gap-2">
+            <div className="w-11 h-11 bg-blue-50 rounded-xl flex items-center justify-center text-blue-500">
+              <MessageCircle className="w-5 h-5" />
+            </div>
+            <p className="font-bold text-slate-800 text-sm leading-tight">Atención directa</p>
+            <p className="text-slate-400 text-xs leading-snug">Hablas con quien hace tu camiseta. Sin intermediarios.</p>
+          </div>
+          <div className="flex flex-col items-center text-center gap-2">
+            <div className="w-11 h-11 bg-rose-50 rounded-xl flex items-center justify-center text-rose-500">
+              <Users className="w-5 h-5" />
+            </div>
+            <p className="font-bold text-slate-800 text-sm leading-tight">Comunidad universitaria</p>
+            <p className="text-slate-400 text-xs leading-snug">Cientos de pedidos entregados en universidades de Barranquilla.</p>
           </div>
         </div>
       </div>
@@ -92,7 +127,7 @@ const Home: React.FC = () => {
                 <p className="text-pink-200/70 text-sm font-semibold">Packs en pareja desde $70.000</p>
               </div>
             </div>
-            <img src="/images/uploaded_media_0_1770222971295.png" className="absolute bottom-0 right-0 w-64 h-64 object-contain translate-x-1/4 translate-y-1/4 opacity-90 group-hover:scale-110 transition-transform duration-500 rotate-12 drop-shadow-2xl" alt="Decor" />
+            <img src="/images/amor_siempre_contigo.png" className="absolute bottom-0 right-0 w-64 h-64 object-contain translate-x-1/4 translate-y-1/4 opacity-90 group-hover:scale-110 transition-transform duration-500 rotate-12 drop-shadow-2xl" alt="Decor" />
           </Link>
 
           {/* F1 Card */}

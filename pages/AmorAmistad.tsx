@@ -48,11 +48,11 @@ const products = [
 ];
 
 const images = [
-    "/images/uploaded_media_0_1770222971295.png",
-    "/images/uploaded_media_1_1770222971295.png",
-    "/images/uploaded_media_2_1770222971295.png",
-    "/images/uploaded_media_3_1770222971295.png",
-    "/images/uploaded_media_4_1770222971295.png",
+    "/images/amor_siempre_contigo.png",
+    "/images/amor_en_las_buenas.png",
+    "/images/amor_par_inseparable.png",
+    "/images/amor_mitad_mitad.png",
+    "/images/amor_nuestro_parche.png",
     "/images/amor_destino_norte.png"
 ];
 

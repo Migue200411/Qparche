@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MessageCircle, Filter, Expand } from 'lucide-react';
-import { Product, ShirtSize, Category } from '../types';
+import { Product, GalleryImage, ShirtSize, Category } from '../types';
 import SizeSelector from '../components/SizeSelector';
 import ImageViewer from '../components/ImageViewer';
+import ProductGallery from '../components/ProductGallery';
 
 interface CatalogProps {
   category: Category;
@@ -24,6 +25,26 @@ const teamColors: Record<string, { name: string; primary: string; secondary: str
   f10: { name: 'Audi', primary: '#8C8C8C', secondary: '#e10600', bgFrom: '#0a0a0a', bgTo: '#1a1a1a', glowColor: 'rgba(140,140,140,0.15)' },
 };
 
+// Helper: builds a 3-image gallery for F1 products.
+// Replace the src paths once you have the actual photos.
+// Slot 1: frontal (model wearing shirt, front view)
+// Slot 2: trasera (model wearing shirt, back view)
+// Slot 3: producto (clean flat-lay / hanger shot) — reuses existing image
+const f1Gallery = (teamSlug: string, productImage: string): GalleryImage[] => {
+  // Helpers for specific teams with different extensions
+  const ext = (slug: string, side: 'frontal' | 'trasera') => {
+    if (slug === 'mercedes' && side === 'trasera') return 'png';
+    if (slug === 'redbull' && side === 'trasera') return 'png';
+    return 'jpg';
+  };
+
+  return [
+    { src: `/images/f1/${teamSlug}-frontal.${ext(teamSlug, 'frontal')}`, label: 'Vista frontal' },
+    { src: `/images/f1/${teamSlug}-trasera.${ext(teamSlug, 'trasera')}`, label: 'Vista trasera' },
+    { src: productImage, label: 'Producto' },
+  ];
+};
+
 const mockProducts: Product[] = [
   // Deportes (NO F1)
   { id: 'd1', category: 'deportiva', name: 'Voley White #4', price: 40000, image: '/images/sport_haikyuu_white.jpg', description: 'Estilo anime deportivo, número 4.' },
@@ -32,17 +53,17 @@ const mockProducts: Product[] = [
   { id: 'd4', category: 'deportiva', name: 'Blue Lock #11', price: 40000, image: '/images/sport_bluelock_11.jpg', description: 'Azul profundo, el ego del delantero.' },
   { id: 'd5', category: 'deportiva', name: 'Junior Tu Papá', price: 40000, image: '/images/carnaval_junior.jpg', description: 'Pasión rojiblanca. Personalízala con tu nombre.' },
 
-  // F1 Collection
-  { id: 'f1', category: 'deportiva', name: 'F1 Haas', price: 55000, image: '/images/f1_haas_new.png', description: 'Camiseta estilo Haas F1 Team.' },
-  { id: 'f2', category: 'deportiva', name: 'F1 Alpine', price: 55000, image: '/images/Alpine.jpeg', description: 'Camiseta estilo Alpine F1 Team.' },
-  { id: 'f3', category: 'deportiva', name: 'F1 Aston Martin', price: 55000, image: '/images/Aston Martin.jpeg', description: 'Camiseta estilo Aston Martin F1.' },
-  { id: 'f4', category: 'deportiva', name: 'F1 Ferrari', price: 55000, image: '/images/f1_ferrari_new.png', description: 'Camiseta estilo Scuderia Ferrari.' },
-  { id: 'f5', category: 'deportiva', name: 'F1 McLaren', price: 55000, image: '/images/f1_mclaren_new.png', description: 'Camiseta estilo McLaren Racing.' },
-  { id: 'f6', category: 'deportiva', name: 'F1 Mercedes', price: 55000, image: '/images/Mercedes.jpeg', description: 'Camiseta estilo Mercedes-AMG Petronas.' },
-  { id: 'f7', category: 'deportiva', name: 'F1 Red Bull', price: 55000, image: '/images/Red Bull.jpeg', description: 'Camiseta estilo Red Bull Racing.' },
-  { id: 'f8', category: 'deportiva', name: 'F1 Stake', price: 55000, image: '/images/Stake.jpeg', description: 'Camiseta estilo Stake F1 Team.' },
-  { id: 'f9', category: 'deportiva', name: 'F1 Williams', price: 55000, image: '/images/Williams.jpeg', description: 'Camiseta estilo Williams Racing.' },
-  { id: 'f10', category: 'deportiva', name: 'F1 Audi', price: 55000, image: '/images/Audi.jpeg', description: 'Camiseta estilo Audi F1 Team.' },
+  // F1 Collection — gallery slots ready: replace /images/f1/[team]-frontal.jpg and -trasera.jpg when you have the photos
+  { id: 'f1', category: 'deportiva', name: 'F1 Haas', price: 55000, image: '/images/f1_haas_new.png', gallery: f1Gallery('haas', '/images/f1_haas_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
+  { id: 'f2', category: 'deportiva', name: 'F1 Alpine', price: 55000, image: '/images/f1_alpine_new.png', gallery: f1Gallery('alpine', '/images/f1_alpine_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
+  { id: 'f3', category: 'deportiva', name: 'F1 Aston Martin', price: 55000, image: '/images/f1_aston_martin_new.png', gallery: f1Gallery('aston-martin', '/images/f1_aston_martin_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
+  { id: 'f4', category: 'deportiva', name: 'F1 Ferrari', price: 55000, image: '/images/f1_ferrari_new.png', gallery: f1Gallery('ferrari', '/images/f1_ferrari_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
+  { id: 'f5', category: 'deportiva', name: 'F1 McLaren', price: 55000, image: '/images/f1_mclaren_new.png', gallery: f1Gallery('mclaren', '/images/f1_mclaren_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
+  { id: 'f6', category: 'deportiva', name: 'F1 Mercedes', price: 55000, image: '/images/Mercedes.jpeg', gallery: f1Gallery('mercedes', '/images/Mercedes.jpeg'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
+  { id: 'f7', category: 'deportiva', name: 'F1 Red Bull', price: 55000, image: '/images/Red Bull.jpeg', gallery: f1Gallery('redbull', '/images/Red Bull.jpeg'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
+  { id: 'f8', category: 'deportiva', name: 'F1 Stake', price: 55000, image: '/images/f1_stake_new.png', gallery: f1Gallery('stake', '/images/f1_stake_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
+  { id: 'f9', category: 'deportiva', name: 'F1 Williams', price: 55000, image: '/images/f1_williams_new.png', gallery: f1Gallery('williams', '/images/f1_williams_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
+  { id: 'f10', category: 'deportiva', name: 'F1 Audi', price: 55000, image: '/images/f1_audi_new.png', gallery: f1Gallery('audi', '/images/f1_audi_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
 ];
 
 const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
@@ -107,15 +128,16 @@ const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
             </h1>
             <p className="text-slate-300 text-lg font-medium max-w-2xl mx-auto leading-relaxed mb-2">
               {selectedTeam
-                ? `Camiseta estilo ${activeTeam?.name}. Elige tu talla y pide por WhatsApp.`
-                : 'Velocidad, adrenalina y los colores de tu escudería favorita.'
+                ? `Sublimación full color estilo ${activeTeam?.name}. Incluye personalización de nombre y número. Precio final: $55.000.`
+                : 'Diseñada para fans que saben lo que quieren. Full color, personalizable, hecha a pedido en Barranquilla.'
               }
             </p>
             {!selectedTeam && (
               <div className="mt-4 flex justify-center gap-3 flex-wrap">
                 <span className="inline-block px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-slate-300 text-sm font-bold">10 Escuderías</span>
-                <span className="inline-block px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-slate-300 text-sm font-bold">$55.000 c/u</span>
-                <span className="inline-block px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-slate-300 text-sm font-bold">Personaliza nombre y número</span>
+                <span className="inline-block px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-slate-300 text-sm font-bold">$55.000 · Precio final</span>
+                <span className="inline-block px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-slate-300 text-sm font-bold">Nombre y número incluidos</span>
+                <span className="inline-block px-4 py-1.5 bg-white/10 border border-white/20 rounded-full text-slate-300 text-sm font-bold">Tallas S – XXL</span>
               </div>
             )}
 
@@ -125,11 +147,10 @@ const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
               <div className="flex flex-wrap justify-center gap-2.5">
                 <button
                   onClick={() => setSelectedTeam(null)}
-                  className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 border ${
-                    !selectedTeam
-                      ? 'bg-white text-slate-900 border-white shadow-lg shadow-white/20'
-                      : 'bg-white/8 text-white/60 border-white/15 hover:bg-white/15 hover:text-white'
-                  }`}
+                  className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 border ${!selectedTeam
+                    ? 'bg-white text-slate-900 border-white shadow-lg shadow-white/20'
+                    : 'bg-white/8 text-white/60 border-white/15 hover:bg-white/15 hover:text-white'
+                    }`}
                 >
                   Todas
                 </button>
@@ -137,11 +158,10 @@ const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
                   <button
                     key={id}
                     onClick={() => setSelectedTeam(id)}
-                    className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 border flex items-center gap-2 ${
-                      selectedTeam === id
-                        ? 'text-white shadow-lg scale-105'
-                        : 'bg-white/5 text-white/60 border-white/10 hover:bg-white/12 hover:text-white hover:scale-105'
-                    }`}
+                    className={`px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 border flex items-center gap-2 ${selectedTeam === id
+                      ? 'text-white shadow-lg scale-105'
+                      : 'bg-white/5 text-white/60 border-white/10 hover:bg-white/12 hover:text-white hover:scale-105'
+                      }`}
                     style={selectedTeam === id ? {
                       backgroundColor: team.primary,
                       borderColor: team.primary,
@@ -242,16 +262,28 @@ const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
 const ProductCard: React.FC<{ product: Product; category: Category; isF1: boolean; teamColor?: string }> = ({ product, category, isF1, teamColor }) => {
   const [selectedSize, setSelectedSize] = useState<ShirtSize>(ShirtSize.M);
   const [viewerOpen, setViewerOpen] = useState(false);
+  const [viewerSrc, setViewerSrc] = useState(product.image);
   const waNumber = "573004945790";
+
+  const openViewer = (src: string) => {
+    setViewerSrc(src);
+    setViewerOpen(true);
+  };
 
   const handleOrder = () => {
     const collectionName = isF1 ? 'Fórmula 1' : category.charAt(0).toUpperCase() + category.slice(1);
-    const message = `Hola Q'Parche, quiero hacer un pedido:
+    const base = `Hola Q'Parche, quiero hacer un pedido:
 
 Producto: ${product.name}
 Colección: ${collectionName}
 Talla: ${selectedSize}
 Precio: $${product.price.toLocaleString()}`;
+    const message = isF1
+      ? `${base}
+
+Personalización (nombre y número): (completar)
+Pago: 50% anticipo · 50% contra entrega`
+      : base;
 
     const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
@@ -284,38 +316,44 @@ Precio: $${product.price.toLocaleString()}`;
 
   return (
     <div className={`bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border flex flex-col h-full group hover:-translate-y-1.5 ${borderClasses}`}>
-      {/* Image */}
-      <div className="aspect-[4/5] w-full overflow-hidden bg-slate-50 relative cursor-pointer" onClick={() => setViewerOpen(true)}>
-        <img
-          src={product.image}
+      {/* Image / Gallery */}
+      {product.gallery ? (
+        <ProductGallery
+          images={product.gallery}
           alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          price={product.price}
+          teamColor={isF1 ? teamColor : undefined}
+          priceTagClasses={priceTagClasses}
+          priceTagStyle={priceTagStyle}
+          onExpand={openViewer}
         />
-        {/* Expand overlay */}
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 flex items-center justify-center">
-          <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-slate-700 opacity-0 group-hover:opacity-100 transition-all shadow-lg group-hover:scale-100 scale-90">
-            <Expand className="w-5 h-5" />
+      ) : (
+        <div className="aspect-[4/5] w-full overflow-hidden bg-slate-50 relative cursor-pointer" onClick={() => openViewer(product.image)}>
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 flex items-center justify-center">
+            <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-slate-700 opacity-0 group-hover:opacity-100 transition-all shadow-lg group-hover:scale-100 scale-90">
+              <Expand className="w-5 h-5" />
+            </div>
           </div>
-        </div>
-        {/* Price Tag */}
-        <div
-          className={`absolute top-3 right-3 font-black px-3 py-1.5 rounded-lg text-sm shadow-md transition-colors duration-300 ${priceTagClasses}`}
-          style={priceTagStyle}
-        >
-          ${product.price.toLocaleString()}
-        </div>
-        {/* Team color accent bar */}
-        {isF1 && teamColor && (
           <div
-            className="absolute bottom-0 left-0 right-0 h-1.5 transition-all duration-500"
-            style={{ backgroundColor: teamColor }}
-          ></div>
-        )}
-      </div>
+            className={`absolute top-3 right-3 font-black px-3 py-1.5 rounded-lg text-sm shadow-md transition-colors duration-300 ${priceTagClasses}`}
+            style={priceTagStyle}
+          >
+            ${product.price.toLocaleString()}
+          </div>
+          {isF1 && teamColor && (
+            <div className="absolute bottom-0 left-0 right-0 h-1.5 transition-all duration-500" style={{ backgroundColor: teamColor }} />
+          )}
+        </div>
+      )}
 
       {/* Image Viewer Modal */}
       <ImageViewer
-        src={product.image}
+        src={viewerSrc}
         alt={product.name}
         isOpen={viewerOpen}
         onClose={() => setViewerOpen(false)}
@@ -329,12 +367,25 @@ Precio: $${product.price.toLocaleString()}`;
         <div className="mt-auto space-y-3">
           {/* Info Tags */}
           <div className="flex flex-wrap gap-1.5">
-            <span className="text-[10px] font-bold text-green-600 bg-green-50 px-2.5 py-1 rounded-md">
-              Envío gratis BQ
-            </span>
-            <span className="text-[10px] font-bold text-slate-500 bg-slate-50 px-2.5 py-1 rounded-md">
-              Precio final
-            </span>
+            {isF1 ? (
+              <>
+                <span className="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md">
+                  Nombre y número incluidos
+                </span>
+                <span className="text-[10px] font-bold text-green-600 bg-green-50 px-2.5 py-1 rounded-md">
+                  50% anticipo
+                </span>
+              </>
+            ) : (
+              <>
+                <span className="text-[10px] font-bold text-green-600 bg-green-50 px-2.5 py-1 rounded-md">
+                  Envío gratis BQ
+                </span>
+                <span className="text-[10px] font-bold text-slate-500 bg-slate-50 px-2.5 py-1 rounded-md">
+                  Precio final
+                </span>
+              </>
+            )}
           </div>
 
           {/* Size Selector */}

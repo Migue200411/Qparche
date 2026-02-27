@@ -40,14 +40,14 @@ const Info: React.FC = () => {
             <ul className="space-y-4 text-slate-600 text-lg">
               <li className="flex justify-between border-b border-slate-50 pb-4">
                 <span>Barranquilla / Soledad</span>
-                <span className="font-bold text-q-dark">$5.000 - $8.000</span>
+                <span className="font-black text-green-600">¡ENVÍO INCLUIDO!</span>
               </li>
               <li className="flex justify-between border-b border-slate-50 pb-4">
                 <span>Otras ciudades (Interrapidísimo)</span>
                 <span className="font-bold text-q-dark">$10.000 - $15.000</span>
               </li>
               <li className="text-base text-slate-400 italic pt-2 font-medium">
-                *El envío se paga contra entrega a la transportadora o al domiciliario.
+                *Precio final, sin enredos. El envío nacional se paga contra entrega.
               </li>
             </ul>
           </div>

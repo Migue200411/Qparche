@@ -18,11 +18,17 @@ export enum ShirtColor {
 
 export type Category = 'deportiva' | 'custom' | 'amor_amistad';
 
+export interface GalleryImage {
+  src: string;
+  label: string; // "Vista frontal", "Vista trasera", "Producto"
+}
+
 export interface Product {
   id: string;
   name: string;
   price: number;
   image: string;
+  gallery?: GalleryImage[]; // optional multi-image gallery; use image as fallback
   category: Category;
   tags?: string[];
   description?: string;

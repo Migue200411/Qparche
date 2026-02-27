@@ -54,6 +54,19 @@
       backdrop-filter: blur(4px);
     }
 
+    /* Gallery image transition */
+    @keyframes galleryFadeIn {
+      from { opacity: 0; transform: scale(1.015); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .animate-gallery-fade {
+      animation: galleryFadeIn 0.25s ease-out;
+    }
+
+    /* Hide scrollbar (carousel) */
+    .scrollbar-none::-webkit-scrollbar { display: none; }
+    .scrollbar-none { scrollbar-width: none; -ms-overflow-style: none; }
+
     /* Maizena / Paint Dust Effects */
     .paint-splash {
       position: absolute;
