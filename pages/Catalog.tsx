@@ -23,6 +23,7 @@ const teamColors: Record<string, { name: string; primary: string; secondary: str
   f8: { name: 'Stake', primary: '#52E252', secondary: '#000000', bgFrom: '#021a05', bgTo: '#0a3d12', glowColor: 'rgba(82,226,82,0.15)' },
   f9: { name: 'Williams', primary: '#005AFF', secondary: '#00A0DE', bgFrom: '#000d26', bgTo: '#0a2d5f', glowColor: 'rgba(0,90,255,0.15)' },
   f10: { name: 'Audi', primary: '#8C8C8C', secondary: '#e10600', bgFrom: '#0a0a0a', bgTo: '#1a1a1a', glowColor: 'rgba(140,140,140,0.15)' },
+  f11: { name: 'Cadillac', primary: '#000000', secondary: '#da291c', bgFrom: '#000000', bgTo: '#1a1a1a', glowColor: 'rgba(218,41,28,0.15)' },
 };
 
 // Helper: builds a 3-image gallery for F1 products.
@@ -64,6 +65,7 @@ const mockProducts: Product[] = [
   { id: 'f8', category: 'deportiva', name: 'F1 Stake', price: 55000, image: '/images/f1_stake_new.png', gallery: f1Gallery('stake', '/images/f1_stake_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
   { id: 'f9', category: 'deportiva', name: 'F1 Williams', price: 55000, image: '/images/f1_williams_new.png', gallery: f1Gallery('williams', '/images/f1_williams_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
   { id: 'f10', category: 'deportiva', name: 'F1 Audi', price: 55000, image: '/images/f1_audi_new.png', gallery: f1Gallery('audi', '/images/f1_audi_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
+  { id: 'f11', category: 'deportiva', name: 'F1 Cadillac', price: 55000, image: '/images/f1_cadillac_new.png', gallery: f1Gallery('cadillac', '/images/f1_cadillac_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
 ];
 
 const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
