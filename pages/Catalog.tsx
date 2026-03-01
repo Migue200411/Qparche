@@ -35,7 +35,6 @@ const teamColors: Record<string, { name: string; primary: string; secondary: str
 const f1Gallery = (teamSlug: string, productImage: string): GalleryImage[] => {
   // Helpers for specific teams with different extensions
   const ext = (slug: string, side: 'frontal' | 'trasera') => {
-    if (slug === 'mercedes' && side === 'trasera') return 'png';
     if (slug === 'redbull' && side === 'trasera') return 'png';
     if (slug === 'redbull-2026' && side === 'trasera') return 'png';
     return 'jpg';
