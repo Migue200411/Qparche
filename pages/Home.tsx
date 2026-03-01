@@ -435,7 +435,7 @@ const Home: React.FC = () => {
               </div>
               <div className="relative z-20">
                 <span className="inline-block px-3 py-1 bg-red-500/30 backdrop-blur rounded-lg text-red-300 font-bold text-xs mb-3 border border-red-500/30">
-                  10 Escuderías
+                  11 Escuderías
                 </span>
                 <h2 className="text-4xl md:text-5xl font-display font-black text-white mb-2">Fórmula <span className="text-red-500">1</span></h2>
                 <p className="text-slate-300 text-lg font-medium mb-1">Velocidad, adrenalina y estilo.</p>
