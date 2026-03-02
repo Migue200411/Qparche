@@ -5,7 +5,7 @@ const Footer: React.FC = () => {
   const waNumber = "3004945790";
 
   return (
-    <footer className="bg-[#111111] text-white border-t border-slate-900 mt-auto relative overflow-hidden">
+    <footer className="bg-[#0e0e12] text-white border-t border-slate-900 mt-auto relative overflow-hidden">
       {/* Premium Glow */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#E10600]/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
 

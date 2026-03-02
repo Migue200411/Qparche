@@ -9,7 +9,10 @@ const Navbar: React.FC = () => {
   const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`;
 
   return (
-    <nav className="sticky top-0 z-50 bg-black border-b border-slate-800/80 shadow-sm transition-colors">
+    <nav
+      className="sticky top-0 z-50 bg-black md:bg-black/80 border-b border-slate-800/80 shadow-sm transition-all md:backdrop-blur-md"
+      style={{ WebkitBackdropFilter: 'blur(10px)' }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center">

@@ -49,10 +49,13 @@ const Testimonios: React.FC = () => {
   return (
     <div className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
-        <h3 className="text-4xl md:text-5xl font-display font-black text-white italic uppercase tracking-tighter">
+        <h3
+          className="font-display font-black text-white italic uppercase tracking-tighter"
+          style={{ fontSize: 'clamp(32px, 6vw, 56px)', lineHeight: '1.05', letterSpacing: '-0.02em', maxWidth: '18ch', margin: '0 auto' }}
+        >
           Experiencia Q’Parche
         </h3>
-        <p className="text-slate-400 mt-4 font-bold tracking-widest uppercase text-xs">Cientos de fans ya están en pista</p>
+        <p className="text-slate-400 mt-4 font-bold tracking-widest uppercase text-xs opacity-85" style={{ maxWidth: '28ch', margin: '0 auto' }}>Cientos de fans ya están en pista</p>
       </div>
       <div className="flex flex-wrap justify-center gap-8">
         {chatTestimonios.map((t, i) => (
@@ -70,7 +73,7 @@ const Testimonios: React.FC = () => {
               />
               <div
                 className="absolute inset-0 z-20"
-                style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.45), rgba(0,0,0,0.1))' }}
+                style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.45), rgba(0,0,0,0.08))' }}
               ></div>
             </div>
             <div className="p-6 relative z-30">
@@ -107,16 +110,19 @@ const CompraSegura: React.FC = () => {
   ];
 
   return (
-    <div className="bg-[#111111] rounded-[4rem] py-16 px-6 sm:px-12 border border-slate-900 relative overflow-hidden shadow-2xl">
+    <div className="bg-[#0e0e12] rounded-[4rem] py-16 px-6 sm:px-12 border border-slate-900 relative overflow-hidden shadow-2xl">
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <span className="inline-block px-3.5 py-1.5 bg-[#E10600]/10 text-[#E10600]/80 text-[10px] font-black uppercase tracking-[0.4em] rounded-md mb-6 border border-[#E10600]/15">
             F1 Excellence
           </span>
-          <h2 className="text-4xl md:text-5xl font-display font-black text-white italic uppercase mb-6 leading-tight">
+          <h2
+            className="font-display font-black text-white italic uppercase mb-6 leading-tight"
+            style={{ fontSize: 'clamp(32px, 6vw, 48px)', letterSpacing: '-0.02em', maxWidth: '20ch', margin: '0 auto 1.5rem' }}
+          >
             Haz tu pedido
           </h2>
-          <p className="text-slate-400 text-lg max-w-xl mx-auto leading-relaxed font-medium">
+          <p className="text-slate-400 text-lg max-w-xl mx-auto leading-relaxed font-medium opacity-85" style={{ maxWidth: '28ch' }}>
             Personaliza, reserva y recibe tu camiseta con total tranquilidad.
           </p>
         </div>
@@ -163,7 +169,10 @@ const Home: React.FC = () => {
     <div className="min-h-screen bg-black flex flex-col font-body text-slate-100">
 
       {/* ═══════════ HERO SECTION ═══════════ */}
-      <div className="relative bg-black pt-32 pb-24 overflow-hidden">
+      <div
+        className="relative bg-black pt-32 pb-24 overflow-hidden flex items-center"
+        style={{ minHeight: '100svh' }}
+      >
         {/* Cinematic Backdrop */}
         <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-[#E10600]/5 rounded-full blur-[140px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-[#E10600]/5 rounded-full blur-[120px] translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
@@ -173,20 +182,23 @@ const Home: React.FC = () => {
             COLECCIÓN F1
           </span>
 
-          <h1 className="text-5xl md:text-[7.2rem] font-display font-black tracking-[-0.07em] mb-8 text-white leading-[0.8] uppercase italic drop-shadow-2xl">
+          <h1
+            className="font-display font-black mb-8 text-white uppercase italic drop-shadow-2xl"
+            style={{ fontSize: 'clamp(42px, 10vw, 115px)', lineHeight: '0.9', letterSpacing: '-0.04em', maxWidth: '16ch' }}
+          >
             Camisetas<br />
             Fórmula <span className="text-[#E10600]">1</span><br />
             <span className="text-white">Personalizadas</span>
           </h1>
 
-          <p className="max-w-2xl text-xl text-slate-400 font-bold leading-relaxed mb-12 tracking-tight">
+          <p className="max-w-2xl text-xl text-slate-400 font-bold leading-relaxed mb-12 tracking-tight opacity-85" style={{ maxWidth: '28ch' }}>
             Nombre y número incluidos. Hecha para verdaderos fans.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center w-full max-w-md sm:max-w-none">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-[420px] sm:max-w-none">
             <Link
               to="/f1"
-              className="px-12 py-5 rounded-xl text-xl font-black text-white bg-[#E10600] brightness-95 shadow-xl shadow-black/40 transition-all hover:brightness-110 hover:-translate-y-0.5 flex items-center justify-center gap-4 italic uppercase"
+              className="w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 rounded-[14px] sm:rounded-xl text-lg sm:text-xl font-black text-white bg-[#E10600] brightness-95 shadow-xl shadow-black/40 transition-all hover:brightness-110 hover:-translate-y-0.5 flex items-center justify-center gap-4 italic uppercase"
             >
               Explorar Escuderías
               <ArrowRight className="w-6 h-6" />
@@ -195,7 +207,8 @@ const Home: React.FC = () => {
               href="https://wa.me/3004945790?text=Hola%20Q'Parche,%20quiero%20hacer%20un%20pedido"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-12 py-5 rounded-xl text-xl font-black text-white bg-black/40 border border-slate-800 hover:bg-black/60 transition-all flex items-center justify-center gap-3 uppercase italic backdrop-blur-sm"
+              className="w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 rounded-[14px] sm:rounded-xl text-lg sm:text-xl font-black text-white bg-black/40 border border-slate-800 hover:bg-black/60 transition-all flex items-center justify-center gap-3 uppercase italic backdrop-blur-sm"
+              style={{ WebkitBackdropFilter: 'blur(10px)' }}
             >
               <MessageCircle className="w-6 h-6 text-green-600/60" />
               Hablar por WhatsApp
@@ -205,7 +218,7 @@ const Home: React.FC = () => {
       </div>
 
       {/* ═══════════ BENEFITS SECTION ═══════════ */}
-      <div className="bg-[#111111] border-y border-slate-900 py-12">
+      <div className="bg-[#0e0e12] border-y border-slate-900 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
             <div className="flex flex-col items-center text-center group">
@@ -243,19 +256,22 @@ const Home: React.FC = () => {
         <CompraSegura />
 
         {/* ═══════════ FINAL CTA SECTION ═══════════ */}
-        <div className="bg-[#111111] rounded-[4rem] p-16 md:p-24 text-center relative overflow-hidden border border-slate-900 shadow-2xl">
+        <div className="bg-[#0e0e12] rounded-[4rem] p-16 md:p-24 text-center relative overflow-hidden border border-slate-900 shadow-2xl">
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#E10600]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
           <div className="relative z-10 max-w-4xl mx-auto">
-            <h2 className="text-5xl md:text-[5.5rem] font-display font-black text-white mb-8 uppercase italic leading-[0.9] tracking-tighter">
+            <h2
+              className="font-display font-black text-white mb-8 uppercase italic leading-[0.9] tracking-tighter"
+              style={{ fontSize: 'clamp(36px, 8vw, 88px)', maxWidth: '16ch', margin: '0 auto 2rem' }}
+            >
               Tu escudería.<br />Tu nombre. Tu número.
             </h2>
-            <p className="text-slate-400 text-2xl font-bold mb-16 tracking-tight">
+            <p className="text-slate-400 text-2xl font-bold mb-16 tracking-tight opacity-85" style={{ maxWidth: '24ch', margin: '0 auto 4rem' }}>
               Lista para la próxima carrera.
             </p>
-            <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center w-full max-w-[420px] sm:max-w-none mx-auto">
               <Link
                 to="/f1"
-                className="px-16 py-6 bg-[#E10600] brightness-95 text-white font-black text-2xl rounded-2xl shadow-xl shadow-black/10 hover:brightness-110 hover:-translate-y-0.5 transition-all uppercase italic flex items-center gap-4"
+                className="w-full sm:w-auto px-10 sm:px-16 py-5 sm:py-6 bg-[#E10600] brightness-95 text-white font-black text-xl sm:text-2xl rounded-[14px] sm:rounded-2xl shadow-xl shadow-black/10 hover:brightness-110 hover:-translate-y-0.5 transition-all uppercase italic flex items-center justify-center gap-4"
               >
                 Explorar Colección F1
                 <Trophy className="w-7 h-7" />

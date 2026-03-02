@@ -44,7 +44,7 @@ const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
   const accentColor = activeTeam?.primary || '#dc2626';
 
   return (
-    <div className="min-h-screen bg-slate-50 relative overflow-hidden">
+    <div className="min-h-screen bg-black text-slate-100 relative overflow-hidden">
       {/* Background Splashes - dynamic for F1 */}
       {isF1 ? (
         <>

@@ -93,16 +93,21 @@ ${imageUrl ? `\nImagen: ${imageUrl}` : '(Sin imagen adjunta)'}`;
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 relative overflow-hidden">
+    <div className="min-h-screen bg-black text-slate-100 relative overflow-hidden">
       {/* Background Splashes */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-50/40 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-50/30 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-500/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-500/5 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
 
-      <div className="bg-white/80 backdrop-blur-sm py-16 px-4 border-b border-slate-100 relative z-10">
+      <div className="bg-black/40 backdrop-blur-md py-16 px-4 border-b border-slate-900 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-display font-black mb-4 text-q-dark">Crea tu Camiseta</h1>
-          <p className="text-xl text-slate-600 font-medium max-w-2xl mx-auto">
-            Sube tu diseño, o deja que la IA te ayude con ideas.
+          <h1
+            className="font-display font-black mb-4 text-white uppercase italic"
+            style={{ fontSize: 'clamp(32px, 8vw, 64px)', lineHeight: '1.1', letterSpacing: '-0.02em' }}
+          >
+            Crea tu Camiseta
+          </h1>
+          <p className="text-xl text-slate-400 font-medium max-w-2xl mx-auto opacity-85">
+            Sube tu diseño y nosotros lo hacemos realidad.
           </p>
         </div>
       </div>
@@ -114,7 +119,7 @@ ${imageUrl ? `\nImagen: ${imageUrl}` : '(Sin imagen adjunta)'}`;
           <div className="space-y-6">
             {/* Upload area */}
             <div
-              className="border-4 border-dashed border-slate-200 rounded-[2.5rem] p-8 text-center hover:border-q-sport hover:bg-orange-50/30 transition-all cursor-pointer group bg-white shadow-sm flex flex-col justify-center min-h-[320px]"
+              className="border-4 border-dashed border-slate-800 rounded-[2.5rem] p-8 text-center hover:border-[#E10600] hover:bg-[#E10600]/5 transition-all cursor-pointer group bg-[#0e0e12] shadow-sm flex flex-col justify-center min-h-[320px]"
               onClick={() => fileInputRef.current?.click()}
             >
               <input
@@ -128,22 +133,22 @@ ${imageUrl ? `\nImagen: ${imageUrl}` : '(Sin imagen adjunta)'}`;
               {imagePreview ? (
                 <div className="relative">
                   <img src={imagePreview} alt="Preview" className="max-h-64 mx-auto rounded-2xl shadow-lg object-contain" />
-                  <div className="mt-4 text-sm text-slate-400 font-bold group-hover:text-q-sport">Clic para cambiar imagen</div>
+                  <div className="mt-4 text-sm text-slate-500 font-bold group-hover:text-[#E10600]">Clic para cambiar imagen</div>
                 </div>
               ) : (
                 <div className="flex flex-col items-center">
-                  <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-sm group-hover:bg-white text-slate-300 group-hover:text-q-sport">
+                  <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-sm group-hover:bg-slate-900 text-slate-600 group-hover:text-[#E10600]">
                     <Camera className="w-9 h-9" />
                   </div>
-                  <p className="font-bold text-xl mb-2 text-slate-700 group-hover:text-q-sport">Sube tu Imagen</p>
-                  <p className="text-sm text-slate-400 px-6">Toca aquí para seleccionar una foto, logo o diseño que tengas.</p>
+                  <p className="font-bold text-xl mb-2 text-white group-hover:text-[#E10600]">Sube tu Imagen</p>
+                  <p className="text-sm text-slate-500 px-6 italic">Toca aquí para seleccionar tu diseño.</p>
                 </div>
               )}
             </div>
 
-            <div className="bg-orange-50 p-5 rounded-2xl border border-orange-100 flex gap-3 items-start">
-              <AlertTriangle className="text-q-sport w-5 h-5 flex-shrink-0 mt-0.5" />
-              <p className="text-sm text-slate-700 leading-relaxed font-medium">
+            <div className="bg-[#E10600]/10 p-5 rounded-2xl border border-[#E10600]/20 flex gap-3 items-start">
+              <AlertTriangle className="text-[#E10600] w-5 h-5 flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-slate-300 leading-relaxed font-medium">
                 <strong>Nota:</strong> Al pedir, se abre WhatsApp. Recuerda <strong>enviar la foto</strong> adjunta en el chat.
               </p>
             </div>
@@ -154,12 +159,12 @@ ${imageUrl ? `\nImagen: ${imageUrl}` : '(Sin imagen adjunta)'}`;
 
           {/* Right Column: Options */}
           <div className="space-y-8">
-            <div className="bg-white p-8 md:p-10 rounded-[2.5rem] border border-slate-200 shadow-xl shadow-slate-100 sticky top-24">
-              <div className="flex justify-between items-center mb-8 border-b border-slate-100 pb-6">
-                <h3 className="text-3xl font-bold text-slate-900">Configuración</h3>
+            <div className="bg-[#0e0e12] p-8 md:p-10 rounded-[2.5rem] border border-slate-900 shadow-xl shadow-black sticky top-24">
+              <div className="flex justify-between items-center mb-8 border-b border-slate-900 pb-6">
+                <h3 className="text-3xl font-bold text-white uppercase italic">Configuración</h3>
                 <div className="text-right">
-                  <p className="text-sm text-slate-400 font-bold uppercase tracking-wider">Precio Único</p>
-                  <p className="text-3xl font-black text-q-sport">$50.000</p>
+                  <p className="text-sm text-slate-500 font-bold uppercase tracking-wider">Precio Único</p>
+                  <p className="text-3xl font-black text-[#E10600]">$55.000</p>
                 </div>
               </div>
 
@@ -186,7 +191,7 @@ ${imageUrl ? `\nImagen: ${imageUrl}` : '(Sin imagen adjunta)'}`;
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Ej: Quiero mi nombre 'Miguel' en la espalda, número 10..."
-                  className="w-full bg-slate-50 border border-slate-200 rounded-2xl p-4 text-sm focus:ring-2 focus:ring-q-sport focus:border-transparent outline-none resize-none h-32 transition-all"
+                  className="w-full bg-slate-900 border border-slate-800 rounded-2xl p-4 text-sm focus:ring-2 focus:ring-[#E10600] focus:border-transparent outline-none resize-none h-32 transition-all text-white"
                 />
                 {description && description.startsWith('Idea IA:') && (
                   <p className="text-[10px] font-bold text-indigo-500 mt-1.5 flex items-center gap-1">
@@ -203,7 +208,7 @@ ${imageUrl ? `\nImagen: ${imageUrl}` : '(Sin imagen adjunta)'}`;
                 {isUploading ? (
                   <>
                     <RefreshCcw className="w-6 h-6 animate-spin" />
-                    Subiendo imagen...
+                    Subiendo...
                   </>
                 ) : (
                   <>

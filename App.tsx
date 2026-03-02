@@ -36,7 +36,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <div className="min-h-screen flex items-center justify-center bg-black">
           <div className="text-center p-8">
             <h1 className="text-3xl font-black text-slate-900 mb-4">Ups, algo salió mal.</h1>
             <p className="text-slate-600 mb-6">Hubo un error cargando esta sección.</p>
@@ -53,7 +53,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 const App: React.FC = () => {
   return (
     <Router>
-      <div className="min-h-screen bg-slate-50 flex flex-col font-body">
+      <div className="min-h-screen bg-black flex flex-col font-body">
         <Navbar />
         <main className="flex-grow">
           <ErrorBoundary>
