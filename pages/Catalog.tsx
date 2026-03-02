@@ -44,7 +44,7 @@ const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
   const accentColor = activeTeam?.primary || '#dc2626';
 
   return (
-    <div className="min-h-screen bg-black text-slate-100 relative overflow-hidden">
+    <div className="min-h-screen text-slate-100 relative overflow-hidden" style={{ backgroundColor: '#0e1117' }}>
       {/* Background Splashes - dynamic for F1 */}
       {isF1 ? (
         <>
@@ -69,7 +69,7 @@ const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
       {isF1 ? (
         <div
           className="py-24 px-4 relative z-10 transition-all duration-700 overflow-hidden"
-          style={{ background: `linear-gradient(135deg, ${activeTeam?.bgFrom || '#0f172a'}, ${activeTeam?.bgTo || '#450a0a'})` }}
+          style={{ background: activeTeam ? `linear-gradient(135deg, ${activeTeam.bgFrom} 0%, ${activeTeam.bgTo} 100%)` : 'linear-gradient(135deg, #12090e 0%, #2a0d14 50%, #4a0f1a 100%)' }}
         >
           {/* Decorative glow behind header */}
           <div

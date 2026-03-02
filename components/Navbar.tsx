@@ -4,47 +4,58 @@ import { Menu, X, Shirt, ShoppingBag, Trophy } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const waNumber = "3004945790";
+  const waNumber = "573004945790";
   const waMessage = "Hola Q Parche, quiero pedir una camiseta.";
   const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`;
 
   return (
     <nav
-      className="sticky top-0 z-50 bg-black md:bg-black/80 border-b border-slate-800/80 shadow-sm transition-all md:backdrop-blur-md"
-      style={{ WebkitBackdropFilter: 'blur(10px)' }}
+      className="sticky top-0 z-50 transition-all"
+      style={{
+        backgroundColor: 'rgba(14,17,23,0.97)',
+        borderBottom: '1px solid rgba(255,255,255,0.04)',
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          <div className="flex items-center">
-            <Link to="/" className="flex-shrink-0 flex items-center gap-2 group">
-              <div className="bg-[#E10600]/10 p-2 rounded-full rotate-3 group-hover:-rotate-3 transition-transform border border-[#E10600]/20">
-                <Shirt className="h-6 w-6 text-[#E10600]" />
-              </div>
-              <span className="text-3xl font-display font-bold text-white tracking-tight italic">
-                Q'<span className="text-[#E10600]">Parche</span>
-              </span>
+
+          {/* Logo */}
+          <Link to="/" className="flex-shrink-0 flex items-center gap-2 group">
+            <div className="p-2 rounded-full rotate-3 group-hover:-rotate-3 transition-transform" style={{ backgroundColor: 'rgba(225,6,0,0.08)', border: '1px solid rgba(225,6,0,0.15)' }}>
+              <Shirt className="h-6 w-6 text-[#E10600]" />
+            </div>
+            <span className="text-3xl font-display font-bold text-white tracking-tight italic">
+              Q'<span className="text-[#E10600]">Parche</span>
+            </span>
+          </Link>
+
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-baseline space-x-8">
+            <Link to="/f1" className="text-slate-200 hover:text-[#E10600] font-bold text-base transition-colors flex items-center gap-2 group italic">
+              Fórmula 1 <Trophy className="w-4 h-4 text-[#E10600] group-hover:scale-110 transition-transform" />
+            </Link>
+            <Link to="/deportiva" className="hover:text-[#E10600] font-bold text-sm transition-colors uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.45)' }}>
+              Deportiva
+            </Link>
+            <Link to="/crear" className="hover:text-[#E10600] font-bold text-sm transition-colors uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.45)' }}>
+              Sube tu Diseño
             </Link>
           </div>
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
-              <Link to="/f1" className="text-slate-100 hover:text-[#E10600] font-bold text-base transition-colors flex items-center gap-2 group italic">
-                Fórmula 1 <Trophy className="w-4 h-4 text-[#E10600] group-hover:scale-110 transition-transform" />
-              </Link>
-              <Link to="/deportiva" className="text-slate-400 hover:text-[#E10600] font-bold text-base transition-colors uppercase text-sm tracking-widest">Deportiva</Link>
-              <Link to="/crear" className="text-slate-400 hover:text-[#E10600] font-bold text-base transition-colors uppercase text-sm tracking-widest">Sube tu Diseño</Link>
-            </div>
-          </div>
+
+          {/* Desktop CTA */}
           <div className="hidden md:flex items-center">
             <a
               href={waLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#E10600] hover:bg-[#C8102E] text-white px-8 py-2.5 rounded-xl font-black shadow-xl shadow-black/40 transition-all transform hover:-translate-y-0.5 flex items-center gap-2 uppercase italic text-sm"
+              className="bg-[#E10600] hover:brightness-110 text-white px-8 py-2.5 rounded-xl font-black transition-all hover:-translate-y-0.5 flex items-center gap-2 uppercase italic text-sm shadow-[0_4px_16px_rgba(225,6,0,0.28)] hover:shadow-[0_6px_20px_rgba(225,6,0,0.4)]"
             >
               <ShoppingBag className="w-5 h-5" />
               Pedir
             </a>
           </div>
+
+          {/* Mobile toggle */}
           <div className="-mr-2 flex md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -58,11 +69,17 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-black border-b border-slate-800 shadow-2xl">
+        <div className="md:hidden" style={{ backgroundColor: '#0b0f14', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
           <div className="px-4 pt-4 pb-8 space-y-2 text-center">
-            <Link to="/f1" onClick={() => setIsOpen(false)} className="block px-3 py-5 rounded-xl text-lg font-black text-white hover:bg-[#E10600]/10 hover:text-[#E10600] transition-colors italic uppercase tracking-tight">Fórmula 1 🏎️</Link>
-            <Link to="/deportiva" onClick={() => setIsOpen(false)} className="block px-3 py-5 rounded-xl text-lg font-bold text-slate-400 hover:bg-slate-900 hover:text-white transition-colors uppercase tracking-widest text-sm">Deportiva ⚽️</Link>
-            <Link to="/crear" onClick={() => setIsOpen(false)} className="block px-3 py-5 rounded-xl text-lg font-bold text-slate-400 hover:bg-slate-900 hover:text-white transition-colors uppercase tracking-widest text-sm">Sube tu Diseño 🎨</Link>
+            <Link to="/f1" onClick={() => setIsOpen(false)} className="block px-3 py-5 rounded-xl text-lg font-black text-white hover:bg-[#E10600]/10 hover:text-[#E10600] transition-colors italic uppercase tracking-tight">
+              Fórmula 1 🏎️
+            </Link>
+            <Link to="/deportiva" onClick={() => setIsOpen(false)} className="block px-3 py-5 rounded-xl text-lg font-bold hover:bg-white/5 hover:text-white transition-colors uppercase tracking-widest text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>
+              Deportiva ⚽️
+            </Link>
+            <Link to="/crear" onClick={() => setIsOpen(false)} className="block px-3 py-5 rounded-xl text-lg font-bold hover:bg-white/5 hover:text-white transition-colors uppercase tracking-widest text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>
+              Sube tu Diseño 🎨
+            </Link>
           </div>
         </div>
       )}

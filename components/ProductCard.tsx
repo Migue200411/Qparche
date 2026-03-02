@@ -76,7 +76,7 @@ Pago: 50% anticipo · 50% contra entrega`
         : 'border-orange-200/40 hover:shadow-orange-200/50';
 
     return (
-        <div className={`bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border flex flex-col h-full group hover:-translate-y-1.5 ${borderClasses}`}>
+        <div className={`bg-white rounded-2xl overflow-hidden transition-all duration-300 border flex flex-col h-full group hover:-translate-y-[4px] ${borderClasses}`} style={{ boxShadow: '0 15px 40px rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.05)' }} onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => (e.currentTarget.style.boxShadow = '0 22px 50px rgba(0,0,0,0.45)')} onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => (e.currentTarget.style.boxShadow = '0 15px 40px rgba(0,0,0,0.35)')}>
             {/* Image / Gallery */}
             {product.gallery ? (
                 <ProductGallery

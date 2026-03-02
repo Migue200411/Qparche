@@ -106,7 +106,7 @@ const AmorProductCard: React.FC<{ product: typeof products[0]; index: number }> 
                 </div>
 
                 <a
-                    href={`https://wa.me/3004945790?text=${encodeURIComponent(`Hola Q'Parche, quiero pedir el diseño "${product.name}" de Amor y Amistad (Promoción $${product.price.toLocaleString()} el par).`)}`}
+                    href={`https://wa.me/573004945790?text=${encodeURIComponent(`Hola Q'Parche, quiero pedir el diseño "${product.name}" de Amor y Amistad (Promoción $${product.price.toLocaleString()} el par).`)}`}
                     target="_blank"
                     rel="noreferrer"
                     className="w-full bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold py-3.5 rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-rose-200/50 hover:shadow-xl hover:shadow-rose-300/50 hover:-translate-y-0.5"
@@ -170,7 +170,7 @@ const AmorAmistad: React.FC = () => {
                                 </div>
                             </div>
                             <a
-                                href="https://wa.me/3004945790?text=Hola%20Q'Parche,%20quiero%20la%20promo%20de%20Amor%20y%20Amistad%20($70.000)"
+                                href="https://wa.me/573004945790?text=Hola%20Q'Parche,%20quiero%20la%20promo%20de%20Amor%20y%20Amistad%20($70.000)"
                                 target="_blank"
                                 rel="noreferrer"
                                 className="relative z-10 w-full bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold py-3 rounded-xl shadow-lg shadow-rose-200 hover:shadow-xl hover:shadow-rose-300 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 text-sm"
@@ -205,7 +205,7 @@ const AmorAmistad: React.FC = () => {
                                 </div>
                             </div>
                             <a
-                                href="https://wa.me/3004945790?text=Hola%20Q'Parche,%20quiero%20el%20Pack%20Premium%20de%20Amor%20y%20Amistad%20($80.000)"
+                                href="https://wa.me/573004945790?text=Hola%20Q'Parche,%20quiero%20el%20Pack%20Premium%20de%20Amor%20y%20Amistad%20($80.000)"
                                 target="_blank"
                                 rel="noreferrer"
                                 className="relative z-10 w-full bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-bold py-3 rounded-xl shadow-lg shadow-purple-200 hover:shadow-xl hover:shadow-purple-300 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 text-sm"

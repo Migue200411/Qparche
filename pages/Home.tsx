@@ -1,34 +1,51 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Trophy, MessageCircle, Pen, Package, ShieldCheck, Truck, Users, ArrowRight, ChevronDown, HelpCircle, CreditCard, Eye, Zap, Palette, Gauge, Target, Award } from 'lucide-react';
+import { Trophy, MessageCircle, Pen, ShieldCheck, Truck, ArrowRight, ChevronDown, HelpCircle, CreditCard, Target, Award } from 'lucide-react';
 import ImageViewer from '../components/ImageViewer';
 
-/* ── FAQ Accordion Item ── */
+/* ────────────────────────────────────────────────────
+   Paleta tonal (sin negro absoluto)
+   Base:     #0e1117
+   Elevado:  #111722
+   Elemento: #0e1117
+──────────────────────────────────────────────────── */
+
 const FaqItem: React.FC<{ question: string; answer: string }> = ({ question, answer }) => {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border border-slate-800/40 rounded-xl overflow-hidden bg-slate-900/40 transition-all hover:bg-slate-900/60 shadow-sm">
+    <div
+      className="rounded-xl overflow-hidden transition-all duration-200"
+      style={{
+        border: '1px solid rgba(255,255,255,0.06)',
+        backgroundColor: open ? 'rgba(17,23,34,0.85)' : 'rgba(17,23,34,0.5)',
+      }}
+    >
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left transition-colors"
+        className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
       >
         <div className="flex items-center gap-4">
-          <HelpCircle className="w-5 h-5 text-[#E10600]/60 shrink-0" />
-          <span className="text-slate-100 font-bold text-sm tracking-wide">{question}</span>
+          <HelpCircle className="w-4 h-4 shrink-0" style={{ color: 'rgba(225,6,0,0.45)' }} />
+          <span className="font-semibold text-sm" style={{ color: 'rgba(255,255,255,0.82)' }}>{question}</span>
         </div>
-        <ChevronDown className={`w-4 h-4 text-slate-500 shrink-0 transition-transform duration-300 ${open ? 'rotate-180' : ''}`} />
+        <ChevronDown
+          className="w-4 h-4 shrink-0 transition-transform duration-300"
+          style={{ color: 'rgba(255,255,255,0.3)', transform: open ? 'rotate(180deg)' : 'rotate(0deg)' }}
+        />
       </button>
       <div
         className="overflow-hidden transition-all duration-300"
         style={{ maxHeight: open ? '200px' : '0', opacity: open ? 1 : 0 }}
       >
-        <p className="px-6 pb-6 pt-0 text-slate-400 text-sm leading-relaxed pl-[3.25rem]">{answer}</p>
+        <p className="px-6 pb-6 text-sm leading-relaxed pl-[3.25rem]" style={{ color: 'rgba(255,255,255,0.5)' }}>
+          {answer}
+        </p>
       </div>
     </div>
   );
 };
 
-/* ── Testimonios Chat ── */
+/* ── Testimonios ── */
 const chatTestimonios = [
   { src: '/images/social/chat-1.png', alt: 'Testimonio María L.', name: 'María L.', desc: 'Red Bull personalizada' },
   { src: '/images/social/chat-2.png', alt: 'Testimonio María L.', name: 'María L.', desc: 'Red Bull – "Queda chevereee"' },
@@ -36,50 +53,60 @@ const chatTestimonios = [
 ];
 
 const StarRow: React.FC = () => (
-  <div className="flex items-center gap-1 mb-2">
+  <div className="flex items-center gap-0.5 mb-3">
     {[1, 2, 3, 4, 5].map(s => (
-      <svg key={s} className="w-2.5 h-2.5 text-[#E10600]/40 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+      <svg key={s} className="w-3 h-3 fill-current" style={{ color: 'rgba(225,6,0,0.55)' }} viewBox="0 0 20 20">
+        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+      </svg>
     ))}
   </div>
 );
 
 const Testimonios: React.FC = () => {
   const [viewerIdx, setViewerIdx] = useState<number | null>(null);
-
   return (
     <div className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
         <h3
-          className="font-display font-black text-white italic uppercase tracking-tighter"
-          style={{ fontSize: 'clamp(32px, 6vw, 56px)', lineHeight: '1.05', letterSpacing: '-0.02em', maxWidth: '18ch', margin: '0 auto' }}
+          className="font-display font-black text-white italic uppercase"
+          style={{ fontSize: 'clamp(28px, 5vw, 52px)', lineHeight: '1.05', letterSpacing: '-0.02em', maxWidth: '18ch', margin: '0 auto' }}
         >
-          Experiencia Q’Parche
+          Experiencia Q'Parche
         </h3>
-        <p className="text-slate-400 mt-4 font-bold tracking-widest uppercase text-xs opacity-85" style={{ maxWidth: '28ch', margin: '0 auto' }}>Cientos de fans ya están en pista</p>
+        <p className="mt-3 text-xs font-medium uppercase" style={{ color: 'rgba(255,255,255,0.35)', letterSpacing: '0.18em', maxWidth: '28ch', margin: '0.75rem auto 0' }}>
+          Cientos de fans ya están en pista
+        </p>
       </div>
-      <div className="flex flex-wrap justify-center gap-8">
+
+      <div className="flex flex-wrap justify-center gap-6">
         {chatTestimonios.map((t, i) => (
           <div
             key={i}
-            className="w-full sm:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] max-w-[320px] bg-black rounded-2xl border border-slate-900 overflow-hidden hover:-translate-y-1 transition-all cursor-pointer group shadow-2xl"
+            className="w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33.333%-1.5rem)] max-w-[300px] rounded-2xl overflow-hidden cursor-pointer group transition-all duration-300 hover:-translate-y-1"
+            style={{
+              backgroundColor: '#111722',
+              border: '1px solid rgba(255,255,255,0.05)',
+              boxShadow: '0 12px 36px rgba(0,0,0,0.32)',
+            }}
             onClick={() => setViewerIdx(i)}
           >
-            <div className="aspect-[4/5] relative bg-[#0a0a0a] overflow-hidden">
+            <div className="aspect-[4/5] relative overflow-hidden" style={{ backgroundColor: '#0e1117' }}>
               <img
                 src={t.src}
                 alt={t.alt}
-                className="absolute inset-0 w-full h-full object-cover z-10 opacity-85 group-hover:opacity-100 transition-opacity duration-700 [filter:brightness(1.08)_contrast(1.05)]"
+                className="absolute inset-0 w-full h-full object-cover z-10 transition-transform duration-500 group-hover:scale-[1.03]"
+                style={{ filter: 'brightness(1.08) contrast(1.02)' }}
                 onError={(e) => { e.currentTarget.parentElement!.style.display = 'none'; }}
               />
               <div
-                className="absolute inset-0 z-20"
-                style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.45), rgba(0,0,0,0.08))' }}
-              ></div>
+                className="absolute inset-0 z-20 pointer-events-none"
+                style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 60%)' }}
+              />
             </div>
-            <div className="p-6 relative z-30">
+            <div className="px-5 py-4">
               <StarRow />
-              <p className="text-[#f5f5f5] font-black text-sm tracking-tight">{t.name}</p>
-              <p className="text-slate-400 text-[10px] mt-1 font-bold uppercase tracking-wider">{t.desc}</p>
+              <p className="font-bold text-sm" style={{ color: 'rgba(255,255,255,0.85)' }}>{t.name}</p>
+              <p className="text-[10px] mt-0.5 font-medium uppercase" style={{ color: 'rgba(255,255,255,0.35)', letterSpacing: '0.1em' }}>{t.desc}</p>
             </div>
           </div>
         ))}
@@ -100,7 +127,7 @@ const Testimonios: React.FC = () => {
   );
 };
 
-/* ── Compra Segura Section ── */
+/* ── Proceso de compra ── */
 const CompraSegura: React.FC = () => {
   const steps = [
     { num: '1', icon: <Target className="w-5 h-5" />, title: 'Selecciona', desc: 'Elige tu escudería y talla.' },
@@ -110,173 +137,227 @@ const CompraSegura: React.FC = () => {
   ];
 
   return (
-    <div className="bg-[#0e0e12] rounded-[4rem] py-16 px-6 sm:px-12 border border-slate-900 relative overflow-hidden shadow-2xl">
+    <div
+      className="rounded-[2.5rem] py-16 px-6 sm:px-12 relative overflow-hidden"
+      style={{
+        backgroundColor: '#111722',
+        border: '1px solid rgba(255,255,255,0.05)',
+      }}
+    >
       <div className="max-w-6xl mx-auto relative z-10">
+
+        {/* Header */}
         <div className="text-center mb-16">
-          <span className="inline-block px-3.5 py-1.5 bg-[#E10600]/10 text-[#E10600]/80 text-[10px] font-black uppercase tracking-[0.4em] rounded-md mb-6 border border-[#E10600]/15">
-            F1 Excellence
+          <span
+            className="inline-block px-3.5 py-1.5 text-[10px] font-bold uppercase rounded mb-6"
+            style={{ backgroundColor: 'rgba(225,6,0,0.07)', color: 'rgba(225,6,0,0.6)', border: '1px solid rgba(225,6,0,0.1)', letterSpacing: '0.3em' }}
+          >
+            Cómo funciona
           </span>
           <h2
-            className="font-display font-black text-white italic uppercase mb-6 leading-tight"
-            style={{ fontSize: 'clamp(32px, 6vw, 48px)', letterSpacing: '-0.02em', maxWidth: '20ch', margin: '0 auto 1.5rem' }}
+            className="font-display font-black text-white italic uppercase leading-tight"
+            style={{ fontSize: 'clamp(28px, 5vw, 44px)', letterSpacing: '-0.02em', maxWidth: '22ch', margin: '0 auto 1rem' }}
           >
             Haz tu pedido
           </h2>
-          <p className="text-slate-400 text-lg max-w-xl mx-auto leading-relaxed font-medium opacity-85" style={{ maxWidth: '28ch' }}>
-            Personaliza, reserva y recibe tu camiseta con total tranquilidad.
+          <p className="text-base leading-relaxed font-medium" style={{ color: 'rgba(255,255,255,0.6)', maxWidth: '30ch', margin: '0 auto' }}>
+            Personaliza, reserva y recibe con total tranquilidad.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+        {/* Steps */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
           {steps.map((s, idx) => (
-            <div key={idx} className="relative flex flex-col items-center text-center group">
-              <div className="w-16 h-16 bg-black rounded-2xl flex items-center justify-center text-[#E10600]/40 border border-slate-900 mb-8 relative z-10 group-hover:border-[#E10600]/20 transition-all duration-500">
+            <div key={idx} className="flex flex-col items-center text-center group">
+              <div
+                className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 relative transition-all duration-400"
+                style={{ backgroundColor: '#0e1117', border: '1px solid rgba(255,255,255,0.07)', color: 'rgba(225,6,0,0.5)' }}
+              >
                 {s.icon}
-                <div className="absolute -top-2 -right-2 w-6 h-6 bg-[#E10600]/90 text-white rounded-lg flex items-center justify-center text-[10px] font-black italic shadow-lg">
+                <div
+                  className="absolute -top-2 -right-2 w-5 h-5 bg-[#E10600] text-white rounded-md flex items-center justify-center text-[9px] font-black italic"
+                  style={{ boxShadow: '0 3px 10px rgba(225,6,0,0.3)' }}
+                >
                   {s.num}
                 </div>
               </div>
-              <h3 className="text-xl font-black text-white mb-3 tracking-tight">{s.title}</h3>
-              <p className="text-slate-500 text-xs font-bold uppercase tracking-widest leading-relaxed px-4">{s.desc}</p>
+              <h3 className="text-base font-black text-white mb-1.5 tracking-tight">{s.title}</h3>
+              <p className="text-xs font-medium leading-snug px-2" style={{ color: 'rgba(255,255,255,0.45)' }}>{s.desc}</p>
             </div>
           ))}
         </div>
 
-        <div className="max-w-3xl mx-auto">
-          <h3 className="text-xl font-display font-black text-white italic uppercase text-center mb-10 tracking-[0.2em] opacity-80">Pits FAQ</h3>
-          <div className="space-y-4">
-            <FaqItem
-              question="¿La sublimación se desgasta?"
-              answer="No. La tinta se integra en la tela. Resiste lavados intensos sin perder color ni calidad."
-            />
-            <FaqItem
-              question="¿Puedo pedir otros diseños?"
-              answer="Sí. Hacemos cualquier diseño que tengas en mente. Contáctanos y lo fabricamos."
-            />
-            <FaqItem
-              question="¿Hacen envíos nacionales?"
-              answer="Sí. Envío gratis en Barranquilla. Para otras ciudades, despachamos por transportadora nacional."
-            />
+        {/* FAQ */}
+        <div className="max-w-2xl mx-auto">
+          <h3
+            className="font-display font-black italic uppercase text-center mb-7"
+            style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.6)', letterSpacing: '0.12em' }}
+          >
+            Preguntas frecuentes
+          </h3>
+          <div className="space-y-2.5">
+            <FaqItem question="¿La sublimación se desgasta?" answer="No. La tinta se integra en la tela. Resiste lavados intensos sin perder color ni calidad." />
+            <FaqItem question="¿Puedo pedir otros diseños?" answer="Sí. Hacemos cualquier diseño que tengas en mente. Contáctanos y lo fabricamos." />
+            <FaqItem question="¿Hacen envíos nacionales?" answer="Sí. Envío gratis en Barranquilla. Para otras ciudades, despachamos por transportadora nacional." />
           </div>
         </div>
+
       </div>
     </div>
   );
 };
 
+/* ── Home ── */
 const Home: React.FC = () => {
   return (
-    <div className="min-h-screen bg-black flex flex-col font-body text-slate-100">
+    <div className="min-h-screen flex flex-col font-body" style={{ backgroundColor: '#0e1117', color: 'rgba(255,255,255,0.9)' }}>
 
-      {/* ═══════════ HERO SECTION ═══════════ */}
+      {/* ═══ HERO ═══ */}
       <div
-        className="relative bg-black pt-32 pb-24 overflow-hidden flex items-center"
-        style={{ minHeight: '100svh' }}
+        className="relative pt-32 pb-24 overflow-hidden flex items-center"
+        style={{ minHeight: '100svh', backgroundColor: '#0e1117' }}
       >
-        {/* Cinematic Backdrop */}
-        <div className="absolute top-0 right-0 w-[1000px] h-[1000px] bg-[#E10600]/5 rounded-full blur-[140px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-[#E10600]/5 rounded-full blur-[120px] translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
+        {/* Glows — muy contenidos */}
+        <div className="absolute top-0 right-0 w-[900px] h-[900px] rounded-full blur-[180px] -translate-y-1/2 translate-x-1/2 pointer-events-none" style={{ backgroundColor: 'rgba(225,6,0,0.035)' }} />
+        <div className="absolute bottom-0 left-0 w-[700px] h-[700px] rounded-full blur-[160px] translate-y-1/3 -translate-x-1/3 pointer-events-none" style={{ backgroundColor: 'rgba(225,6,0,0.025)' }} />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center">
-          <span className="inline-block px-4 py-1.5 bg-[#E10600]/15 text-[#E10600] text-[10px] font-black uppercase tracking-[0.5em] rounded-sm mb-8 italic border border-[#E10600]/10">
-            COLECCIÓN F1
+
+          {/* Badge */}
+          <span
+            className="inline-block px-4 py-1.5 text-[10px] font-bold uppercase rounded-sm mb-8 italic"
+            style={{ backgroundColor: 'rgba(225,6,0,0.08)', color: 'rgba(225,6,0,0.8)', border: '1px solid rgba(225,6,0,0.1)', letterSpacing: '0.25em' }}
+          >
+            Colección F1
           </span>
 
+          {/* Título */}
           <h1
-            className="font-display font-black mb-8 text-white uppercase italic drop-shadow-2xl"
-            style={{ fontSize: 'clamp(42px, 10vw, 115px)', lineHeight: '0.9', letterSpacing: '-0.04em', maxWidth: '16ch' }}
+            className="font-display font-black mb-7 text-white uppercase italic"
+            style={{ fontSize: 'clamp(40px, 9.5vw, 110px)', lineHeight: '0.92', letterSpacing: '-0.04em', maxWidth: '16ch' }}
           >
             Camisetas<br />
-            Fórmula <span className="text-[#E10600]">1</span><br />
-            <span className="text-white">Personalizadas</span>
+            Fórmula <span style={{ color: '#E10600' }}>1</span><br />
+            Personalizadas
           </h1>
 
-          <p className="max-w-2xl text-xl text-slate-400 font-bold leading-relaxed mb-12 tracking-tight opacity-85" style={{ maxWidth: '28ch' }}>
+          {/* Subtítulo */}
+          <p
+            className="text-xl font-medium leading-relaxed mb-12"
+            style={{ maxWidth: '26ch', color: 'rgba(255,255,255,0.72)', letterSpacing: '-0.01em' }}
+          >
             Nombre y número incluidos. Hecha para verdaderos fans.
           </p>
 
+          {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-[420px] sm:max-w-none">
             <Link
               to="/f1"
-              className="w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 rounded-[14px] sm:rounded-xl text-lg sm:text-xl font-black text-white bg-[#E10600] brightness-95 shadow-xl shadow-black/40 transition-all hover:brightness-110 hover:-translate-y-0.5 flex items-center justify-center gap-4 italic uppercase"
+              className="w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 rounded-xl text-lg sm:text-xl font-black text-white transition-all duration-300 hover:-translate-y-[3px] flex items-center justify-center gap-4 italic uppercase"
+              style={{
+                backgroundColor: '#E10600',
+                boxShadow: '0 4px 18px rgba(225,6,0,0.28)',
+              }}
+              onMouseEnter={(e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.boxShadow = '0 8px 24px rgba(225,6,0,0.42)')}
+              onMouseLeave={(e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.boxShadow = '0 4px 18px rgba(225,6,0,0.28)')}
             >
               Explorar Escuderías
               <ArrowRight className="w-6 h-6" />
             </Link>
             <a
-              href="https://wa.me/3004945790?text=Hola%20Q'Parche,%20quiero%20hacer%20un%20pedido"
+              href="https://wa.me/573004945790?text=Hola%20Q'Parche,%20quiero%20hacer%20un%20pedido"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 rounded-[14px] sm:rounded-xl text-lg sm:text-xl font-black text-white bg-black/40 border border-slate-800 hover:bg-black/60 hover:border-[#E10600]/30 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-3 uppercase italic backdrop-blur-sm"
-              style={{ WebkitBackdropFilter: 'blur(10px)' }}
+              className="w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 rounded-xl text-lg sm:text-xl font-black text-white transition-all duration-300 hover:-translate-y-[3px] flex items-center justify-center gap-3 uppercase italic"
+              style={{ backgroundColor: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
             >
-              <MessageCircle className="w-6 h-6 text-green-500/80 group-hover:scale-110 transition-transform" />
+              <MessageCircle className="w-6 h-6" style={{ color: 'rgba(74,222,128,0.75)' }} />
               Hablar por WhatsApp
             </a>
           </div>
         </div>
       </div>
 
-      {/* ═══════════ BENEFITS SECTION ═══════════ */}
-      <div className="bg-[#0e0e12] border-y border-slate-900 py-12">
+      {/* ═══ BENEFICIOS ═══ */}
+      <div
+        className="py-14"
+        style={{
+          backgroundColor: '#111722',
+          borderTop: '1px solid rgba(255,255,255,0.04)',
+          borderBottom: '1px solid rgba(255,255,255,0.04)',
+        }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-            <div className="flex flex-col items-center text-center group">
-              <div className="w-16 h-16 bg-black rounded-2xl flex items-center justify-center text-[#E10600]/60 mb-6 border border-slate-900 transition-colors group-hover:border-[#E10600]/20">
-                <Pen className="w-8 h-8" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
+            {[
+              { icon: <Pen className="w-7 h-7" />, title: 'Personalización Total', desc: 'Nombre y número incluidos.\nSublimación que no se borra.' },
+              { icon: <ShieldCheck className="w-7 h-7" />, title: 'Pago 50/50', desc: 'Reserva con el 50% y paga\nel resto al recibir.' },
+              { icon: <Truck className="w-7 h-7" />, title: 'Entrega sin costo', desc: 'Gratis en Barranquilla\ny Soledad.' },
+            ].map((b, i) => (
+              <div key={i} className="flex flex-col items-center text-center group">
+                <div
+                  className="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 transition-all duration-400"
+                  style={{ backgroundColor: '#0e1117', border: '1px solid rgba(255,255,255,0.07)', color: 'rgba(225,6,0,0.55)' }}
+                >
+                  {b.icon}
+                </div>
+                <h4 className="text-lg font-black text-white mb-2 italic uppercase tracking-tight">{b.title}</h4>
+                <p className="text-[11px] font-medium uppercase leading-relaxed whitespace-pre-line" style={{ color: 'rgba(255,255,255,0.48)', letterSpacing: '0.08em' }}>
+                  {b.desc}
+                </p>
               </div>
-              <h4 className="text-xl font-black text-white mb-2 italic uppercase tracking-tighter">Personalización Total</h4>
-              <p className="text-slate-400 text-[11px] font-bold uppercase leading-snug tracking-widest">Nombre y número incluidos.<br />Sublimación que no se borra.</p>
-            </div>
-            <div className="flex flex-col items-center text-center group">
-              <div className="w-16 h-16 bg-black rounded-2xl flex items-center justify-center text-[#E10600]/60 mb-6 border border-slate-900 transition-colors group-hover:border-[#E10600]/20">
-                <ShieldCheck className="w-8 h-8" />
-              </div>
-              <h4 className="text-xl font-black text-white mb-2 italic uppercase tracking-tighter">Pago 50/50</h4>
-              <p className="text-slate-400 text-[11px] font-bold uppercase leading-snug tracking-widest">Reserva con el 50% y paga<br />el resto al recibir.</p>
-            </div>
-            <div className="flex flex-col items-center text-center group">
-              <div className="w-16 h-16 bg-black rounded-2xl flex items-center justify-center text-[#E10600]/60 mb-6 border border-slate-900 transition-colors group-hover:border-[#E10600]/20">
-                <Truck className="w-8 h-8" />
-              </div>
-              <h4 className="text-xl font-black text-white mb-2 italic uppercase tracking-tighter">Entrega sin costo</h4>
-              <p className="text-slate-400 text-[11px] font-bold uppercase leading-snug tracking-widest">Gratis en Barranquilla<br />y Soledad.</p>
-            </div>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* ═══════════ CONTENT SECTIONS ═══════════ */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 py-16">
+      {/* ═══ CONTENIDO ═══ */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 py-20">
 
-        {/* Testimonials */}
         <Testimonios />
-
-        {/* Process */}
         <CompraSegura />
 
-        {/* ═══════════ FINAL CTA SECTION ═══════════ */}
-        <div className="bg-[#0e0e12] rounded-[4rem] p-16 md:p-24 text-center relative overflow-hidden border border-slate-900 shadow-2xl">
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#E10600]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+        {/* ── CTA FINAL ── */}
+        <div
+          className="rounded-[2.5rem] p-14 md:p-20 text-center relative overflow-hidden"
+          style={{
+            backgroundColor: '#111722',
+            border: '1px solid rgba(255,255,255,0.05)',
+          }}
+        >
+          {/* Glow muy sutil */}
+          <div
+            className="absolute top-0 right-0 w-[700px] h-[700px] rounded-full blur-[130px] -translate-y-1/2 translate-x-1/2 pointer-events-none"
+            style={{ backgroundColor: 'rgba(225,6,0,0.04)' }}
+          />
           <div className="relative z-10 max-w-4xl mx-auto">
             <h2
-              className="font-display font-black text-white mb-8 uppercase italic leading-[0.9] tracking-tighter"
-              style={{ fontSize: 'clamp(36px, 8vw, 88px)', maxWidth: '16ch', margin: '0 auto 2rem' }}
+              className="font-display font-black text-white uppercase italic leading-[0.92]"
+              style={{ fontSize: 'clamp(32px, 7.5vw, 80px)', letterSpacing: '-0.03em', maxWidth: '18ch', margin: '0 auto 1.75rem' }}
             >
-              Tu escudería.<br />Tu nombre. Tu número.
+              Tu escudería.<br />Tu nombre.<br />Tu número.
             </h2>
-            <p className="text-slate-400 text-2xl font-bold mb-16 tracking-tight opacity-85" style={{ maxWidth: '24ch', margin: '0 auto 4rem' }}>
+            <p
+              className="text-lg font-medium"
+              style={{ maxWidth: '24ch', margin: '0 auto 3.5rem', color: 'rgba(255,255,255,0.62)', letterSpacing: '-0.01em' }}
+            >
               Lista para la próxima carrera.
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center w-full max-w-[420px] sm:max-w-none mx-auto">
+            <div className="flex flex-col sm:flex-row gap-5 justify-center items-center w-full max-w-[420px] sm:max-w-none mx-auto">
               <Link
                 to="/f1"
-                className="w-full sm:w-auto px-10 sm:px-16 py-5 sm:py-6 bg-[#E10600] brightness-95 text-white font-black text-xl sm:text-2xl rounded-[14px] sm:rounded-2xl shadow-xl shadow-black/10 hover:brightness-110 hover:-translate-y-0.5 transition-all uppercase italic flex items-center justify-center gap-4"
+                className="w-full sm:w-auto px-10 sm:px-14 py-5 text-white font-black text-xl rounded-xl transition-all duration-300 hover:-translate-y-[3px] uppercase italic flex items-center justify-center gap-4"
+                style={{
+                  backgroundColor: '#E10600',
+                  boxShadow: '0 4px 18px rgba(225,6,0,0.28)',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 8px 26px rgba(225,6,0,0.42)')}
+                onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 4px 18px rgba(225,6,0,0.28)')}
               >
                 Explorar Colección F1
-                <Trophy className="w-7 h-7" />
+                <Trophy className="w-6 h-6" />
               </Link>
-              <p className="text-slate-600 font-black text-[10px] tracking-[0.4em] uppercase hidden md:block">
+              <p className="font-medium text-[10px] uppercase hidden md:block" style={{ letterSpacing: '0.28em', color: 'rgba(255,255,255,0.2)' }}>
                 Barranquilla · Colombia
               </p>
             </div>
@@ -285,7 +366,7 @@ const Home: React.FC = () => {
 
       </div>
 
-      <div className="mt-12"></div> {/* Bottom Buffer */}
+      <div className="mt-8" />
     </div>
   );
 };

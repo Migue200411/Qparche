@@ -2,7 +2,7 @@ import React from 'react';
 import { MessageCircle, Trophy, MapPin, ShieldCheck, Sparkles, Instagram } from 'lucide-react';
 
 const Footer: React.FC = () => {
-  const waNumber = "3004945790";
+  const waNumber = "573004945790";
 
   return (
     <footer className="bg-[#0e0e12] text-white border-t border-slate-900 mt-auto relative overflow-hidden">
