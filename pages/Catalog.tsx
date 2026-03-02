@@ -11,41 +11,8 @@ interface CatalogProps {
   subset?: 'f1' | 'all';
 }
 
-// F1 Team color definitions
-const teamColors: Record<string, { name: string; primary: string; secondary: string; bgFrom: string; bgTo: string; glowColor: string }> = {
-  f1: { name: 'Haas', primary: '#E82C2C', secondary: '#ffffff', bgFrom: '#1c0505', bgTo: '#3b0d0d', glowColor: 'rgba(232,44,44,0.15)' },
-  f2: { name: 'Alpine', primary: '#0090FF', secondary: '#FF69B4', bgFrom: '#0c1e3a', bgTo: '#1e3a5f', glowColor: 'rgba(0,144,255,0.15)' },
-  f3: { name: 'Aston Martin', primary: '#006F62', secondary: '#c8ff00', bgFrom: '#021a16', bgTo: '#0a3d34', glowColor: 'rgba(0,111,98,0.15)' },
-  f4: { name: 'Ferrari', primary: '#dc2626', secondary: '#000000', bgFrom: '#1c0505', bgTo: '#450a0a', glowColor: 'rgba(220,38,38,0.15)' },
-  f5: { name: 'McLaren', primary: '#FF8000', secondary: '#000000', bgFrom: '#1a0f00', bgTo: '#431407', glowColor: 'rgba(255,128,0,0.15)' },
-  f6: { name: 'Mercedes', primary: '#00D2BE', secondary: '#6B7280', bgFrom: '#021a17', bgTo: '#0f2d28', glowColor: 'rgba(0,210,190,0.15)' },
-  f7: { name: 'Red Bull 2025', primary: '#1E3A8A', secondary: '#dc2626', bgFrom: '#0a1628', bgTo: '#1e3a5f', glowColor: 'rgba(30,58,138,0.15)' },
-  // f12: { name: 'Red Bull 2026', primary: '#1E3A8A', secondary: '#dc2626', bgFrom: '#0a1628', bgTo: '#1e3a5f', glowColor: 'rgba(30,58,138,0.15)' },
-  f8: { name: 'Stake', primary: '#52E252', secondary: '#000000', bgFrom: '#021a05', bgTo: '#0a3d12', glowColor: 'rgba(82,226,82,0.15)' },
-  f9: { name: 'Williams', primary: '#005AFF', secondary: '#00A0DE', bgFrom: '#000d26', bgTo: '#0a2d5f', glowColor: 'rgba(0,90,255,0.15)' },
-  f10: { name: 'Audi', primary: '#E10600', secondary: '#ffffff', bgFrom: '#1c0404', bgTo: '#3b0a0a', glowColor: 'rgba(225,6,0,0.15)' },
-  f11: { name: 'Cadillac', primary: '#000000', secondary: '#da291c', bgFrom: '#000000', bgTo: '#1a1a1a', glowColor: 'rgba(218,41,28,0.15)' },
-};
-
-// Helper: builds a 3-image gallery for F1 products.
-// Replace the src paths once you have the actual photos.
-// Slot 1: frontal (model wearing shirt, front view)
-// Slot 2: trasera (model wearing shirt, back view)
-// Slot 3: producto (clean flat-lay / hanger shot) — reuses existing image
-const f1Gallery = (teamSlug: string, productImage: string): GalleryImage[] => {
-  // Helpers for specific teams with different extensions
-  const ext = (slug: string, side: 'frontal' | 'trasera') => {
-    if (slug === 'redbull' && side === 'trasera') return 'png';
-    if (slug === 'redbull-2026' && side === 'trasera') return 'png';
-    return 'jpg';
-  };
-
-  return [
-    { src: `/images/f1/${teamSlug}-frontal.${ext(teamSlug, 'frontal')}`, label: 'Vista frontal' },
-    { src: `/images/f1/${teamSlug}-trasera.${ext(teamSlug, 'trasera')}`, label: 'Vista trasera' },
-    { src: productImage, label: 'Producto' },
-  ];
-};
+import { teamColors, f1Products } from '../f1Data';
+import ProductCard from '../components/ProductCard';
 
 const mockProducts: Product[] = [
   // Deportes (NO F1)
@@ -53,20 +20,7 @@ const mockProducts: Product[] = [
   { id: 'd2', category: 'deportiva', name: 'Voley Black #10', price: 40000, image: '/images/sport_haikyuu_black.jpg', description: 'El del pequeño gigante, número 10.' },
   { id: 'd3', category: 'deportiva', name: 'Bastard Munchen', price: 40000, image: '/images/sport_bastard_munchen.png', description: 'Rojo y negro, estilo europeo moderno.' },
   { id: 'd4', category: 'deportiva', name: 'Blue Lock #11', price: 40000, image: '/images/sport_bluelock_11.jpg', description: 'Azul profundo, el ego del delantero.' },
-
-  // F1 Collection — gallery slots ready: replace /images/f1/[team]-frontal.jpg and -trasera.jpg when you have the photos
-  { id: 'f1', category: 'deportiva', name: 'F1 Haas', price: 55000, image: '/images/f1_haas_new.png', gallery: f1Gallery('haas', '/images/f1_haas_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
-  { id: 'f2', category: 'deportiva', name: 'F1 Alpine', price: 55000, image: '/images/f1_alpine_new.png', gallery: f1Gallery('alpine', '/images/f1_alpine_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
-  { id: 'f3', category: 'deportiva', name: 'F1 Aston Martin', price: 55000, image: '/images/f1_aston_martin_new.png', gallery: f1Gallery('aston-martin', '/images/f1_aston_martin_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
-  { id: 'f4', category: 'deportiva', name: 'F1 Ferrari', price: 55000, image: '/images/f1_ferrari_new.png', gallery: f1Gallery('ferrari', '/images/f1_ferrari_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
-  { id: 'f5', category: 'deportiva', name: 'F1 McLaren', price: 55000, image: '/images/f1_mclaren_new.png', gallery: f1Gallery('mclaren', '/images/f1_mclaren_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
-  { id: 'f6', category: 'deportiva', name: 'F1 Mercedes', price: 55000, image: '/images/Mercedes.jpeg', gallery: f1Gallery('mercedes', '/images/Mercedes.jpeg'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
-  { id: 'f7', category: 'deportiva', name: 'F1 Red Bull 2025', price: 55000, image: '/images/Red Bull.jpeg', gallery: f1Gallery('redbull', '/images/Red Bull.jpeg'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
-  // { id: 'f12', category: 'deportiva', name: 'F1 Red Bull 2026', price: 55000, image: '/images/f1_redbull_2026_new.png', gallery: f1Gallery('redbull-2026', '/images/f1_redbull_2026_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
-  { id: 'f8', category: 'deportiva', name: 'F1 Stake', price: 55000, image: '/images/f1_stake_new.png', gallery: f1Gallery('stake', '/images/f1_stake_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
-  { id: 'f9', category: 'deportiva', name: 'F1 Williams', price: 55000, image: '/images/f1_williams_new.png', gallery: f1Gallery('williams', '/images/f1_williams_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
-  { id: 'f10', category: 'deportiva', name: 'F1 Audi', price: 55000, image: '/images/f1_audi_new.png', gallery: f1Gallery('audi', '/images/f1_audi_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
-  { id: 'f11', category: 'deportiva', name: 'F1 Cadillac', price: 55000, image: '/images/f1_cadillac_new.png', gallery: f1Gallery('cadillac', '/images/f1_cadillac_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
+  ...f1Products,
 ];
 
 const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
@@ -124,7 +78,7 @@ const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
           ></div>
           <div className="max-w-7xl mx-auto text-center relative z-10">
             <span className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-sm text-white/80 font-bold tracking-widest uppercase text-[10px] px-4 py-1.5 rounded-full mb-5 border border-white/15">
-              Colección 2025
+              Colección
             </span>
             <h1 className="text-5xl md:text-7xl font-display font-black mb-4 text-white leading-tight">
               Fórmula <span className="transition-colors duration-500" style={{ color: accentColor }}>1</span>
@@ -256,174 +210,6 @@ const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
               <p className="text-xl">No se encontraron productos en esta categoría.</p>
             </div>
           )}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const ProductCard: React.FC<{ product: Product; category: Category; isF1: boolean; teamColor?: string }> = ({ product, category, isF1, teamColor }) => {
-  const [selectedSize, setSelectedSize] = useState<ShirtSize>(ShirtSize.M);
-  const [viewerOpen, setViewerOpen] = useState(false);
-  const [viewerIdx, setViewerIdx] = useState(0);
-  const waNumber = "573004945790";
-  const gallery = product.gallery;
-
-  const openViewer = (src: string) => {
-    if (gallery) {
-      const idx = gallery.findIndex(g => g.src === src);
-      setViewerIdx(idx >= 0 ? idx : 0);
-    }
-    setViewerOpen(true);
-  };
-
-  const viewerSrc = gallery ? gallery[viewerIdx]?.src ?? product.image : product.image;
-  const viewerLabel = gallery ? gallery[viewerIdx]?.label : undefined;
-  const viewerPrev = gallery && viewerIdx > 0 ? () => setViewerIdx(viewerIdx - 1) : undefined;
-  const viewerNext = gallery && viewerIdx < (gallery.length - 1) ? () => setViewerIdx(viewerIdx + 1) : undefined;
-
-  const handleOrder = () => {
-    const collectionName = isF1 ? 'Fórmula 1' : category.charAt(0).toUpperCase() + category.slice(1);
-    const base = `Hola Q'Parche, quiero hacer un pedido:
-
-Producto: ${product.name}
-Colección: ${collectionName}
-Talla: ${selectedSize}
-Precio: $${product.price.toLocaleString()}`;
-    const message = isF1
-      ? `${base}
-
-Personalización (nombre y número): (completar)
-Pago: 50% anticipo · 50% contra entrega`
-      : base;
-
-    const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
-  };
-
-  // Dynamic button color for F1, orange for deportiva
-  const buttonStyle = isF1 && teamColor
-    ? { backgroundColor: teamColor }
-    : undefined;
-
-  const buttonClasses = isF1
-    ? teamColor
-      ? 'hover:brightness-110 hover:shadow-lg'
-      : 'bg-red-600 hover:bg-red-700 shadow-red-100 hover:shadow-lg hover:shadow-red-200'
-    : 'bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 shadow-orange-200 hover:shadow-lg hover:shadow-orange-300';
-
-  const priceTagStyle = isF1 && teamColor
-    ? { backgroundColor: teamColor }
-    : undefined;
-
-  const priceTagClasses = isF1
-    ? teamColor
-      ? 'text-white'
-      : 'bg-red-600 text-white'
-    : 'bg-white/95 backdrop-blur text-slate-900 border border-slate-100';
-
-  const borderClasses = isF1
-    ? 'border-slate-200/50 hover:shadow-lg'
-    : 'border-orange-200/40 hover:shadow-orange-200/50';
-
-  return (
-    <div className={`bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border flex flex-col h-full group hover:-translate-y-1.5 ${borderClasses}`}>
-      {/* Image / Gallery */}
-      {product.gallery ? (
-        <ProductGallery
-          images={product.gallery}
-          alt={product.name}
-          price={product.price}
-          teamColor={isF1 ? teamColor : undefined}
-          priceTagClasses={priceTagClasses}
-          priceTagStyle={priceTagStyle}
-          onExpand={openViewer}
-        />
-      ) : (
-        <div className="aspect-[4/5] w-full overflow-hidden bg-slate-50 relative cursor-pointer" onClick={() => openViewer(product.image)}>
-          <img
-            src={product.image}
-            alt={product.name}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 flex items-center justify-center">
-            <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-slate-700 opacity-0 group-hover:opacity-100 transition-all shadow-lg group-hover:scale-100 scale-90">
-              <Expand className="w-5 h-5" />
-            </div>
-          </div>
-          <div
-            className={`absolute top-3 right-3 font-black px-3 py-1.5 rounded-lg text-sm shadow-md transition-colors duration-300 ${priceTagClasses}`}
-            style={priceTagStyle}
-          >
-            ${product.price.toLocaleString()}
-          </div>
-          {isF1 && teamColor && (
-            <div className="absolute bottom-0 left-0 right-0 h-1.5 transition-all duration-500" style={{ backgroundColor: teamColor }} />
-          )}
-        </div>
-      )}
-
-      {/* Image Viewer Modal */}
-      <ImageViewer
-        src={viewerSrc}
-        alt={product.name}
-        isOpen={viewerOpen}
-        onClose={() => setViewerOpen(false)}
-        onPrev={viewerPrev}
-        onNext={viewerNext}
-        imageLabel={viewerLabel}
-        imageIndex={gallery ? viewerIdx : undefined}
-        imageCount={gallery ? gallery.length : undefined}
-      />
-
-      {/* Card Body */}
-      <div className="p-5 flex-1 flex flex-col">
-        <h3 className="text-base font-black text-slate-900 mb-0.5 leading-tight">{product.name}</h3>
-        <p className="text-slate-400 text-xs mb-4 line-clamp-2">{product.description}</p>
-
-        <div className="mt-auto space-y-3">
-          {/* Info Tags */}
-          <div className="flex flex-wrap gap-1.5">
-            {isF1 ? (
-              <>
-                <span className="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md">
-                  Nombre y número incluidos
-                </span>
-                <span className="text-[10px] font-bold text-green-600 bg-green-50 px-2.5 py-1 rounded-md">
-                  50% anticipo
-                </span>
-              </>
-            ) : (
-              <>
-                <span className="text-[10px] font-bold text-green-600 bg-green-50 px-2.5 py-1 rounded-md">
-                  Envío gratis BQ
-                </span>
-                <span className="text-[10px] font-bold text-slate-500 bg-slate-50 px-2.5 py-1 rounded-md">
-                  Precio final
-                </span>
-              </>
-            )}
-          </div>
-
-          {/* Size Selector */}
-          <div>
-            <label className="block text-[10px] font-bold text-slate-400 mb-1.5 uppercase tracking-widest">Talla</label>
-            <SizeSelector
-              selectedSize={selectedSize}
-              onSizeChange={setSelectedSize}
-              compact
-            />
-          </div>
-
-          {/* CTA Button */}
-          <button
-            onClick={handleOrder}
-            className={`w-full text-white font-bold h-11 rounded-xl flex items-center justify-center gap-2 transition-all text-sm hover:-translate-y-0.5 shadow-md ${buttonClasses}`}
-            style={buttonStyle}
-          >
-            <MessageCircle className="w-4 h-4" />
-            Pedir ahora
-          </button>
         </div>
       </div>
     </div>

@@ -7,7 +7,6 @@ import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import CustomDesign from './pages/CustomDesign';
 import Info from './pages/Info';
-import AmorAmistad from './pages/AmorAmistad';
 
 // Simple Error Boundary
 interface ErrorBoundaryProps {
@@ -63,7 +62,6 @@ const App: React.FC = () => {
 
               <Route path="/deportiva" element={<Catalog category="deportiva" />} />
               <Route path="/f1" element={<Catalog category="deportiva" subset="f1" />} />
-              <Route path="/amor-amistad" element={<AmorAmistad />} />
               <Route path="/crear" element={<CustomDesign />} />
               <Route path="/info" element={<Info />} />
             </Routes>
