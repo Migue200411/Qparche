@@ -207,10 +207,10 @@ const Home: React.FC = () => {
               href="https://wa.me/3004945790?text=Hola%20Q'Parche,%20quiero%20hacer%20un%20pedido"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 rounded-[14px] sm:rounded-xl text-lg sm:text-xl font-black text-white bg-black/40 border border-slate-800 hover:bg-black/60 transition-all flex items-center justify-center gap-3 uppercase italic backdrop-blur-sm"
+              className="w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 rounded-[14px] sm:rounded-xl text-lg sm:text-xl font-black text-white bg-black/40 border border-slate-800 hover:bg-black/60 hover:border-[#E10600]/30 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-3 uppercase italic backdrop-blur-sm"
               style={{ WebkitBackdropFilter: 'blur(10px)' }}
             >
-              <MessageCircle className="w-6 h-6 text-green-600/60" />
+              <MessageCircle className="w-6 h-6 text-green-500/80 group-hover:scale-110 transition-transform" />
               Hablar por WhatsApp
             </a>
           </div>
