@@ -68,7 +68,7 @@ const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
       {/* Header Banner */}
       {isF1 ? (
         <div
-          className="py-24 px-4 relative z-10 transition-all duration-700 overflow-hidden"
+          className="py-14 sm:py-24 px-6 sm:px-4 relative z-10 transition-all duration-700 overflow-hidden"
           style={{ background: activeTeam ? `linear-gradient(135deg, ${activeTeam.bgFrom} 0%, ${activeTeam.bgTo} 100%)` : 'linear-gradient(135deg, #12090e 0%, #2a0d14 50%, #4a0f1a 100%)' }}
         >
           {/* Decorative glow behind header */}
@@ -80,10 +80,10 @@ const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
             <span className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-sm text-white/80 font-bold tracking-widest uppercase text-[10px] px-4 py-1.5 rounded-full mb-5 border border-white/15">
               Colección
             </span>
-            <h1 className="text-5xl md:text-7xl font-display font-black mb-4 text-white leading-tight">
+            <h1 className="text-[2.75rem] md:text-7xl font-display font-black mb-4 text-white leading-tight">
               Fórmula <span className="transition-colors duration-500" style={{ color: accentColor }}>1</span>
             </h1>
-            <p className="text-slate-300 text-lg font-medium max-w-2xl mx-auto leading-relaxed mb-2">
+            <p className="text-slate-300 text-sm sm:text-lg font-medium max-w-2xl mx-auto leading-relaxed mb-2">
               {selectedTeam
                 ? `Sublimación full color estilo ${activeTeam?.name}. Incluye personalización de nombre y número. Precio final: $55.000.`
                 : 'Diseñada para fans que saben lo que quieren. Full color, personalizable, hecha a pedido en Barranquilla.'

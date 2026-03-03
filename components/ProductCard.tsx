@@ -167,8 +167,8 @@ Pago: 50% anticipo · 50% contra entrega`
                     {/* CTA Button */}
                     <button
                         onClick={handleOrder}
-                        className={`w-full text-white font-bold h-11 rounded-xl flex items-center justify-center gap-2 transition-all text-sm hover:-translate-y-0.5 shadow-md ${buttonClasses}`}
-                        style={buttonStyle}
+                        className={`w-full text-white font-bold rounded-[16px] flex items-center justify-center gap-2 transition-all text-sm hover:-translate-y-0.5 shadow-md ${buttonClasses}`}
+                        style={{ minHeight: '52px', ...(buttonStyle ?? {}), ...(isF1 && !teamColor ? { boxShadow: '0 8px 20px rgba(225,6,0,0.25)' } : {}) }}
                     >
                         <MessageCircle className="w-4 h-4" />
                         Pedir ahora

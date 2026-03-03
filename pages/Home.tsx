@@ -214,27 +214,27 @@ const Home: React.FC = () => {
 
       {/* ═══ HERO ═══ */}
       <div
-        className="relative pt-32 pb-24 overflow-hidden flex items-center"
-        style={{ minHeight: '100svh', backgroundColor: '#0e1117' }}
+        className="relative pt-24 sm:pt-32 pb-16 sm:pb-24 overflow-hidden flex items-center"
+        style={{ minHeight: 'min(90svh, 860px)', backgroundColor: '#0e1117' }}
       >
         {/* Glows — muy contenidos */}
         <div className="absolute top-0 right-0 w-[900px] h-[900px] rounded-full blur-[180px] -translate-y-1/2 translate-x-1/2 pointer-events-none" style={{ backgroundColor: 'rgba(225,6,0,0.035)' }} />
         <div className="absolute bottom-0 left-0 w-[700px] h-[700px] rounded-full blur-[160px] translate-y-1/3 -translate-x-1/3 pointer-events-none" style={{ backgroundColor: 'rgba(225,6,0,0.025)' }} />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center">
 
           {/* Badge */}
           <span
-            className="inline-block px-4 py-1.5 text-[10px] font-bold uppercase rounded-sm mb-8 italic"
-            style={{ backgroundColor: 'rgba(225,6,0,0.08)', color: 'rgba(225,6,0,0.8)', border: '1px solid rgba(225,6,0,0.1)', letterSpacing: '0.25em' }}
+            className="inline-block px-4 py-1.5 text-[10px] font-bold uppercase rounded-sm mb-5 sm:mb-8 italic"
+            style={{ backgroundColor: 'rgba(225,6,0,0.08)', color: 'rgba(225,6,0,0.8)', border: '1px solid rgba(225,6,0,0.1)', letterSpacing: '0.22em' }}
           >
             Colección F1
           </span>
 
           {/* Título */}
           <h1
-            className="font-display font-black mb-7 text-white uppercase italic"
-            style={{ fontSize: 'clamp(40px, 9.5vw, 110px)', lineHeight: '0.92', letterSpacing: '-0.04em', maxWidth: '16ch' }}
+            className="font-display font-black mb-5 sm:mb-7 text-white uppercase italic"
+            style={{ fontSize: 'clamp(37px, 9.5vw, 110px)', lineHeight: '0.94', letterSpacing: '-0.04em', maxWidth: '16ch' }}
           >
             Camisetas<br />
             Fórmula <span style={{ color: '#E10600' }}>1</span><br />
@@ -243,35 +243,36 @@ const Home: React.FC = () => {
 
           {/* Subtítulo */}
           <p
-            className="text-xl font-medium leading-relaxed mb-12"
-            style={{ maxWidth: '26ch', color: 'rgba(255,255,255,0.72)', letterSpacing: '-0.01em' }}
+            className="text-base sm:text-xl font-medium leading-relaxed mb-8 sm:mb-12"
+            style={{ maxWidth: '26ch', color: 'rgba(255,255,255,0.75)', letterSpacing: '-0.01em' }}
           >
             Nombre y número incluidos. Hecha para verdaderos fans.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center w-full max-w-[420px] sm:max-w-none">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center w-full max-w-[400px] sm:max-w-none">
             <Link
               to="/f1"
-              className="w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 rounded-xl text-lg sm:text-xl font-black text-white transition-all duration-300 hover:-translate-y-[3px] flex items-center justify-center gap-4 italic uppercase"
+              className="w-full sm:w-auto px-8 sm:px-12 rounded-[16px] sm:rounded-xl text-base sm:text-xl font-black text-white transition-all duration-300 sm:hover:-translate-y-[3px] flex items-center justify-center gap-3 italic uppercase"
               style={{
                 backgroundColor: '#E10600',
-                boxShadow: '0 4px 18px rgba(225,6,0,0.28)',
+                boxShadow: '0 8px 20px rgba(225,6,0,0.25)',
+                minHeight: '52px',
               }}
-              onMouseEnter={(e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.boxShadow = '0 8px 24px rgba(225,6,0,0.42)')}
-              onMouseLeave={(e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.boxShadow = '0 4px 18px rgba(225,6,0,0.28)')}
+              onMouseEnter={(e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.boxShadow = '0 10px 26px rgba(225,6,0,0.42)')}
+              onMouseLeave={(e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.boxShadow = '0 8px 20px rgba(225,6,0,0.25)')}
             >
               Explorar Escuderías
-              <ArrowRight className="w-6 h-6" />
+              <ArrowRight className="w-5 h-5" />
             </Link>
             <a
               href="https://wa.me/573004945790?text=Hola%20Q'Parche,%20quiero%20hacer%20un%20pedido"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 rounded-xl text-lg sm:text-xl font-black text-white transition-all duration-300 hover:-translate-y-[3px] flex items-center justify-center gap-3 uppercase italic"
-              style={{ backgroundColor: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
+              className="w-full sm:w-auto px-8 sm:px-12 rounded-[16px] sm:rounded-xl text-base sm:text-xl font-black text-white transition-all duration-300 sm:hover:-translate-y-[3px] flex items-center justify-center gap-3 uppercase italic"
+              style={{ backgroundColor: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', minHeight: '52px' }}
             >
-              <MessageCircle className="w-6 h-6" style={{ color: 'rgba(74,222,128,0.75)' }} />
+              <MessageCircle className="w-5 h-5" style={{ color: 'rgba(74,222,128,0.75)' }} />
               Hablar por WhatsApp
             </a>
           </div>
@@ -280,7 +281,7 @@ const Home: React.FC = () => {
 
       {/* ═══ BENEFICIOS ═══ */}
       <div
-        className="py-14"
+        className="py-10 sm:py-14"
         style={{
           backgroundColor: '#111722',
           borderTop: '1px solid rgba(255,255,255,0.04)',
@@ -312,14 +313,14 @@ const Home: React.FC = () => {
       </div>
 
       {/* ═══ CONTENIDO ═══ */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-[60px] sm:space-y-24 py-[60px] sm:py-20">
 
         <Testimonios />
         <CompraSegura />
 
         {/* ── CTA FINAL ── */}
         <div
-          className="rounded-[2.5rem] p-14 md:p-20 text-center relative overflow-hidden"
+          className="rounded-[2.5rem] p-8 sm:p-14 md:p-20 text-center relative overflow-hidden"
           style={{
             backgroundColor: '#111722',
             border: '1px solid rgba(255,255,255,0.05)',
@@ -333,7 +334,7 @@ const Home: React.FC = () => {
           <div className="relative z-10 max-w-4xl mx-auto">
             <h2
               className="font-display font-black text-white uppercase italic leading-[0.92]"
-              style={{ fontSize: 'clamp(32px, 7.5vw, 80px)', letterSpacing: '-0.03em', maxWidth: '18ch', margin: '0 auto 1.75rem' }}
+              style={{ fontSize: 'clamp(26px, 6vw, 80px)', letterSpacing: '-0.03em', maxWidth: '18ch', margin: '0 auto 1.75rem' }}
             >
               Tu escudería.<br />Tu nombre.<br />Tu número.
             </h2>
@@ -346,11 +347,8 @@ const Home: React.FC = () => {
             <div className="flex flex-col sm:flex-row gap-5 justify-center items-center w-full max-w-[420px] sm:max-w-none mx-auto">
               <Link
                 to="/f1"
-                className="w-full sm:w-auto px-10 sm:px-14 py-5 text-white font-black text-xl rounded-xl transition-all duration-300 hover:-translate-y-[3px] uppercase italic flex items-center justify-center gap-4"
-                style={{
-                  backgroundColor: '#E10600',
-                  boxShadow: '0 4px 18px rgba(225,6,0,0.28)',
-                }}
+                className="w-full sm:w-auto px-10 sm:px-14 text-white font-black text-xl rounded-[16px] sm:rounded-xl transition-all duration-300 hover:-translate-y-[3px] uppercase italic flex items-center justify-center gap-4"
+                style={{ minHeight: '52px', backgroundColor: '#E10600', boxShadow: '0 4px 18px rgba(225,6,0,0.28)' }}
                 onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 8px 26px rgba(225,6,0,0.42)')}
                 onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 4px 18px rgba(225,6,0,0.28)')}
               >
