@@ -49,7 +49,7 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({
   return (
     <>
       {/* ── MOBILE: horizontal scroll-snap carousel ── */}
-      <div className="md:hidden relative bg-slate-50">
+      <div className="md:hidden relative bg-white">
         {/* Slide strip */}
         <div
           ref={scrollRef}
@@ -68,6 +68,7 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({
                 alt={`${alt} — ${img.label}`}
                 onError={handleImgError}
                 className="w-full h-full object-cover"
+                style={{ filter: 'brightness(1.08) contrast(1.04)' }}
                 draggable={false}
               />
             </div>
@@ -105,7 +106,7 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({
       </div>
 
       {/* ── DESKTOP: main image + thumbnail strip ── */}
-      <div className="hidden md:block bg-slate-50">
+      <div className="hidden md:block bg-white">
         {/* Main image */}
         <div
           className="aspect-[4/5] overflow-hidden relative cursor-pointer group"
@@ -117,6 +118,7 @@ const ProductGallery: React.FC<ProductGalleryProps> = ({
             alt={`${alt} — ${active.label}`}
             onError={handleImgError}
             className="w-full h-full object-cover animate-gallery-fade"
+            style={{ filter: 'brightness(1.08) contrast(1.04)' }}
             draggable={false}
           />
 

@@ -89,11 +89,12 @@ Pago: 50% anticipo · 50% contra entrega`
                     onExpand={openViewer}
                 />
             ) : (
-                <div className="aspect-[4/5] w-full overflow-hidden bg-slate-50 relative cursor-pointer" onClick={() => openViewer(product.image)}>
+                <div className="aspect-[4/5] w-full overflow-hidden bg-white relative cursor-pointer" onClick={() => openViewer(product.image)}>
                     <img
                         src={product.image}
                         alt={product.name}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        style={{ filter: 'brightness(1.08) contrast(1.04)' }}
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 flex items-center justify-center">
                         <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-slate-700 opacity-0 group-hover:opacity-100 transition-all shadow-lg group-hover:scale-100 scale-90">
