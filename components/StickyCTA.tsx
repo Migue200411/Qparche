@@ -4,7 +4,7 @@ import { MessageCircle } from 'lucide-react';
 const StickyCTA: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false);
     const waNumber = "573004945790";
-    const waMessage = "Hola Q'Parche, quiero hacer un pedido y aprovechar la oferta del 50%.";
+    const waMessage = "Hola Q'Parche, quiero hacer un pedido.";
     const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`;
 
     useEffect(() => {
