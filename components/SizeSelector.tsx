@@ -17,13 +17,13 @@ const SizeSelector: React.FC<SizeSelectorProps> = ({ selectedSize, onSizeChange,
                     key={size}
                     onClick={() => onSizeChange(size)}
                     className={`
-            ${compact ? 'w-10 h-10 text-xs' : 'w-12 h-12 text-sm'}
-            font-bold rounded-lg border-2 transition-all duration-200
-            ${selectedSize === size
-                            ? 'border-q-sport bg-q-sport text-white shadow-md scale-105'
-                            : 'border-slate-200 bg-white text-slate-600 hover:border-q-sport/50 hover:bg-blue-50'
+                        ${compact ? 'w-10 h-10 text-[11px]' : 'w-12 h-12 text-sm'}
+                        font-black rounded-xl border-2 transition-all duration-300 active:scale-90
+                        ${selectedSize === size
+                            ? 'border-[#E10600] bg-[#E10600] text-white shadow-[0_4px_12px_rgba(225,6,0,0.3)] scale-105'
+                            : 'border-white/10 bg-white/5 text-slate-400 hover:border-white/20 hover:bg-white/10 hover:text-white'
                         }
-          `}
+                    `}
                 >
                     {size}
                 </button>

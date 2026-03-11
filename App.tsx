@@ -3,6 +3,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import FloatingWhatsapp from './components/FloatingWhatsapp';
+import StickyCTA from './components/StickyCTA';
 import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import CustomDesign from './pages/CustomDesign';
@@ -60,7 +61,7 @@ const App: React.FC = () => {
             <Routes>
               <Route path="/" element={<Home />} />
 
-              <Route path="/deportiva" element={<Catalog category="deportiva" />} />
+              {/* <Route path="/deportiva" element={<Catalog category="deportiva" />} /> */}
               <Route path="/f1" element={<Catalog category="deportiva" subset="f1" />} />
               <Route path="/crear" element={<CustomDesign />} />
               <Route path="/info" element={<Info />} />
@@ -69,6 +70,7 @@ const App: React.FC = () => {
         </main>
         <Footer />
         <FloatingWhatsapp />
+        <StickyCTA />
       </div>
     </Router>
   );

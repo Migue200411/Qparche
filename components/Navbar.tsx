@@ -34,9 +34,6 @@ const Navbar: React.FC = () => {
             <Link to="/f1" className="text-slate-200 hover:text-[#E10600] font-bold text-base transition-colors flex items-center gap-2 group italic">
               Fórmula 1 <Trophy className="w-4 h-4 text-[#E10600] group-hover:scale-110 transition-transform" />
             </Link>
-            <Link to="/deportiva" className="hover:text-[#E10600] font-bold text-sm transition-colors uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.45)' }}>
-              Deportiva
-            </Link>
             <Link to="/crear" className="hover:text-[#E10600] font-bold text-sm transition-colors uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.45)' }}>
               Sube tu Diseño
             </Link>
@@ -73,9 +70,6 @@ const Navbar: React.FC = () => {
           <div className="px-4 pt-4 pb-8 space-y-2 text-center">
             <Link to="/f1" onClick={() => setIsOpen(false)} className="block px-3 py-5 rounded-xl text-lg font-black text-white hover:bg-[#E10600]/10 hover:text-[#E10600] transition-colors italic uppercase tracking-tight">
               Fórmula 1 🏎️
-            </Link>
-            <Link to="/deportiva" onClick={() => setIsOpen(false)} className="block px-3 py-5 rounded-xl text-lg font-bold hover:bg-white/5 hover:text-white transition-colors uppercase tracking-widest text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>
-              Deportiva ⚽️
             </Link>
             <Link to="/crear" onClick={() => setIsOpen(false)} className="block px-3 py-5 rounded-xl text-lg font-bold hover:bg-white/5 hover:text-white transition-colors uppercase tracking-widest text-sm" style={{ color: 'rgba(255,255,255,0.45)' }}>
               Sube tu Diseño 🎨

@@ -210,12 +210,12 @@ const CompraSegura: React.FC = () => {
 /* ── Home ── */
 const Home: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col font-body" style={{ backgroundColor: '#0e1117', color: 'rgba(255,255,255,0.9)' }}>
+    <div className="min-h-screen flex flex-col font-body" style={{ backgroundColor: '#0e1117', color: 'rgba(255,255,255,0.95)' }}>
 
       {/* ═══ HERO ═══ */}
       <div
-        className="relative pt-24 sm:pt-32 pb-16 sm:pb-24 overflow-hidden flex items-center"
-        style={{ minHeight: 'min(90svh, 860px)', backgroundColor: '#0e1117' }}
+        className="relative pt-20 sm:pt-32 pb-12 sm:pb-24 overflow-hidden flex items-center"
+        style={{ minHeight: 'min(85svh, 800px)', backgroundColor: '#0e1117' }}
       >
         {/* Glows — muy contenidos */}
         <div className="absolute top-0 right-0 w-[900px] h-[900px] rounded-full blur-[180px] -translate-y-1/2 translate-x-1/2 pointer-events-none" style={{ backgroundColor: 'rgba(225,6,0,0.035)' }} />
@@ -225,16 +225,16 @@ const Home: React.FC = () => {
 
           {/* Badge */}
           <span
-            className="inline-block px-4 py-1.5 text-[10px] font-bold uppercase rounded-sm mb-5 sm:mb-8 italic"
+            className="inline-block px-4 py-1.5 text-[9px] sm:text-[10px] font-bold uppercase rounded-sm mb-4 sm:mb-8 italic"
             style={{ backgroundColor: 'rgba(225,6,0,0.08)', color: 'rgba(225,6,0,0.8)', border: '1px solid rgba(225,6,0,0.1)', letterSpacing: '0.22em' }}
           >
-            Colección F1
+            Colección F1 2025
           </span>
 
           {/* Título */}
           <h1
-            className="font-display font-black mb-5 sm:mb-7 text-white uppercase italic"
-            style={{ fontSize: 'clamp(37px, 9.5vw, 110px)', lineHeight: '0.94', letterSpacing: '-0.04em', maxWidth: '16ch' }}
+            className="font-display font-black mb-4 sm:mb-7 text-white uppercase italic"
+            style={{ fontSize: 'clamp(34px, 10vw, 100px)', lineHeight: '0.9', letterSpacing: '-0.04em', maxWidth: '16ch' }}
           >
             Camisetas<br />
             Fórmula <span style={{ color: '#E10600' }}>1</span><br />
@@ -243,38 +243,28 @@ const Home: React.FC = () => {
 
           {/* Subtítulo */}
           <p
-            className="text-base sm:text-xl font-medium leading-relaxed mb-8 sm:mb-12"
-            style={{ maxWidth: '26ch', color: 'rgba(255,255,255,0.75)', letterSpacing: '-0.01em' }}
+            className="text-sm sm:text-xl font-medium leading-relaxed mb-6 sm:mb-12"
+            style={{ maxWidth: '28ch', color: 'rgba(255,255,255,0.7)', letterSpacing: '-0.01em' }}
           >
-            Nombre y número incluidos. Hecha para verdaderos fans.
+            Tu nombre y número incluidos. <br className="hidden sm:block" /> Hechas para verdaderos fans.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center w-full max-w-[400px] sm:max-w-none">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center w-full max-w-[320px] sm:max-w-none">
             <Link
               to="/f1"
               className="w-full sm:w-auto px-8 sm:px-12 rounded-[16px] sm:rounded-xl text-base sm:text-xl font-black text-white transition-all duration-300 sm:hover:-translate-y-[3px] flex items-center justify-center gap-3 italic uppercase"
               style={{
                 backgroundColor: '#E10600',
                 boxShadow: '0 8px 20px rgba(225,6,0,0.25)',
-                minHeight: '52px',
+                minHeight: '56px',
               }}
               onMouseEnter={(e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.boxShadow = '0 10px 26px rgba(225,6,0,0.42)')}
               onMouseLeave={(e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.boxShadow = '0 8px 20px rgba(225,6,0,0.25)')}
             >
-              Explorar Escuderías
+              Explorar Colección
               <ArrowRight className="w-5 h-5" />
             </Link>
-            <a
-              href="https://wa.me/573004945790?text=Hola%20Q'Parche,%20quiero%20hacer%20un%20pedido"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto px-8 sm:px-12 rounded-[16px] sm:rounded-xl text-base sm:text-xl font-black text-white transition-all duration-300 sm:hover:-translate-y-[3px] flex items-center justify-center gap-3 uppercase italic"
-              style={{ backgroundColor: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', minHeight: '52px' }}
-            >
-              <MessageCircle className="w-5 h-5" style={{ color: 'rgba(74,222,128,0.75)' }} />
-              Hablar por WhatsApp
-            </a>
           </div>
         </div>
       </div>
@@ -303,7 +293,7 @@ const Home: React.FC = () => {
                   {b.icon}
                 </div>
                 <h4 className="text-lg font-black text-white mb-2 italic uppercase tracking-tight">{b.title}</h4>
-                <p className="text-[11px] font-medium uppercase leading-relaxed whitespace-pre-line" style={{ color: 'rgba(255,255,255,0.48)', letterSpacing: '0.08em' }}>
+                <p className="text-[11px] font-medium uppercase leading-relaxed whitespace-pre-line" style={{ color: 'rgba(255,255,255,0.65)', letterSpacing: '0.08em' }}>
                   {b.desc}
                 </p>
               </div>
@@ -317,6 +307,25 @@ const Home: React.FC = () => {
 
         <Testimonios />
         <CompraSegura />
+
+        {/* ═══ SECCIÓN COMUNIDAD (INSTAGRAM) ═══ */}
+        <div className="py-10">
+          <div className="text-center mb-8">
+            <h3 className="font-display font-black text-white italic uppercase text-3xl sm:text-4xl mb-3">Comunidad Q'Parche</h3>
+            <p className="text-sm font-medium uppercase tracking-[0.2em]" style={{ color: 'rgba(255,255,255,0.4)' }}>Síguenos en las pistas @qparche_baq</p>
+          </div>
+          <div className="text-center">
+            <a
+              href="https://www.instagram.com/qparche_baq"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-3 rounded-full border border-white/10 hover:bg-white/5 transition-all text-sm font-bold uppercase italic tracking-widest text-white/60 hover:text-white"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+              Seguir en Instagram
+            </a>
+          </div>
+        </div>
 
         {/* ── CTA FINAL ── */}
         <div
@@ -340,7 +349,7 @@ const Home: React.FC = () => {
             </h2>
             <p
               className="text-lg font-medium"
-              style={{ maxWidth: '24ch', margin: '0 auto 3.5rem', color: 'rgba(255,255,255,0.62)', letterSpacing: '-0.01em' }}
+              style={{ maxWidth: '24ch', margin: '0 auto 3.5rem', color: 'rgba(255,255,255,0.7)', letterSpacing: '-0.01em' }}
             >
               Lista para la próxima carrera.
             </p>
@@ -352,7 +361,7 @@ const Home: React.FC = () => {
                 onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 8px 26px rgba(225,6,0,0.42)')}
                 onMouseLeave={e => (e.currentTarget.style.boxShadow = '0 4px 18px rgba(225,6,0,0.28)')}
               >
-                Explorar Colección F1
+                Personalizar Ahora
                 <Trophy className="w-6 h-6" />
               </Link>
               <p className="font-medium text-[10px] uppercase hidden md:block" style={{ letterSpacing: '0.28em', color: 'rgba(255,255,255,0.2)' }}>

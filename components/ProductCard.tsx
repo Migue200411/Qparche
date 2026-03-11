@@ -76,7 +76,16 @@ Pago: 50% anticipo · 50% contra entrega`
         : 'border-orange-200/40 hover:shadow-orange-200/50';
 
     return (
-        <div className={`bg-white rounded-2xl overflow-hidden transition-all duration-300 border flex flex-col h-full group hover:-translate-y-[4px] ${borderClasses}`} style={{ boxShadow: '0 15px 40px rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.05)' }} onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => (e.currentTarget.style.boxShadow = '0 22px 50px rgba(0,0,0,0.45)')} onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => (e.currentTarget.style.boxShadow = '0 15px 40px rgba(0,0,0,0.35)')}>
+        <div
+            className={`rounded-2xl overflow-hidden transition-all duration-300 border flex flex-col h-full group hover:-translate-y-[4px] ${borderClasses}`}
+            style={{
+                backgroundColor: '#111722',
+                boxShadow: '0 15px 40px rgba(0,0,0,0.35)',
+                border: '1px solid rgba(255,255,255,0.06)'
+            }}
+            onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => (e.currentTarget.style.boxShadow = '0 22px 50px rgba(0,0,0,0.45)')}
+            onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => (e.currentTarget.style.boxShadow = '0 15px 40px rgba(0,0,0,0.35)')}
+        >
             {/* Image / Gallery */}
             {product.gallery ? (
                 <ProductGallery
@@ -89,15 +98,15 @@ Pago: 50% anticipo · 50% contra entrega`
                     onExpand={openViewer}
                 />
             ) : (
-                <div className="aspect-[4/5] w-full overflow-hidden bg-white relative cursor-pointer" onClick={() => openViewer(product.image)}>
+                <div className="aspect-[4/5] w-full overflow-hidden bg-[#0e1117] relative cursor-pointer" onClick={() => openViewer(product.image)}>
                     <img
                         src={product.image}
                         alt={product.name}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         style={{ filter: 'brightness(1.08) contrast(1.04)' }}
                     />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300 flex items-center justify-center">
-                        <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-slate-700 opacity-0 group-hover:opacity-100 transition-all shadow-lg group-hover:scale-100 scale-90">
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+                        <div className="w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all shadow-lg group-hover:scale-100 scale-90 border border-white/20">
                             <Expand className="w-5 h-5" />
                         </div>
                     </div>
@@ -128,28 +137,28 @@ Pago: 50% anticipo · 50% contra entrega`
 
             {/* Card Body */}
             <div className="p-5 flex-1 flex flex-col">
-                <h3 className="text-base font-black text-slate-900 mb-0.5 leading-tight">{product.name}</h3>
-                <p className="text-slate-400 text-xs mb-4 line-clamp-2">{product.description}</p>
+                <h3 className="text-base font-black text-white mb-0.5 leading-tight">{product.name}</h3>
+                <p className="text-slate-400 text-xs mb-4 line-clamp-2 font-medium" style={{ opacity: 0.8 }}>{product.description}</p>
 
-                <div className="mt-auto space-y-3">
+                <div className="mt-auto space-y-4">
                     {/* Info Tags */}
                     <div className="flex flex-wrap gap-1.5">
                         {isF1 ? (
                             <>
-                                <span className="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md">
-                                    Nombre y número incluidos
+                                <span className="text-[9px] font-bold text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-2 py-0.5 rounded-md uppercase tracking-wider">
+                                    Personalización incluida
                                 </span>
-                                <span className="text-[10px] font-bold text-green-600 bg-green-50 px-2.5 py-1 rounded-md">
-                                    50% anticipo
+                                <span className="text-[9px] font-bold text-green-400 bg-green-500/10 border border-green-500/20 px-2 py-0.5 rounded-md uppercase tracking-wider">
+                                    Pago 50/50
                                 </span>
                             </>
                         ) : (
                             <>
-                                <span className="text-[10px] font-bold text-green-600 bg-green-50 px-2.5 py-1 rounded-md">
-                                    Envío gratis BQ
+                                <span className="text-[9px] font-bold text-green-400 bg-green-500/10 border border-green-500/20 px-2 py-0.5 rounded-md uppercase tracking-wider">
+                                    Envío Gratis BQ
                                 </span>
-                                <span className="text-[10px] font-bold text-slate-500 bg-slate-50 px-2.5 py-1 rounded-md">
-                                    Precio final
+                                <span className="text-[9px] font-bold text-slate-400 bg-slate-500/10 border border-slate-500/20 px-2 py-0.5 rounded-md uppercase tracking-wider">
+                                    Precio Final
                                 </span>
                             </>
                         )}
@@ -157,7 +166,7 @@ Pago: 50% anticipo · 50% contra entrega`
 
                     {/* Size Selector */}
                     <div>
-                        <label className="block text-[10px] font-bold text-slate-400 mb-1.5 uppercase tracking-widest">Talla</label>
+                        <label className="block text-[10px] font-bold text-slate-500 mb-2 uppercase tracking-[0.15em]">Talla</label>
                         <SizeSelector
                             selectedSize={selectedSize}
                             onSizeChange={setSelectedSize}
@@ -168,11 +177,16 @@ Pago: 50% anticipo · 50% contra entrega`
                     {/* CTA Button */}
                     <button
                         onClick={handleOrder}
-                        className={`w-full text-white font-bold rounded-[16px] flex items-center justify-center gap-2 transition-all text-sm hover:-translate-y-0.5 shadow-md ${buttonClasses}`}
-                        style={{ minHeight: '52px', ...(buttonStyle ?? {}), ...(isF1 && !teamColor ? { boxShadow: '0 8px 20px rgba(225,6,0,0.25)' } : {}) }}
+                        className={`w-full text-white font-black rounded-[16px] flex flex-col items-center justify-center transition-all hover:-translate-y-0.5 shadow-md active:scale-[0.98] ${buttonClasses}`}
+                        style={{ minHeight: '56px', ...(buttonStyle ?? {}), ...(isF1 && !teamColor ? { boxShadow: '0 8px 20px rgba(225,6,0,0.25)' } : {}) }}
                     >
-                        <MessageCircle className="w-4 h-4" />
-                        Pedir ahora
+                        <div className="flex items-center gap-2 italic uppercase text-sm">
+                            <MessageCircle className="w-4 h-4" />
+                            Personalizar y Pedir
+                        </div>
+                        <span className="text-[9px] opacity-70 font-bold uppercase tracking-widest mt-0.5">
+                            {isF1 ? 'Reserva con el 50%' : 'Recibe en Barranquilla'}
+                        </span>
                     </button>
                 </div>
             </div>

@@ -93,6 +93,30 @@
       /* Slightly increased for warmth, strictly peripheral */
       z-index: -1;
     }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0e1117;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #1f2937;
+      border-radius: 10px;
+      border: 2px solid #0e1117;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #E10600;
+    }
+
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
   </style>
   <script>
     tailwind.config = {
