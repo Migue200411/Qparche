@@ -149,7 +149,7 @@ ${imageUrl ? `\nImagen: ${imageUrl}` : '(Sin imagen adjunta)'}`;
             <div className="bg-[#E10600]/10 p-5 rounded-2xl border border-[#E10600]/20 flex gap-3 items-start">
               <AlertTriangle className="text-[#E10600] w-5 h-5 flex-shrink-0 mt-0.5" />
               <p className="text-sm text-slate-300 leading-relaxed font-medium">
-                <strong>Nota:</strong> Al pedir, se abre WhatsApp. Recuerda <strong>enviar la foto</strong> adjunta en el chat.
+                <strong>Nota:</strong> Al pedir, se abre WhatsApp. Recuerda <strong> Subir aqui tu enviar la foto</strong> para poder personalizar tu camiseta.
               </p>
             </div>
 
