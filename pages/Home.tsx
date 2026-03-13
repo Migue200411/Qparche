@@ -47,9 +47,24 @@ const FaqItem: React.FC<{ question: string; answer: string }> = ({ question, ans
 
 /* ── Testimonios ── */
 const chatTestimonios = [
-  { src: '/images/social/chat-1.png', alt: 'Testimonio María L.', name: 'María L.', desc: 'Red Bull personalizada' },
-  { src: '/images/social/chat-2.png', alt: 'Testimonio María L.', name: 'María L.', desc: 'Red Bull – "Queda chevereee"' },
-  { src: '/images/social/chat-3.png', alt: 'Testimonio Nicolás', name: 'Nicolás', desc: 'Ferrari – Entrega confirmada' },
+  { 
+    images: ['/images/social/speed-wash-1.jpg?v=1', '/images/social/speed-wash-2.png?v=1'], 
+    alt: 'Testimonio Speed wash', 
+    name: 'Speed wash', 
+    desc: 'Equipo Speed wash – Listos en pista' 
+  },
+  { 
+    images: ['/images/social/migue-1.jpg?v=1', '/images/social/migue-2.jpg?v=1'], 
+    alt: 'Testimonio Migue', 
+    name: 'Migue', 
+    desc: 'Red Bull Racing – Personalización Migue' 
+  },
+  { 
+    images: ['/images/social/chat-2.png?v=1', '/images/social/chat-1.png?v=1'], 
+    alt: 'Testimonio María L.', 
+    name: 'María L.', 
+    desc: 'Red Bull – "Queda chevereee"' 
+  },
 ];
 
 const StarRow: React.FC = () => (
@@ -63,7 +78,23 @@ const StarRow: React.FC = () => (
 );
 
 const Testimonios: React.FC = () => {
-  const [viewerIdx, setViewerIdx] = useState<number | null>(null);
+  const [testimonioIdx, setTestimonioIdx] = useState<number | null>(null);
+  const [imageIdx, setImageIdx] = useState<number>(0);
+
+  const currentTestimonio = testimonioIdx !== null ? chatTestimonios[testimonioIdx] : null;
+
+  const handleNext = () => {
+    if (currentTestimonio) {
+      setImageIdx((prev) => (prev + 1) % currentTestimonio.images.length);
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentTestimonio) {
+      setImageIdx((prev) => (prev - 1 + currentTestimonio.images.length) % currentTestimonio.images.length);
+    }
+  };
+
   return (
     <div className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
@@ -88,16 +119,27 @@ const Testimonios: React.FC = () => {
               border: '1px solid rgba(255,255,255,0.05)',
               boxShadow: '0 12px 36px rgba(0,0,0,0.32)',
             }}
-            onClick={() => setViewerIdx(i)}
+            onClick={() => {
+              setTestimonioIdx(i);
+              setImageIdx(0);
+            }}
           >
             <div className="aspect-[4/5] relative overflow-hidden" style={{ backgroundColor: '#0e1117' }}>
               <img
-                src={t.src}
+                src={t.images[0]}
                 alt={t.alt}
                 className="absolute inset-0 w-full h-full object-cover z-10 transition-transform duration-500 group-hover:scale-[1.03]"
                 style={{ filter: 'brightness(1.08) contrast(1.02)' }}
-                onError={(e) => { e.currentTarget.parentElement!.style.display = 'none'; }}
+                onError={(e) => { 
+                  console.error('Error loading image:', t.images[0]);
+                  // Don't hide the parent anymore so we can debug
+                }}
               />
+              {t.images.length > 1 && (
+                <div className="absolute top-3 right-3 z-30 bg-black/50 backdrop-blur-md rounded-full px-2 py-1 text-[8px] font-black text-white uppercase tracking-tighter border border-white/10">
+                  +{t.images.length - 1} fotos
+                </div>
+              )}
               <div
                 className="absolute inset-0 z-20 pointer-events-none"
                 style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 60%)' }}
@@ -113,15 +155,15 @@ const Testimonios: React.FC = () => {
       </div>
 
       <ImageViewer
-        src={viewerIdx !== null ? chatTestimonios[viewerIdx].src : ''}
-        alt={viewerIdx !== null ? chatTestimonios[viewerIdx].alt : ''}
-        isOpen={viewerIdx !== null}
-        onClose={() => setViewerIdx(null)}
-        onPrev={viewerIdx !== null && viewerIdx > 0 ? () => setViewerIdx(viewerIdx - 1) : undefined}
-        onNext={viewerIdx !== null && viewerIdx < chatTestimonios.length - 1 ? () => setViewerIdx(viewerIdx + 1) : undefined}
-        imageLabel={viewerIdx !== null ? chatTestimonios[viewerIdx].name : undefined}
-        imageIndex={viewerIdx ?? undefined}
-        imageCount={chatTestimonios.length}
+        src={currentTestimonio ? currentTestimonio.images[imageIdx] : ''}
+        alt={currentTestimonio?.alt || ''}
+        isOpen={testimonioIdx !== null}
+        onClose={() => setTestimonioIdx(null)}
+        onPrev={currentTestimonio && currentTestimonio.images.length > 1 ? handlePrev : undefined}
+        onNext={currentTestimonio && currentTestimonio.images.length > 1 ? handleNext : undefined}
+        imageLabel={currentTestimonio ? currentTestimonio.name : undefined}
+        imageIndex={imageIdx}
+        imageCount={currentTestimonio?.images.length}
       />
     </div>
   );
