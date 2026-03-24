@@ -12,6 +12,7 @@ export const teamColors: Record<string, { name: string; primary: string; seconda
     f9: { name: 'Williams', primary: '#005AFF', secondary: '#00A0DE', bgFrom: '#000d26', bgTo: '#0a2d5f', glowColor: 'rgba(0,90,255,0.15)' },
     f10: { name: 'Audi', primary: '#E10600', secondary: '#ffffff', bgFrom: '#1c0404', bgTo: '#3b0a0a', glowColor: 'rgba(225,6,0,0.15)' },
     f11: { name: 'Cadillac', primary: '#000000', secondary: '#da291c', bgFrom: '#000000', bgTo: '#1a1a1a', glowColor: 'rgba(218,41,28,0.15)' },
+    f12: { name: 'Renault 2004', primary: '#0090FF', secondary: '#FFD700', bgFrom: '#0c1e3a', bgTo: '#1e3a5f', glowColor: 'rgba(0,144,255,0.15)' },
 };
 
 export const f1Gallery = (teamSlug: string, productImage: string): GalleryImage[] => {
@@ -40,4 +41,5 @@ export const f1Products: Product[] = [
     { id: 'f9', category: 'deportiva', name: 'F1 Williams', price: 55000, image: '/images/f1_williams_new.png', gallery: f1Gallery('williams', '/images/f1_williams_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
     { id: 'f10', category: 'deportiva', name: 'F1 Audi', price: 55000, image: '/images/f1_audi_new.png', gallery: f1Gallery('audi', '/images/f1_audi_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
     { id: 'f11', category: 'deportiva', name: 'F1 Cadillac', price: 55000, image: '/images/f1_cadillac_new.png', gallery: f1Gallery('cadillac', '/images/f1_cadillac_new.png'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
+    { id: 'f12', category: 'deportiva', name: 'F1 Renault 2004', price: 55000, image: '/images/f1_renault_2004_new.jpg', gallery: f1Gallery('renault-2004', '/images/f1_renault_2004_new.jpg'), description: 'Sublimación full color. Nombre y número incluidos. Hecha a pedido, tallas S–XXL.' },
 ];

@@ -229,7 +229,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ src, alt, isOpen, onClose, on
         <img
           src={src}
           alt={alt}
-          className="max-w-[90vw] max-h-[85vh] object-contain select-none pointer-events-none"
+          className="w-full h-full max-w-[90vw] max-h-[85vh] object-contain select-none pointer-events-none"
           style={{
             transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
             transition: isDragging ? 'none' : 'transform 0.2s ease-out',
