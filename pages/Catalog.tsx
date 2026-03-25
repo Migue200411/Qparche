@@ -180,7 +180,7 @@ const Catalog: React.FC<CatalogProps> = ({ category, subset }) => {
                 <p className="text-slate-400 font-medium text-sm">Sube tu imagen o idea personalizada.</p>
               </div>
               <div>
-                <div className="text-white font-black text-2xl mb-4">$50.000</div>
+                <div className="text-white font-black text-2xl mb-4">$60.000</div>
                 <div className="w-full py-3 bg-white text-slate-900 rounded-xl font-bold text-center group-hover:bg-gradient-to-r group-hover:from-orange-500 group-hover:to-amber-500 group-hover:text-white transition-all shadow-sm">
                   Crear Ahora
                 </div>

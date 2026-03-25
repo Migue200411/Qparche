@@ -35,9 +35,9 @@ const Footer: React.FC = () => {
             <div className="w-10 h-10 bg-[#E10600]/10 rounded-lg flex items-center justify-center text-[#E10600] shrink-0 border border-[#E10600]/20">
               <Sparkles className="w-5 h-5" />
             </div>
-            <div>
-              <p className="text-white font-bold text-sm">Calidad premium</p>
-              <p className="text-slate-400 text-xs font-medium">Sublimación de alta durabilidad</p>
+            <div className="flex flex-col">
+              <span className="text-white font-bold text-sm">Síguenos</span>
+              <span className="text-slate-400 text-xs font-medium">@qparche.f1</span>
             </div>
           </div>
         </div>
@@ -52,13 +52,13 @@ const Footer: React.FC = () => {
           <div className="flex flex-col items-center md:items-end gap-5">
             <div className="flex items-center gap-6">
               <a
-                href="https://instagram.com/qparche_baq"
+                href="https://instagram.com/qparche.f1"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-slate-400 hover:text-[#E10600] transition-colors font-bold text-sm"
               >
                 <Instagram className="w-4 h-4" />
-                @qparche_baq
+                @qparche.f1
               </a>
               <a
                 href={`https://wa.me/${waNumber}`}

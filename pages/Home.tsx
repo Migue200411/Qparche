@@ -371,12 +371,12 @@ const Home: React.FC = () => {
               className="text-lg sm:text-2xl font-black italic uppercase mb-10 tracking-[0.1em]"
               style={{ color: 'rgba(255,255,255,0.35)' }}
             >
-              @qparche_baq
+              @qparche.f1
             </p>
 
             <div className="flex flex-col items-center gap-6">
               <a
-                href="https://www.instagram.com/qparche_baq"
+                href="https://www.instagram.com/qparche.f1"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative inline-flex items-center gap-4 px-10 py-5 rounded-2xl text-white font-black uppercase italic text-lg transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_15px_35px_rgba(225,48,108,0.25)]"

@@ -75,7 +75,7 @@ const CustomDesign: React.FC = () => {
       }
     }
 
-    const message = `Hola Q'Parche, quiero un diseño personalizado ($50.000):
+    const message = `Hola Q'Parche, quiero un diseño personalizado ($60.000):
 
 Talla: ${size}
 Color: ${color}
@@ -164,7 +164,7 @@ ${imageUrl ? `\nImagen: ${imageUrl}` : '(Sin imagen adjunta)'}`;
                 <h3 className="text-3xl font-bold text-white uppercase italic">Configuración</h3>
                 <div className="text-right">
                   <p className="text-sm text-slate-500 font-bold uppercase tracking-wider">Precio Único</p>
-                  <p className="text-3xl font-black text-[#E10600]">$55.000</p>
+                  <p className="text-3xl font-black text-[#E10600]">$60.000</p>
                 </div>
               </div>
 
