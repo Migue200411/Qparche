@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+@theme {
+  --color-q-carnaval: #f97316;
+  --color-q-sport: #ea580c;
+  --color-q-f1: #dc2626;
+  --color-q-f1-dark: #991b1b;
+  --color-q-amor: #e11d48;
+  --color-q-amor-soft: #fda4af;
+  --color-q-yellow: #fde047;
+  --color-q-mint: #6ee7b7;
+  --color-q-dark: #0f172a;
+  --color-q-gray: #f8fafc;
+
+  --font-display: Fredoka, sans-serif;
+  --font-body: Nunito, sans-serif;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-soft: pulse-soft 3s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600;700&family=Nunito:wght@400;600;700;800&display=swap');
+
+body {
+  font-family: 'Nunito', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-display {
+  font-family: 'Fredoka', sans-serif;
+}
+
+/* Texture: Very subtle noise for organic feel */
+.bg-texture {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* iOS Safari fixes */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* Fix 100vh on iOS Safari */
+.min-h-screen {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+/* Prevent iOS zoom on input focus */
+input,
+select,
+textarea {
+  font-size: 16px !important;
+}
+
+/* Fix backdrop-filter on Safari */
+.backdrop-blur-sm {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+/* Gallery image transition */
+@keyframes galleryFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(1.015);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-gallery-fade {
+  animation: galleryFadeIn 0.25s ease-out;
+}
+
+/* Hide scrollbar (carousel) */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Maizena / Paint Dust Effects */
+.paint-splash {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.06;
+  z-index: -1;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0e1117;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 10px;
+  border: 2px solid #0e1117;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E10600;
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}

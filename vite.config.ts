@@ -1,6 +1,7 @@
 import path from 'path';
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 import type { IncomingMessage, ServerResponse } from 'http';
 
 export default defineConfig(({ mode }) => {
@@ -12,6 +13,7 @@ export default defineConfig(({ mode }) => {
       },
       plugins: [
         react(),
+        tailwindcss(),
         // Dev API handler for /api/ai/suggest (mirrors Vercel serverless function)
         {
           name: 'ai-suggest-dev-api',
